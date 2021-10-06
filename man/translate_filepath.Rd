@@ -13,9 +13,11 @@ translate_filepath(path)
 The same file path with \code{\\\\} replaced with \code{/}
 }
 \description{
-Convert a File or Folder Path
+GGIR uses some code which does not play nice with some file paths on Windows
+(e.g., those produced by \code{tempdir()}). This function converts between a
+file path to the format that works with GGIR.
 }
 \examples{
-example_path <- file.path("C:","Documents","Study Files", fsep = "\\\\")
+example_path <- file.path("C:", "Documents", "Study Files", fsep = "\\\\")
 translate_filepath(example_path)
 }

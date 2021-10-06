@@ -20,6 +20,7 @@ Imports:
     GGIR (>= 2.4.0),
     magrittr,
     openxlsx,
+    readr,
     rlang,
     usethis
 Depends: 
