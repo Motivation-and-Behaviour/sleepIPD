@@ -32,7 +32,7 @@
 #' default.
 #' @param verbose Determines how much output the function returns. Useful for
 #' understanding what the package is doing. `TRUE` by default.
-#' @param ...Pass additional parameters to [GGIR::g.shell.GGIR()]. Refer to the
+#' @param ... Pass additional parameters to [GGIR::g.shell.GGIR()]. Refer to the
 #' `GGIR` manual for details.
 #'
 #' @export
@@ -46,6 +46,7 @@ process_files <- function(datadir,
                           ...) {
   validate_GGIR(verbose)
 
+
   # Build the cut point settings
   ages <- match.arg(ages, c("children", "adults"), several.ok = TRUE)
   device <- match.arg(device, c("geneactiv", "actigraph"), several.ok = TRUE)
@@ -56,11 +57,19 @@ process_files <- function(datadir,
   threshold.lig <- apply_thresholds("light", ages, device, wear_location)
   threshold.mod <- apply_thresholds("mod", ages, device, wear_location)
   threshold.vig <- apply_thresholds("vig", ages, device, wear_location)
+  if (verbose) usethis::ui_done("Cutpoints set")
+
+  # Check file paths
+  datadir <- translate_filepath(datadir)
+  outputdir <- translate_filepath(outputdir)
+
+  # Call GGIR
+  if (verbose) usethis::ui_info("Calling GGIR")
 
   GGIR::g.shell.GGIR(
-    mode = c(2, 3, 4, 5),
+    mode = c(1, 2, 3, 4, 5),
     datadir = datadir,
-    outputdir = outdir,
+    outputdir = outputdir,
     do.report = c(2, 4, 5),
     overwrite = overwrite,
     do.enmo = TRUE,
@@ -119,7 +128,8 @@ reprocess <- function(){
   # TODO - The wrapper function
   # STEPS
 
-  # 1. Validate the GGIR version is correct
-  # 2.
+  # 1. Run process_files (includes validation check)
+  # 2. Collate the returned files into a single csv
+  # 3. Generate the meta_data
 
 }

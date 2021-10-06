@@ -11,6 +11,7 @@ process_files(
   device = c("geneactiv", "actigraph"),
   wear_location = c("wrist", "hip"),
   overwrite = FALSE,
+  verbose = TRUE,
   ...
 )
 }
@@ -36,7 +37,10 @@ both (i.e., \code{c("wrist","hip")}). If you do not specify, both are used.}
 \item{overwrite}{If the existing output should be replaced. \code{FALSE} by
 default.}
 
-\item{...Pass}{additional parameters to \code{\link[GGIR:g.shell.GGIR]{GGIR::g.shell.GGIR()}}. Refer to the
+\item{verbose}{Determines how much output the function returns. Useful for
+understanding what the package is doing. \code{TRUE} by default.}
+
+\item{...}{Pass additional parameters to \code{\link[GGIR:g.shell.GGIR]{GGIR::g.shell.GGIR()}}. Refer to the
 \code{GGIR} manual for details.}
 }
 \description{
@@ -53,6 +57,6 @@ decision to process in parallel or not) are available via \code{...}. See
 You can specify parameters of your study by supplying \code{ages}, \code{device},
 and/or \code{wear_location} (see Arguments for details). Not supplying these will
 cause sleepIPD to calculate every combination of thresholds (resulting in
-\eqn{8^3 x 2 = 1024} output files). So, supplying them should slightly
+\eqn{8^3 \times 2 = 1024} output files). So, supplying them should slightly
 reduce processing time.
 }
