@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Choose the correct intensity thresholds — apply_thresholds • sleepIPD</title>
+<title>Create Pre-filled Metadata Template — build_meta • sleepIPD</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,8 @@
 
 
 
-<meta property="og:title" content="Choose the correct intensity thresholds — apply_thresholds" />
-<meta property="og:description" content="A helper function for choosing intensity thresholds. Not intended to be
-invoked directly by the user." />
+<meta property="og:title" content="Create Pre-filled Metadata Template — build_meta" />
+<meta property="og:description" content="Create Pre-filled Metadata Template" />
 
 
 
@@ -109,48 +108,46 @@ invoked directly by the user." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Choose the correct intensity thresholds</h1>
+    <h1>Create Pre-filled Metadata Template</h1>
     <small class="dont-index">Source: <a href='https://github.com/Motivation-and-Behaviour/sleepIPD/blob/master/R/helpers.R'><code>R/helpers.R</code></a></small>
-    <div class="hidden name"><code>apply_thresholds.Rd</code></div>
+    <div class="hidden name"><code>build_meta.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A helper function for choosing intensity thresholds. Not intended to be
-invoked directly by the user.</p>
+    <p>Create Pre-filled Metadata Template</p>
     </div>
 
-    <pre class="usage"><span class='fu'>apply_thresholds</span><span class='op'>(</span><span class='va'>intensity</span>, <span class='va'>ages</span>, <span class='va'>device</span>, <span class='va'>wear_location</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>build_meta</span><span class='op'>(</span><span class='va'>outputdir</span>, <span class='va'>studyname</span>, overwrite <span class='op'>=</span> <span class='cn'>FALSE</span>, wear_location <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>intensity</th>
-      <td><p>The thresholds to return. Must be one of 'light', 'mod', or
-'vig'</p></td>
+      <th>outputdir</th>
+      <td><p>The directory where the output files were created.</p></td>
     </tr>
     <tr>
-      <th>ages</th>
-      <td><p>The age group (i.e., children or adults or both)</p></td>
+      <th>studyname</th>
+      <td><p>The name of the study. Use the first author's surname where
+there is no study name.</p></td>
     </tr>
     <tr>
-      <th>device</th>
-      <td><p>The device (i.e., actigraph or geneactiv or both)</p></td>
+      <th>overwrite</th>
+      <td><p>If an existing metadata template is found, should it be
+replaced? Default is <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>wear_location</th>
-      <td><p>The wear location of the device (i.e., 'wrist' or 'hip')</p></td>
+      <td><p>Optionally pre-fill the wear location field of the
+metadata. If there are multiple wear locations, this is ignored.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>vector of threshold cut-points</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other helper functions (internal): 
-<code><a href='check_outfiles.html'>check_outfiles</a>()</code>,
-<code><a href='translate_studyname.html'>translate_studyname</a>()</code></p></div>
+    <div class='dont-index'><p>Other helper functions: 
+<code><a href='collate_outputs.html'>collate_outputs</a>()</code>,
+<code><a href='translate_filepath.html'>translate_filepath</a>()</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

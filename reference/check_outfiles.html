@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Choose the correct intensity thresholds — apply_thresholds • sleepIPD</title>
+<title>Check Number of Files Matches Expectations — check_outfiles • sleepIPD</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,9 @@
 
 
 
-<meta property="og:title" content="Choose the correct intensity thresholds — apply_thresholds" />
-<meta property="og:description" content="A helper function for choosing intensity thresholds. Not intended to be
-invoked directly by the user." />
+<meta property="og:title" content="Check Number of Files Matches Expectations — check_outfiles" />
+<meta property="og:description" content="An internal function. Performs a check for output files to confirm the
+correct number are found." />
 
 
 
@@ -109,47 +109,43 @@ invoked directly by the user." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Choose the correct intensity thresholds</h1>
+    <h1>Check Number of Files Matches Expectations</h1>
     <small class="dont-index">Source: <a href='https://github.com/Motivation-and-Behaviour/sleepIPD/blob/master/R/helpers.R'><code>R/helpers.R</code></a></small>
-    <div class="hidden name"><code>apply_thresholds.Rd</code></div>
+    <div class="hidden name"><code>check_outfiles.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A helper function for choosing intensity thresholds. Not intended to be
-invoked directly by the user.</p>
+    <p>An internal function. Performs a check for output files to confirm the
+correct number are found.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>apply_thresholds</span><span class='op'>(</span><span class='va'>intensity</span>, <span class='va'>ages</span>, <span class='va'>device</span>, <span class='va'>wear_location</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>check_outfiles</span><span class='op'>(</span><span class='va'>part</span>, <span class='va'>expect</span>, <span class='va'>found</span>, <span class='va'>verbose</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>intensity</th>
-      <td><p>The thresholds to return. Must be one of 'light', 'mod', or
-'vig'</p></td>
+      <th>part</th>
+      <td><p>The GGIR part the files relate to (as a string).</p></td>
     </tr>
     <tr>
-      <th>ages</th>
-      <td><p>The age group (i.e., children or adults or both)</p></td>
+      <th>expect</th>
+      <td><p>The number of files expected to be found.</p></td>
     </tr>
     <tr>
-      <th>device</th>
-      <td><p>The device (i.e., actigraph or geneactiv or both)</p></td>
+      <th>found</th>
+      <td><p>The number of files actually found.</p></td>
     </tr>
     <tr>
-      <th>wear_location</th>
-      <td><p>The wear location of the device (i.e., 'wrist' or 'hip')</p></td>
+      <th>verbose</th>
+      <td><p>Should a success message be displayed?</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>vector of threshold cut-points</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other helper functions (internal): 
-<code><a href='check_outfiles.html'>check_outfiles</a>()</code>,
+<code><a href='apply_thresholds.html'>apply_thresholds</a>()</code>,
 <code><a href='translate_studyname.html'>translate_studyname</a>()</code></p></div>
 
   </div>

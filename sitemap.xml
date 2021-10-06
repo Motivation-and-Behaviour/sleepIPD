@@ -7,6 +7,12 @@
     <loc>https://motivation-and-behaviour.github.io/sleepIPD/reference/apply_thresholds.html</loc>
   </url>
   <url>
+    <loc>https://motivation-and-behaviour.github.io/sleepIPD/reference/build_meta.html</loc>
+  </url>
+  <url>
+    <loc>https://motivation-and-behaviour.github.io/sleepIPD/reference/check_outfiles.html</loc>
+  </url>
+  <url>
     <loc>https://motivation-and-behaviour.github.io/sleepIPD/reference/collate_outputs.html</loc>
   </url>
   <url>
@@ -17,6 +23,9 @@
   </url>
   <url>
     <loc>https://motivation-and-behaviour.github.io/sleepIPD/reference/translate_filepath.html</loc>
+  </url>
+  <url>
+    <loc>https://motivation-and-behaviour.github.io/sleepIPD/reference/translate_studyname.html</loc>
   </url>
   <url>
     <loc>https://motivation-and-behaviour.github.io/sleepIPD/reference/validate_GGIR.html</loc>
