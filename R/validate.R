@@ -29,7 +29,7 @@ validate_GGIR <- function(verbose = TRUE) {
       if (!requireNamespace("devtools", quietly = TRUE)){
         usethis::ui_info(
           "{usethis::ui_code('devtools')} is also required and will be installed.")
-        install.packages("devtools")
+        utils::install.packages("devtools")
       }
       detach("package:GGIR", unload=TRUE)
       devtools::install_version("GGIR", version = req_ver)

@@ -1,3 +1,7 @@
+# These are the thresholds for the intensity cut-points. These come from
+# Hildebrand 2014 (https://doi.org/10.1249/mss.0000000000000289) and
+# Hildebrand 2016 (https://doi.org/10.1111/sms.12795)
+
 thresholds <-
   dplyr::tribble(
         ~age,        ~dev, ~wear_loc, ~light,  ~mod,  ~vig,

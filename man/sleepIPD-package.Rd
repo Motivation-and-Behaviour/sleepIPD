@@ -4,15 +4,14 @@
 \name{sleepIPD-package}
 \alias{sleepIPD}
 \alias{sleepIPD-package}
-\title{sleepIPD: Opinionated Reprocessing for the SleepIPD Study}
+\title{sleepIPD: Opinionated Accelerometer Reprocessing for the SleepIPD Study}
 \description{
-A wrapper around {GGIR} to provide standardised reprocessing of
-    accelerometer files. It also provides a set of helper scripts to make 
-    generating the metadata simpler.
+A wrapper around {GGIR} to provide standardised reprocessing of accelerometer files. It also provides a set of helper scripts to make generating the metadata simpler.
 }
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://motivation-and-behaviour.github.io/sleepIPD}
   \item \url{https://github.com/Motivation-and-Behaviour/sleepIPD}
   \item Report bugs at \url{https://github.com/Motivation-and-Behaviour/sleepIPD/issues}
 }
