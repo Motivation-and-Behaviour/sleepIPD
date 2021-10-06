@@ -30,13 +30,16 @@ apply_thresholds <- function(intensity, ages, device, wear_location) {
 #'
 #' @return The same file path with \code{\\\\} replaced with \code{/}
 #' @export
-#' @importFrom rlang .data
 #'
 #' @examples
 #' example_path <- file.path("C:", "Documents", "Study Files", fsep = "\\")
 #' translate_filepath(example_path)
 translate_filepath <- function(path) {
   gsub("\\\\", "/", path)
+}
+
+translate_studyname <- function(studyname){
+  gsub("\\s", "-", studyname)
 }
 
 #' Collate GGIR Outputs
@@ -53,7 +56,7 @@ translate_filepath <- function(path) {
 #' @export
 collate_outputs <- function(outputdir, studyname, verbose) {
   outputdir <- translate_filepath(outputdir)
-  studyname <- gsub("\\s", "-", studyname)
+  studyname <- translate_studyname(studyname)
 
   # Find all of the files
   # Part 2
@@ -128,8 +131,28 @@ collate_outputs <- function(outputdir, studyname, verbose) {
   }
 }
 
-build_meta <- function() {
-  # TODO build the metadata file for the user with the file paths
+build_meta <- function(outputdir, studyname, overwrite = FALSE) {
+  studyname <- translate_studyname(studyname)
+  new_filename <- file.path(outputdir, paste0(studyname, "_metadata.xlsx"))
+  template <- system.file("extdata", "sleepIPD_metadata_template.xlsx", package = "sleepIPD")
+
+  if (!overwrite & file.exists(new_filename)) {
+    err_msg <- "A file already exists at {usethis::ui_path(new_filename)}.
+    Use {usethis::ui_code('overwrite = TRUE')} to replace."
+    usethis::ui_stop(err_msg)
+  }
+
+  # Check we can find the part 2 files
+  part2file <- file.path(outputdir, paste0("part2_", studyname, ".csv"))
+  if (!file.exists(part2file)) {
+    err_msg <- "Could not find part 2 data at {usethis::ui_path(part2file)}."
+    usethis::ui_stop(err_msg)
+  }
+
+  file.copy(template, new_filename, overwrite = overwrite)
+  unique_files <- readr::read_csv(part2file) %>%
+    dplyr::distinct(.data$filename)
+
 }
 
 check_outfiles <- function(part, expect, found, verbose) {
@@ -150,4 +173,3 @@ check_outfiles <- function(part, expect, found, verbose) {
     usethis::ui_done("Found {usethis::ui_value(found)} part {part} {files}")
   }
 }
-
