@@ -126,6 +126,7 @@ the files accordingly.</p>
   device <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"geneactiv"</span>, <span class='st'>"actigraph"</span><span class='op'>)</span>,
   wear_location <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"wrist"</span>, <span class='st'>"hip"</span><span class='op'>)</span>,
   overwrite <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
@@ -166,8 +167,13 @@ both (i.e., <code><a href='https://rdrr.io/r/base/c.html'>c("wrist","hip")</a></
 default.</p></td>
     </tr>
     <tr>
-      <th>...Pass</th>
-      <td><p>additional parameters to <code><a href='https://rdrr.io/pkg/GGIR/man/g.shell.GGIR.html'>GGIR::g.shell.GGIR()</a></code>. Refer to the
+      <th>verbose</th>
+      <td><p>Determines how much output the function returns. Useful for
+understanding what the package is doing. <code>TRUE</code> by default.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Pass additional parameters to <code><a href='https://rdrr.io/pkg/GGIR/man/g.shell.GGIR.html'>GGIR::g.shell.GGIR()</a></code>. Refer to the
 <code>GGIR</code> manual for details.</p></td>
     </tr>
     </table>
@@ -182,7 +188,7 @@ decision to process in parallel or not) are available via <code>...</code>. See
 <p>You can specify parameters of your study by supplying <code>ages</code>, <code>device</code>,
 and/or <code>wear_location</code> (see Arguments for details). Not supplying these will
 cause sleepIPD to calculate every combination of thresholds (resulting in
-\(8^3 x 2 = 1024\) output files). So, supplying them should slightly
+\(8^3 \times 2 = 1024\) output files). So, supplying them should slightly
 reduce processing time.</p>
 
   </div>
