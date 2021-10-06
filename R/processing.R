@@ -12,7 +12,7 @@
 #' You can specify parameters of your study by supplying `ages`, `device`,
 #' and/or `wear_location` (see Arguments for details). Not supplying these will
 #' cause sleepIPD to calculate every combination of thresholds (resulting in
-#' \eqn{8^3 x 2 = 1024} output files). So, supplying them should slightly
+#' \eqn{8^3 \times 2 = 1024} output files). So, supplying them should slightly
 #' reduce processing time.
 #'
 #' @param datadir The directory with the files to process or a vector of
@@ -30,6 +30,8 @@
 #' both (i.e., `c("wrist","hip")`). If you do not specify, both are used.
 #' @param overwrite If the existing output should be replaced. `FALSE` by
 #' default.
+#' @param verbose Determines how much output the function returns. Useful for
+#' understanding what the package is doing. `TRUE` by default.
 #' @param ...Pass additional parameters to [GGIR::g.shell.GGIR()]. Refer to the
 #' `GGIR` manual for details.
 #'
@@ -40,7 +42,10 @@ process_files <- function(datadir,
                           device = c("geneactiv", "actigraph"),
                           wear_location = c("wrist", "hip"),
                           overwrite = FALSE,
+                          verbose = TRUE,
                           ...) {
+  validate_GGIR(verbose)
+
   # Build the cut point settings
   ages <- match.arg(ages, c("children", "adults"), several.ok = TRUE)
   device <- match.arg(device, c("geneactiv", "actigraph"), several.ok = TRUE)
@@ -112,5 +117,9 @@ process_files <- function(datadir,
 
 reprocess <- function(){
   # TODO - The wrapper function
+  # STEPS
+
+  # 1. Validate the GGIR version is correct
+  # 2.
 
 }
