@@ -13,3 +13,4 @@ validate_GGIR(verbose = TRUE)
 Performs a check of the installed version of GGIR. The user is invited to
 install the correct version if it cannot be located.
 }
+\concept{validation functions}

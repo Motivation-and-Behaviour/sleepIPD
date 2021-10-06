@@ -21,3 +21,9 @@ file path to the format that works with GGIR.
 example_path <- file.path("C:", "Documents", "Study Files", fsep = "\\\\")
 translate_filepath(example_path)
 }
+\seealso{
+Other helper functions: 
+\code{\link{build_meta}()},
+\code{\link{collate_outputs}()}
+}
+\concept{helper functions}

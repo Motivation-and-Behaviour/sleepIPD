@@ -60,3 +60,4 @@ cause sleepIPD to calculate every combination of thresholds (resulting in
 \eqn{8^3 \times 2 = 1024} output files). So, supplying them should slightly
 reduce processing time.
 }
+\concept{processing functions}

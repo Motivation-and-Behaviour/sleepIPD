@@ -4,7 +4,9 @@
 #' install the correct version if it cannot be located.
 #'
 #' @param verbose Should a success message be displayed? `TRUE` by default.
-
+#'
+#' @family validation functions
+#'
 #' @export
 validate_GGIR <- function(verbose = TRUE) {
   ggir_ver <- utils::packageVersion("GGIR")

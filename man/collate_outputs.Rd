@@ -19,3 +19,9 @@ This function simply finds the outputs from GGIR that are required for the
 project, and copies them to a new folder. If there are multiple copies of
 part 5 outputs, they are collapsed to a single csv file.
 }
+\seealso{
+Other helper functions: 
+\code{\link{build_meta}()},
+\code{\link{translate_filepath}()}
+}
+\concept{helper functions}

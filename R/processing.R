@@ -35,6 +35,8 @@
 #' @param ... Pass additional parameters to [GGIR::g.shell.GGIR()]. Refer to the
 #' `GGIR` manual for details.
 #'
+#' @family processing functions
+#'
 #' @export
 process_files <- function(datadir,
                           outputdir,

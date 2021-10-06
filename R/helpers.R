@@ -8,6 +8,7 @@
 #' @param ages The age group (i.e., children or adults or both)
 #' @param device The device (i.e., actigraph or geneactiv or both)
 #' @param wear_location The wear location of the device (i.e., 'wrist' or 'hip')
+#' @family helper functions (internal)
 #'
 #' @importFrom rlang .data
 #'
@@ -30,6 +31,7 @@ apply_thresholds <- function(intensity, ages, device, wear_location) {
 #'
 #' @return The same file path with \code{\\\\} replaced with \code{/}
 #' @export
+#' @family helper functions
 #'
 #' @examples
 #' example_path <- file.path("C:", "Documents", "Study Files", fsep = "\\")
@@ -38,6 +40,12 @@ translate_filepath <- function(path) {
   gsub("\\\\", "/", path)
 }
 
+#' Remove White Space from a Study Name
+#'
+#' @param studyname Name of the study
+#' @family helper functions (internal)
+#'
+#' @return Study name with whitespace replaced with \code{-}
 translate_studyname <- function(studyname){
   gsub("\\s", "-", studyname)
 }
@@ -52,6 +60,7 @@ translate_studyname <- function(studyname){
 #' @param studyname the name of the study. Use the first author's surname if
 #' there is no study name.
 #' @param verbose If success messages should be displayed
+#' @family helper functions
 #'
 #' @export
 collate_outputs <- function(outputdir, studyname, verbose) {
@@ -131,10 +140,28 @@ collate_outputs <- function(outputdir, studyname, verbose) {
   }
 }
 
-build_meta <- function(outputdir, studyname, overwrite = FALSE) {
+#' Create Pre-filled Metadata Template
+#'
+#' @param outputdir The directory where the output files were created.
+#' @param studyname The name of the study. Use the first author's surname where
+#' there is no study name.
+#' @param overwrite If an existing metadata template is found, should it be
+#' replaced? Default is `FALSE`.
+#' @param wear_location Optionally pre-fill the wear location field of the
+#' metadata. If there are multiple wear locations, this is ignored.
+#'
+#' @family helper functions
+#'
+#' @export
+build_meta <- function(outputdir,
+                       studyname,
+                       overwrite = FALSE,
+                       wear_location = NULL
+                       ) {
   studyname <- translate_studyname(studyname)
   new_filename <- file.path(outputdir, paste0(studyname, "_metadata.xlsx"))
-  template <- system.file("extdata", "sleepIPD_metadata_template.xlsx", package = "sleepIPD")
+  template <- system.file("extdata", "sleepIPD_metadata_template.xlsx",
+                          package = "sleepIPD")
 
   if (!overwrite & file.exists(new_filename)) {
     err_msg <- "A file already exists at {usethis::ui_path(new_filename)}.
@@ -143,19 +170,55 @@ build_meta <- function(outputdir, studyname, overwrite = FALSE) {
   }
 
   # Check we can find the part 2 files
-  part2file <- file.path(outputdir, paste0("part2_", studyname, ".csv"))
+  part2file <- file.path(outputdir,
+                         "sleepIPD_output",
+                         paste0("part2_", studyname, ".csv"))
+
   if (!file.exists(part2file)) {
     err_msg <- "Could not find part 2 data at {usethis::ui_path(part2file)}."
     usethis::ui_stop(err_msg)
   }
 
+  # Create the data for writing
+  unique_files <- readr::read_csv(part2file, show_col_types = FALSE) %>%
+    dplyr::distinct(.data$filename) %>%
+    dplyr::pull(.data$filename)
+
+
+
+  # Add new data in
   file.copy(template, new_filename, overwrite = overwrite)
-  unique_files <- readr::read_csv(part2file) %>%
-    dplyr::distinct(.data$filename)
+  wb <- openxlsx::loadWorkbook(new_filename)
+  openxlsx::writeData(wb = wb, sheet= "Metadata", x = unique_files,
+                      startCol = 1, startRow = 2)
+  if (length(wear_location)==1){
+    loc_out <- rep(switch(wear_location, "wrist"=1, "hip"=2),
+                   length(unique_files))
+    openxlsx::writeData(wb = wb, sheet= "Metadata", x = loc_out,
+                        startCol = 3, startRow = 2)
+  }
+  openxlsx::saveWorkbook(wb, new_filename, overwrite = TRUE)
+
+
+  msg <- "Saved metadata template ({usethis::ui_path(new_filename)})"
+  usethis::ui_done(msg)
+
 
 }
 
+#' Check Number of Files Matches Expectations
+#'
+#' An internal function. Performs a check for output files to confirm the
+#' correct number are found.
+#'
+#' @param part The GGIR part the files relate to (as a string).
+#' @param expect The number of files expected to be found.
+#' @param found The number of files actually found.
+#' @param verbose Should a success message be displayed?
+#'
+#' @family helper functions (internal)
 check_outfiles <- function(part, expect, found, verbose) {
+
   files <- if (expect == 1) "file" else "files"
 
   if (found == 0) {
