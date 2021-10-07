@@ -5,3 +5,4 @@
 docs
 test_files/
 .DS_Store
+inst/doc

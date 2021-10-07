@@ -223,7 +223,12 @@ reprocess <- function(datadir,
   if (verbose & requireNamespace("knitr", quietly = TRUE)) {
     usethis::ui_done("Processing complete! Here is how long it took:")
 
-    opts <- options(knitr.kable.NA = "")
+    time_str <- function(endtime, starttime){
+      out <- difftime(endtime, starttime)
+      paste(round(as.numeric(out),2), units(out))
+    }
+
+    opts <- options(knitr.kable.NA = "–")
 
     print(
     knitr::kable(data.frame(
@@ -240,10 +245,10 @@ reprocess <- function(datadir,
         end_build_meta, NA
       ),
       "Duration" = c(
-        difftime(end_process_files, start_time),
-        difftime(end_collate_outputs, end_process_files),
-        difftime(end_build_meta, end_collate_outputs),
-        difftime(end_build_meta, start_time)
+        time_str(end_process_files, start_time),
+        time_str(end_collate_outputs, end_process_files),
+        time_str(end_build_meta, end_collate_outputs),
+        time_str(end_build_meta, start_time)
       )
     ), format = "simple"))
 

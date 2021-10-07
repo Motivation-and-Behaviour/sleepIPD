@@ -28,4 +28,7 @@ Depends:
 URL: https://motivation-and-behaviour.github.io/sleepIPD, https://github.com/Motivation-and-Behaviour/sleepIPD
 BugReports: https://github.com/Motivation-and-Behaviour/sleepIPD/issues
 Suggests: 
-    devtools
+    knitr,
+    devtools,
+    rmarkdown
+VignetteBuilder: knitr

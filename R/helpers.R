@@ -135,7 +135,7 @@ collate_outputs <- function(outputdir, studyname, verbose) {
 
   if (verbose) {
     usethis::ui_done(
-      "Collated data in {usethis::ui_field(collate_outdir)}"
+      "Collated data in {usethis::ui_path(collate_outdir)}"
     )
   }
 }

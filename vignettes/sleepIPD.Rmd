@@ -1,0 +1,99 @@
+---
+title: "Using `sleepIPD` to Reprocess Data"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{sleepIPD}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, include = FALSE}
+library(sleepIPD)
+```
+
+
+# Quick Start
+
+One of the goals for this package was to make reprocessing data as easy as possible. If your study meets all of the criteria below, you should be able to reprocess your data with just a single call to `reprocess()`.
+
+**Criteria**
+
+1. You intend to run the analysis on a single computer (i.e., you do not intend to use a cluster).
+1. Your data are stored in a format that [GGIR understands](https://cran.r-project.org/web/packages/GGIR/vignettes/GGIR.html#22_Prepare_folder_structure) (Geneactiv `.bin` or `.csv`, Actigraph raw `.csv`, or Axivity `.cwa`). 
+1. Your folder structure contains only one of the above formats (i.e., your data are not duplicated in multiple formats).
+
+## Running with `reprocess()`
+
+### Installation
+
+First, install the package. Since the package is not on CRAN, you will need `devtools::install_github()` or `remotes::install_github()`. You will need to install one of these packages if you do not already have one. I recommend `devtools`.
+
+```{r install, eval=FALSE}
+# install.packages("devtools") # uncomment if needed
+devtools::install_github("Motivation-and-Behaviour/sleepIPD")
+```
+
+### Reprocessing the Data
+
+Next, provide sleepIPD with the information about how your data are stored, and information about the sample. The essential information is:
+
+* **datadir:** where are the data stored?
+* **outputdir:** where can we safely store the outputs? *Note* - do **not** use the same location and data previously processed in GGIR. You risk overwriting your existing outputs. A new output folder just for this study would be sensible.
+* **studyname:** what should we refer to this sample as? You can always use your last name.
+* **ages:** how old is the sample?  Can be either `"children"` (for those 18 or less), `"adults"` (for >18) or both (i.e., `c("children", "adults")`). If you do not specify, both are used.
+* **device:** what device did you use? an be either `"geneactiv"`, `"actigraph"` or (in the unlikely event two devices were used) both (i.e., `c("geneactiv", "actigraph")`). If you do not specify, both are used. Note that you can use `"geneactiv"` if your device was Axivity.
+* **wear_location:** how did the sample wear the device.  Can be either `"wrist"`, `"hip"` or (in the unlikely event multiple locations were used) both (i.e., `c("wrist","hip")`). If you do not specify, both are used.
+
+An example call might look like:
+
+```{r example, eval=FALSE}
+library(sleepIPD)
+
+datadir <- "C:\\Documents\\My Study\\Data"
+outputdir <- "C:\\Documents\\My Study\\Output"
+studyname <- "Hartwig 2021"
+ages <- "children"
+device <- "geneactiv"
+wear_location <- "wrist"
+
+reprocess(datadir = datadir, 
+          outputdir = outputdir, 
+          studyname = studyname, 
+          ages = ages,
+          device = device, 
+          wear_location = wear_location)
+```
+
+
+Note that if you discover you have made a mistake and need to run this again, you'll need to additionally set `overwrite = TRUE`.
+
+### What Does `reprocess()` Do?
+
+`reprocess()` performs three steps, and moves the data between each step.
+
+#### Step One: Reprocess Files
+
+This is the largest step. Here, sleepIPD calls `process_files()`, which does the following:
+
+1. Checks that you have the correct version of GGIR installed. sleepIPD can help you install the right version if it cannot find the correct version.
+2. Determines the correct cut-points to apply to the data, based on information about your sample.
+3. Calls `GGIR::g.shell.GGIR()` to reprocess the data. This is where >99% of the time will be spent.
+
+#### Step Two: Collate the Outputs
+
+GGIR can produce a lot of output files, but we only really need the summaries. Even so, depending on the configuration, there could be more than 1000 summary files. In this second step, sleepIPD calls `collate_outputs()`, which finds all of the output files and collapses them into just three files. These three files are stored in a new folder called `sleepIPD_output`, which will be located under the folder you specify in `outputdir`.
+
+For example, if `outputdir` is `"C:\\Documents\\My Study\\Output"`, the collated files will be stored in `"C:\\Documents\\My Study\\Output\\sleepIPD_output"`.
+
+#### Step Three: Create the Metadata Template
+
+To perform the integrated analysis, we will need additional information about the sample such as demographics. To try to make this simpler, sleepIPD calls `build_meta()` which will create the metadata template file and pre-fill it with the names of the files, and the wear location (if a single location was selected). You can then add the remaining information in, either by matching it to an existing spreadsheet or filling it manually.
+
+The metadata template will be located in the folder you specify as the `outputdir`, and will be named `<studyname>-metadata.xlsx`. The `Metadata` sheet contains the information to fill out, and the other sheets explain the expected format.
