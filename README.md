@@ -18,18 +18,16 @@ the reprocessing.
 ## Installation
 
 This package is not available on CRAN. You can install from
-[GitHub](https://github.com/) with:
+[GitHub](https://github.com/Motivation-and-Behaviour/sleepIPD) with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("Motivation-and-Behaviour/sleepIPD")
 ```
 
-## Example
+## Documentation
 
-**TODO**
-
-``` r
-library(sleepIPD)
-## basic example code
-```
+You can find the documentation and getting started guide for sleepIPD
+[here](https://motivation-and-behaviour.github.io/sleepIPD/articles/sleepIPD.html).
+This also includes the steps for reprocessing if your data are large or
+more complex.
