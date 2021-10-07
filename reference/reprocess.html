@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Process files to SleepIPD specs — process_files • sleepIPD</title>
+<title>Reprocess Accelerometer Data and Generate Metadata — reprocess • sleepIPD</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,11 @@
 
 
 
-<meta property="og:title" content="Process files to SleepIPD specs — process_files" />
-<meta property="og:description" content="process_files collects information about your study sample and reprocesses
-the files accordingly." />
+<meta property="og:title" content="Reprocess Accelerometer Data and Generate Metadata — reprocess" />
+<meta property="og:description" content="This is the primary wrapper function for sleepIPD. In most cases, this should
+be the only function that is needed. reprocess collects data about your
+study, and then calls the functions to reprocess the data, collate the
+results, and generate the metadata." />
 
 
 
@@ -112,20 +114,22 @@ the files accordingly." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Process files to SleepIPD specs</h1>
+    <h1>Reprocess Accelerometer Data and Generate Metadata</h1>
     <small class="dont-index">Source: <a href='https://github.com/Motivation-and-Behaviour/sleepIPD/blob/master/R/processing.R'><code>R/processing.R</code></a></small>
-    <div class="hidden name"><code>process_files.Rd</code></div>
+    <div class="hidden name"><code>reprocess.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>process_files</code> collects information about your study sample and reprocesses
-the files accordingly.</p>
+    <p>This is the primary wrapper function for sleepIPD. In most cases, this should
+be the only function that is needed. <code>reprocess</code> collects data about your
+study, and then calls the functions to reprocess the data, collate the
+results, and generate the metadata.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>process_files</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>reprocess</span><span class='op'>(</span>
   <span class='va'>datadir</span>,
   <span class='va'>outputdir</span>,
-  studyname <span class='op'>=</span> <span class='st'>"NA"</span>,
+  <span class='va'>studyname</span>,
   ages <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"children"</span>, <span class='st'>"adults"</span><span class='op'>)</span>,
   device <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"geneactiv"</span>, <span class='st'>"actigraph"</span><span class='op'>)</span>,
   wear_location <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"wrist"</span>, <span class='st'>"hip"</span><span class='op'>)</span>,
@@ -149,8 +153,8 @@ file paths to process (as per <code><a href='https://rdrr.io/pkg/GGIR/man/g.shel
     </tr>
     <tr>
       <th>studyname</th>
-      <td><p>The name of the study. Only used if <code>datadir</code> is a vector of
-files.</p></td>
+      <td><p>The name of the study. This is required to name the
+metadata.</p></td>
     </tr>
     <tr>
       <th>ages</th>
@@ -172,8 +176,8 @@ both (i.e., <code><a href='https://rdrr.io/r/base/c.html'>c("wrist","hip")</a></
     </tr>
     <tr>
       <th>overwrite</th>
-      <td><p>If the existing output should be replaced. <code>FALSE</code> by
-default.</p></td>
+      <td><p>If the existing output (including metadata) should be
+replaced. <code>FALSE</code> by default.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -189,7 +193,7 @@ understanding what the package is doing. <code>TRUE</code> by default.</p></td>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The purpose of this function is to standardise the processing of the
+    <p>The purpose of sleepIPD is to standardise the processing of the
 accelerometery files. As such, most of the arguments come preset and should
 not be modified. However, options which do not affect the output (e.g., the
 decision to process in parallel or not) are available via <code>...</code>. See
@@ -199,10 +203,16 @@ and/or <code>wear_location</code> (see Arguments for details). Not supplying the
 cause sleepIPD to calculate every combination of thresholds (resulting in
 \(8^3 \times 2 = 1024\) output files). So, supplying them should slightly
 reduce processing time.</p>
+<p>You should also supply a <code>studyname</code> argument. This is required by GGIR if
+your <code>datadir</code> is a vector of files, but is additionally used by sleepIPD to
+name the output files. If your study did not have a name, the last name of
+the first author is sufficent (if you are supplying multiple studies, name
+each one with the year the data were collected; e.g.,
+<code>studyname = 'Hartwig 2021'</code>).</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other processing functions: 
-<code><a href='reprocess.html'>reprocess</a>()</code></p></div>
+<code><a href='process_files.html'>process_files</a>()</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

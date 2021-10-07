@@ -19,6 +19,9 @@
     <loc>https://motivation-and-behaviour.github.io/sleepIPD/reference/process_files.html</loc>
   </url>
   <url>
+    <loc>https://motivation-and-behaviour.github.io/sleepIPD/reference/reprocess.html</loc>
+  </url>
+  <url>
     <loc>https://motivation-and-behaviour.github.io/sleepIPD/reference/sleepIPD-package.html</loc>
   </url>
   <url>
@@ -29,5 +32,8 @@
   </url>
   <url>
     <loc>https://motivation-and-behaviour.github.io/sleepIPD/reference/validate_GGIR.html</loc>
+  </url>
+  <url>
+    <loc>https://motivation-and-behaviour.github.io/sleepIPD/articles/sleepIPD.html</loc>
   </url>
 </urlset>
