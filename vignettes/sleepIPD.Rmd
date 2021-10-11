@@ -18,6 +18,21 @@ knitr::opts_chunk$set(
 library(sleepIPD)
 ```
 
+# Introduction
+
+The purpose of this package is to simplify the reprocessing of accelerometer data for project *The relationship between sleep and physical activity across the lifespan*. This project wraps functions from [GGIR](https://cran.r-project.org/web/packages/GGIR/vignettes/GGIR.html), along with functions to make collating the results easier.
+
+## Getting Started
+
+This page will guide you through the process. How you reprocess the data will depend on a number of factors.
+
+* If you are familiar with R and intend to reprocess data on a single machine, follow the [Quick Start](#quick-start) guide. 
+* If you have a large number of files and will be reprocessing on a cluster, read the [Key GGIR Settings](#key-ggir-settings)
+* If you are new to R (e.g., you would normally process data with ActiLife), [this chapter](https://moderndive.netlify.app/1-getting-started.html) is a good introduction. The key steps are to [install R](https://cloud.r-project.org/), install an IDE (I strongly recommend [RStudio](https://www.rstudio.com/products/rstudio/download/)), and get familiar with how to run scripts. You can then move to the [Quick Start](#quick-start) guide.
+
+## Getting Help
+
+The project is led by [Dr Timothy Hartwig](mailto:Timothy.Hartwig@acu.edu.au), and this package is developed by [Dr Taren Sanders](Taren.Sanders@acu.edu.au). Please reach out if you need any support.
 
 # Quick Start
 
@@ -97,3 +112,88 @@ For example, if `outputdir` is `"C:\\Documents\\My Study\\Output"`, the collated
 To perform the integrated analysis, we will need additional information about the sample such as demographics. To try to make this simpler, sleepIPD calls `build_meta()` which will create the metadata template file and pre-fill it with the names of the files, and the wear location (if a single location was selected). You can then add the remaining information in, either by matching it to an existing spreadsheet or filling it manually.
 
 The metadata template will be located in the folder you specify as the `outputdir`, and will be named `<studyname>-metadata.xlsx`. The `Metadata` sheet contains the information to fill out, and the other sheets explain the expected format.
+
+# Key GGIR Settings
+
+## Processing
+
+`sleepIPD` wraps `GGIR:g.shell.GGIR()` for the processing. If you are manually making calls to GGIR (i.e., not using this package), the settings are provide below. Please note that you **must** use GGIR Version 2.4-0. There is some evidence that GGIR can produce slightly different results for different version. Please check your version (`utils::packageVersion("GGIR")`). 
+
+The full `GGIR:g.shell.GGIR()` call used in `sleepIPD` is:
+
+```{r eval=FALSE}
+GGIR::g.shell.GGIR(
+  mode = c(1, 2, 3, 4, 5),
+  datadir = datadir,
+  outputdir = outputdir,
+  do.report = c(2, 4, 5),
+  overwrite = overwrite,
+  do.enmo = TRUE,
+  do.hfen = TRUE,
+  do.enmoa = TRUE,
+  studyname = studyname,
+  # =====================
+  # Part 2
+  # =====================
+  do.imp = TRUE,
+  strategy = 2,
+  maxdur = 0,
+  includedaycrit = 16,
+  qwindow = c(0, 24),
+  mvpathreshold = 100,
+  bout.metric = 4,
+  excludefirstlast = TRUE,
+  includenightcrit = 16,
+  MX.ig.min.dur = 10,
+  iglevels = 50,
+  ilevels = seq(0,4000,50),
+  epochvalues2csv = FALSE,
+  winhr = 16,
+  qlevels = c(
+    960 / 1440, # 2/3rds of the day
+    1320 / 1440, # Top 120min
+    1380 / 1440, # Top 60min
+    1410 / 1440, # Top 30min
+    1425 / 1440, # Top 15min
+    1435 / 1440 # Top 5min
+  ),
+  # =====================
+  # Part 3 + 4
+  # =====================
+  def.noc.sleep = 1,
+  outliers.only = TRUE,
+  criterror = 4,
+  do.visual = TRUE,
+  # =====================
+  # Part 5
+  # =====================
+  threshold.lig = threshold.lig,
+  threshold.mod = threshold.mod,
+  threshold.vig = threshold.vig,
+  boutcriter = 0.8, boutcriter.in = 0.9, boutcriter.lig = 0.8,
+  boutcriter.mvpa = 0.8, boutdur.in = c(1, 10, 30), boutdur.lig = c(1, 10),
+  boutdur.mvpa = c(1),
+  includedaycrit.part5 = 2 / 3,
+  # =====================
+  # Visual report
+  # =====================
+  timewindow = c("WW"),
+  visualreport = FALSE,
+  ...
+)
+```
+
+Note that `datadir`, `outputdir`, `overwrite`, and `studyname` are set elsewhere in `sleepIPD`. The thresholds (i.e., `threshold.lig`, `threshold.mod`, and `threshold.vig`) will depend on the device you are using, the age of the sample, and where the accelerometer was worn. See details below.
+
+## Thresholds
+
+```{r echo=FALSE}
+knitr::kable(sleepIPD:::thresholds, 
+             col.names = c("Age", "Device","Wear Location", "Light Threshold", 
+                           "Moderate Threshold", "Vigorous Threshold"),
+             caption = "Thresholds for physical activity intensity.")
+```
+
+Note that
+
+## Using `sleepIPD` to Collate Results
