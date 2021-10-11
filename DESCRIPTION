@@ -30,5 +30,7 @@ BugReports: https://github.com/Motivation-and-Behaviour/sleepIPD/issues
 Suggests: 
     knitr,
     devtools,
-    rmarkdown
+    rmarkdown,
+    gt,
+    purrr
 VignetteBuilder: knitr

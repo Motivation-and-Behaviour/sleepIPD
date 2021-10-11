@@ -16,6 +16,9 @@ knitr::opts_chunk$set(
 
 ```{r setup, include = FALSE}
 library(sleepIPD)
+library(dplyr)
+library(gt)
+library(purrr)
 ```
 
 # Introduction
@@ -187,12 +190,30 @@ Note that `datadir`, `outputdir`, `overwrite`, and `studyname` are set elsewhere
 
 ## Thresholds
 
+
 ```{r echo=FALSE}
-knitr::kable(sleepIPD:::thresholds, 
-             col.names = c("Age", "Device","Wear Location", "Light Threshold", 
-                           "Moderate Threshold", "Vigorous Threshold"),
-             caption = "Thresholds for physical activity intensity.")
+sleepIPD:::thresholds %>%
+  mutate(source = map(source, gt::md)) %>%
+  gt() %>%
+  cols_label(
+    age = "Age",
+    dev = "Device",
+    wear_loc = "Wear Location",
+    light = "Light Threshold",
+    mod = "Moderate Threshold",
+    vig = "Vigorous Threshold",
+    source = "Sources"
+  ) %>%
+  tab_style(style = cell_text(weight = "bold"),
+            locations = cells_column_labels()) %>% 
+  cols_width(
+    source ~ pct(35),
+    everything() ~ pct(12)
+  ) %>% 
+  opt_row_striping()
 ```
+
+
 
 Note that
 
