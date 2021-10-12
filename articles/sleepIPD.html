@@ -243,9 +243,9 @@
   <span class="co"># =====================</span>
   <span class="co"># Part 5</span>
   <span class="co"># =====================</span>
-  threshold.lig <span class="op">=</span> <span class="va">threshold.lig</span>,
-  threshold.mod <span class="op">=</span> <span class="va">threshold.mod</span>,
-  threshold.vig <span class="op">=</span> <span class="va">threshold.vig</span>,
+  threshold.lig <span class="op">=</span> <span class="va">threshold_lig</span>,
+  threshold.mod <span class="op">=</span> <span class="va">threshold_mod</span>,
+  threshold.vig <span class="op">=</span> <span class="va">threshold_vig</span>,
   boutcriter <span class="op">=</span> <span class="fl">0.8</span>, boutcriter.in <span class="op">=</span> <span class="fl">0.9</span>, boutcriter.lig <span class="op">=</span> <span class="fl">0.8</span>,
   boutcriter.mvpa <span class="op">=</span> <span class="fl">0.8</span>, boutdur.in <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span>, <span class="fl">30</span><span class="op">)</span>, boutdur.lig <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span>,
   boutdur.mvpa <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>,
@@ -257,17 +257,17 @@
   visualreport <span class="op">=</span> <span class="cn">FALSE</span>,
   <span class="va">...</span>
 <span class="op">)</span></code></pre></div>
-<p>Note that <code>datadir</code>, <code>outputdir</code>, <code>overwrite</code>, and <code>studyname</code> are set elsewhere in <code>sleepIPD</code>. The thresholds (i.e., <code>threshold.lig</code>, <code>threshold.mod</code>, and <code>threshold.vig</code>) will depend on the device you are using, the age of the sample, and where the accelerometer was worn. See details below.</p>
+<p>Note that <code>datadir</code>, <code>outputdir</code>, <code>overwrite</code>, and <code>studyname</code> are set elsewhere in <code>sleepIPD</code>. The thresholds (i.e., <code>threshold_lig</code>, <code>threshold_mod</code>, and <code>threshold_vig</code>) will depend on the device you are using, the age of the sample, and where the accelerometer was worn. See details below.</p>
 </div>
 <div id="thresholds" class="section level2">
 <h2 class="hasAnchor">
 <a href="#thresholds" class="anchor"></a>Thresholds</h2>
-<div id="ainrtphtke" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="foucrgoeek" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#ainrtphtke .gt_table {
+#foucrgoeek .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -292,7 +292,7 @@
   border-left-color: #D3D3D3;
 }
 
-#ainrtphtke .gt_heading {
+#foucrgoeek .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -304,7 +304,7 @@
   border-right-color: #D3D3D3;
 }
 
-#ainrtphtke .gt_title {
+#foucrgoeek .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -314,7 +314,7 @@
   border-bottom-width: 0;
 }
 
-#ainrtphtke .gt_subtitle {
+#foucrgoeek .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -324,13 +324,13 @@
   border-top-width: 0;
 }
 
-#ainrtphtke .gt_bottom_border {
+#foucrgoeek .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ainrtphtke .gt_col_headings {
+#foucrgoeek .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -345,7 +345,7 @@
   border-right-color: #D3D3D3;
 }
 
-#ainrtphtke .gt_col_heading {
+#foucrgoeek .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -365,7 +365,7 @@
   overflow-x: hidden;
 }
 
-#ainrtphtke .gt_column_spanner_outer {
+#foucrgoeek .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -377,15 +377,15 @@
   padding-right: 4px;
 }
 
-#ainrtphtke .gt_column_spanner_outer:first-child {
+#foucrgoeek .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ainrtphtke .gt_column_spanner_outer:last-child {
+#foucrgoeek .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ainrtphtke .gt_column_spanner {
+#foucrgoeek .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -397,7 +397,7 @@
   width: 100%;
 }
 
-#ainrtphtke .gt_group_heading {
+#foucrgoeek .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -419,7 +419,7 @@
   vertical-align: middle;
 }
 
-#ainrtphtke .gt_empty_group_heading {
+#foucrgoeek .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -434,15 +434,15 @@
   vertical-align: middle;
 }
 
-#ainrtphtke .gt_from_md > :first-child {
+#foucrgoeek .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ainrtphtke .gt_from_md > :last-child {
+#foucrgoeek .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ainrtphtke .gt_row {
+#foucrgoeek .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -461,7 +461,7 @@
   overflow-x: hidden;
 }
 
-#ainrtphtke .gt_stub {
+#foucrgoeek .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -473,7 +473,7 @@
   padding-left: 12px;
 }
 
-#ainrtphtke .gt_summary_row {
+#foucrgoeek .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -483,7 +483,7 @@
   padding-right: 5px;
 }
 
-#ainrtphtke .gt_first_summary_row {
+#foucrgoeek .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -493,7 +493,7 @@
   border-top-color: #D3D3D3;
 }
 
-#ainrtphtke .gt_grand_summary_row {
+#foucrgoeek .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -503,7 +503,7 @@
   padding-right: 5px;
 }
 
-#ainrtphtke .gt_first_grand_summary_row {
+#foucrgoeek .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -513,11 +513,11 @@
   border-top-color: #D3D3D3;
 }
 
-#ainrtphtke .gt_striped {
+#foucrgoeek .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ainrtphtke .gt_table_body {
+#foucrgoeek .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -526,7 +526,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#ainrtphtke .gt_footnotes {
+#foucrgoeek .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -540,13 +540,13 @@
   border-right-color: #D3D3D3;
 }
 
-#ainrtphtke .gt_footnote {
+#foucrgoeek .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#ainrtphtke .gt_sourcenotes {
+#foucrgoeek .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -560,41 +560,41 @@
   border-right-color: #D3D3D3;
 }
 
-#ainrtphtke .gt_sourcenote {
+#foucrgoeek .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#ainrtphtke .gt_left {
+#foucrgoeek .gt_left {
   text-align: left;
 }
 
-#ainrtphtke .gt_center {
+#foucrgoeek .gt_center {
   text-align: center;
 }
 
-#ainrtphtke .gt_right {
+#foucrgoeek .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ainrtphtke .gt_font_normal {
+#foucrgoeek .gt_font_normal {
   font-weight: normal;
 }
 
-#ainrtphtke .gt_font_bold {
+#foucrgoeek .gt_font_bold {
   font-weight: bold;
 }
 
-#ainrtphtke .gt_font_italic {
+#foucrgoeek .gt_font_italic {
   font-style: italic;
 }
 
-#ainrtphtke .gt_super {
+#foucrgoeek .gt_super {
   font-size: 65%;
 }
 
-#ainrtphtke .gt_footnote_marks {
+#foucrgoeek .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
