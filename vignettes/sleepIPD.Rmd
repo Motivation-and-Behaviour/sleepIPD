@@ -198,22 +198,33 @@ sleepIPD:::thresholds %>%
   cols_label(
     age = "Age",
     dev = "Device",
-    wear_loc = "Wear Location",
-    light = "Light Threshold",
-    mod = "Moderate Threshold",
-    vig = "Vigorous Threshold",
+    wear_loc = "Worn on",
+    light = "Light",
+    mod = "Moderate",
+    vig = "Vigorous",
     source = "Sources"
   ) %>%
   tab_style(style = cell_text(weight = "bold"),
             locations = cells_column_labels()) %>%
-  cols_width(source ~ pct(35),
-             everything() ~ pct(15)) %>%
+    tab_style(style = cell_text(weight = "bold"),
+            locations = cells_column_spanners()) %>%
+  cols_width(source ~ pct(30),
+             age ~ pct(13.3),
+             dev ~ pct(13.3),
+             wear_loc ~ pct(13.3),
+             light ~ pct(10),
+             mod ~ pct(10),
+             vig ~ pct(10)) %>%
   opt_row_striping() %>%
-  tab_header("Acceleration Thresholds for the Pooled Sleep Study") %>%
   tab_footnote(footnote = html("Children: &le;18 years; Adults: > 18 years"),
                locations = cells_column_labels(columns = age)) %>% 
   tab_footnote(footnote = "Geneactiv thresholds can also be applied to Axivity devices.",
-               locations = cells_column_labels(columns = dev))
+               locations = cells_column_labels(columns = dev)) %>% 
+  tab_spanner(label = "Study Design",
+              columns = c(age, dev, wear_loc)) %>% 
+  tab_spanner(label = "Thresholds",
+              columns = c(light, mod, vig)) %>% 
+  tab_options(table.width = pct(100))
 ```
 
 Note that if you have data that would fall into more than one row (e.g., your sample includes both children and adults), you can add multiple cut-points and we will extract the right values later based on the metadata.
