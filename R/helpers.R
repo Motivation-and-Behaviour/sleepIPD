@@ -34,7 +34,7 @@ apply_thresholds <- function(intensity, ages, device, wear_location) {
 #' @family helper functions
 #'
 #' @examples
-#' example_path <- file.path("C:", "Documents", "Study Files", fsep = "\\")
+#' example_path <- tempdir()
 #' translate_filepath(example_path)
 translate_filepath <- function(path) {
   gsub("\\\\", "/", path)

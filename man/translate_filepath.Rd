@@ -18,7 +18,7 @@ GGIR uses some code which does not play nice with some file paths on Windows
 file path to the format that works with GGIR.
 }
 \examples{
-example_path <- file.path("C:", "Documents", "Study Files", fsep = "\\\\")
+example_path <- tempdir()
 translate_filepath(example_path)
 }
 \seealso{
