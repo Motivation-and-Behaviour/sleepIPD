@@ -170,9 +170,9 @@ GGIR::g.shell.GGIR(
   # =====================
   # Part 5
   # =====================
-  threshold.lig = threshold.lig,
-  threshold.mod = threshold.mod,
-  threshold.vig = threshold.vig,
+  threshold.lig = threshold_lig,
+  threshold.mod = threshold_mod,
+  threshold.vig = threshold_vig,
   boutcriter = 0.8, boutcriter.in = 0.9, boutcriter.lig = 0.8,
   boutcriter.mvpa = 0.8, boutdur.in = c(1, 10, 30), boutdur.lig = c(1, 10),
   boutdur.mvpa = c(1),
@@ -186,7 +186,7 @@ GGIR::g.shell.GGIR(
 )
 ```
 
-Note that `datadir`, `outputdir`, `overwrite`, and `studyname` are set elsewhere in `sleepIPD`. The thresholds (i.e., `threshold.lig`, `threshold.mod`, and `threshold.vig`) will depend on the device you are using, the age of the sample, and where the accelerometer was worn. See details below.
+Note that `datadir`, `outputdir`, `overwrite`, and `studyname` are set elsewhere in `sleepIPD`. The thresholds (i.e., `threshold_lig`, `threshold_mod`, and `threshold_vig`) will depend on the device you are using, the age of the sample, and where the accelerometer was worn. See details below.
 
 ## Thresholds
 

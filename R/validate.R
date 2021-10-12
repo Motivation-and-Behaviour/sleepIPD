@@ -8,15 +8,16 @@
 #' @family validation functions
 #'
 #' @export
-validate_GGIR <- function(verbose = TRUE) {
+validate_GGIR <- function(verbose = TRUE) { # nolint
   ggir_ver <- utils::packageVersion("GGIR")
   req_ver <- "2.4.0"
 
   if (ggir_ver == req_ver) {
     if (verbose) {
-    usethis::ui_done(
-      "Correct version of GGIR located ({usethis::ui_value(ggir_ver)})."
-    )}
+      usethis::ui_done(
+        "Correct version of GGIR located ({usethis::ui_value(ggir_ver)})."
+      )
+    }
   } else {
     msg <- "Incorrect version of GGIR installed ({usethis::ui_value(ggir_ver)}).
             Version {usethis::ui_value(req_ver)} is required."
@@ -27,16 +28,17 @@ validate_GGIR <- function(verbose = TRUE) {
 
     resp <- usethis::ui_yeah(request, yes = "Yes", no = "No", shuffle = FALSE)
 
-    if (resp){
-      if (!requireNamespace("devtools", quietly = TRUE)){
+    if (resp) {
+      if (!requireNamespace("devtools", quietly = TRUE)) {
         usethis::ui_info(
-          "{usethis::ui_code('devtools')} is also required and will be installed.")
+          paste0("{usethis::ui_code('devtools')} is also required ",
+                 "and will be installed.")
+        )
         utils::install.packages("devtools")
       }
-      detach("package:GGIR", unload=TRUE)
+      detach("package:GGIR", unload = TRUE)
       devtools::install_version("GGIR", version = req_ver)
       validate_GGIR()
-
     } else {
       stop_msg <-
         "Processing cannot be completed without the correct version of GGIR."
@@ -48,4 +50,3 @@ validate_GGIR <- function(verbose = TRUE) {
 validate_manual <- function() {
   # TODO if a user wants to run GGIR manually, validate on a known file
 }
-

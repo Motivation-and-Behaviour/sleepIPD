@@ -46,7 +46,7 @@ translate_filepath <- function(path) {
 #' @family helper functions (internal)
 #'
 #' @return Study name with whitespace replaced with \code{-}
-translate_studyname <- function(studyname){
+translate_studyname <- function(studyname) {
   gsub("\\s", "-", studyname)
 }
 
@@ -63,7 +63,7 @@ translate_studyname <- function(studyname){
 #' @family helper functions
 #'
 #' @export
-collate_outputs <- function(outputdir, studyname, verbose=TRUE) {
+collate_outputs <- function(outputdir, studyname, verbose = TRUE) {
   outputdir <- translate_filepath(outputdir)
   studyname <- translate_studyname(studyname)
 
@@ -156,12 +156,12 @@ collate_outputs <- function(outputdir, studyname, verbose=TRUE) {
 build_meta <- function(outputdir,
                        studyname,
                        overwrite = FALSE,
-                       wear_location = NULL
-                       ) {
+                       wear_location = NULL) {
   studyname <- translate_studyname(studyname)
   new_filename <- file.path(outputdir, paste0(studyname, "_metadata.xlsx"))
   template <- system.file("extdata", "sleepIPD_metadata_template.xlsx",
-                          package = "sleepIPD")
+    package = "sleepIPD"
+  )
 
   if (!overwrite & file.exists(new_filename)) {
     err_msg <- "A file already exists at {usethis::ui_path(new_filename)}.
@@ -170,9 +170,11 @@ build_meta <- function(outputdir,
   }
 
   # Check we can find the part 2 files
-  part2file <- file.path(outputdir,
-                         "sleepIPD_output",
-                         paste0("part2_", studyname, ".csv"))
+  part2file <- file.path(
+    outputdir,
+    "sleepIPD_output",
+    paste0("part2_", studyname, ".csv")
+  )
 
   if (!file.exists(part2file)) {
     err_msg <- "Could not find part 2 data at {usethis::ui_path(part2file)}."
@@ -189,21 +191,28 @@ build_meta <- function(outputdir,
   # Add new data in
   file.copy(template, new_filename, overwrite = overwrite)
   wb <- openxlsx::loadWorkbook(new_filename)
-  openxlsx::writeData(wb = wb, sheet= "Metadata", x = unique_files,
-                      startCol = 1, startRow = 2)
-  if (length(wear_location)==1){
-    loc_out <- rep(switch(wear_location, "wrist"=1, "hip"=2),
-                   length(unique_files))
-    openxlsx::writeData(wb = wb, sheet= "Metadata", x = loc_out,
-                        startCol = 3, startRow = 2)
+  openxlsx::writeData(
+    wb = wb, sheet = "Metadata", x = unique_files,
+    startCol = 1, startRow = 2
+  )
+  if (length(wear_location) == 1) {
+    loc_out <- rep(
+      switch(wear_location,
+        "wrist" = 1,
+        "hip" = 2
+      ),
+      length(unique_files)
+    )
+    openxlsx::writeData(
+      wb = wb, sheet = "Metadata", x = loc_out,
+      startCol = 3, startRow = 2
+    )
   }
   openxlsx::saveWorkbook(wb, new_filename, overwrite = TRUE)
 
 
   msg <- "Saved metadata template ({usethis::ui_path(new_filename)})"
   usethis::ui_done(msg)
-
-
 }
 
 #' Check Number of Files Matches Expectations
@@ -218,8 +227,7 @@ build_meta <- function(outputdir,
 #'
 #' @family helper functions (internal)
 check_outfiles <- function(part, expect, found, verbose) {
-
-  files <- if (expect == 1) "file" else "files"
+  files <- if (expect == 1) "file" else "files" # nolint
 
   if (found == 0) {
     usethis::ui_stop(

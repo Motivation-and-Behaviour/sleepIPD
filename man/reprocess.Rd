@@ -82,12 +82,14 @@ ages <- "children"
 device <- "geneactiv"
 wear_location <- "wrist"
 
-reprocess(datadir = datadir,
-          outputdir = outputdir,
-          studyname = studyname,
-          ages = ages,
-          device = device,
-          wear_location = wear_location)
+reprocess(
+  datadir = datadir,
+  outputdir = outputdir,
+  studyname = studyname,
+  ages = ages,
+  device = device,
+  wear_location = wear_location
+)
 }
 }
 \seealso{

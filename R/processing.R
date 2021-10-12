@@ -59,9 +59,9 @@ process_files <- function(datadir,
     several.ok = TRUE
   )
 
-  threshold.lig <- apply_thresholds("light", ages, device, wear_location)
-  threshold.mod <- apply_thresholds("mod", ages, device, wear_location)
-  threshold.vig <- apply_thresholds("vig", ages, device, wear_location)
+  threshold_lig <- apply_thresholds("light", ages, device, wear_location)
+  threshold_mod <- apply_thresholds("mod", ages, device, wear_location)
+  threshold_vig <- apply_thresholds("vig", ages, device, wear_location)
   if (verbose) usethis::ui_done("Cutpoints set")
 
   # Check file paths
@@ -95,7 +95,7 @@ process_files <- function(datadir,
     includenightcrit = 16,
     MX.ig.min.dur = 10,
     iglevels = 50,
-    ilevels = seq(0,4000,50),
+    ilevels = seq(0, 4000, 50),
     epochvalues2csv = FALSE,
     winhr = 16,
     qlevels = c(
@@ -116,9 +116,9 @@ process_files <- function(datadir,
     # =====================
     # Part 5
     # =====================
-    threshold.lig = threshold.lig,
-    threshold.mod = threshold.mod,
-    threshold.vig = threshold.vig,
+    threshold.lig = threshold_lig,
+    threshold.mod = threshold_mod,
+    threshold.vig = threshold_vig,
     boutcriter = 0.8, boutcriter.in = 0.9, boutcriter.lig = 0.8,
     boutcriter.mvpa = 0.8, boutdur.in = c(1, 10, 30), boutdur.lig = c(1, 10),
     boutdur.mvpa = c(1),
@@ -192,12 +192,14 @@ process_files <- function(datadir,
 #' device <- "geneactiv"
 #' wear_location <- "wrist"
 #'
-#' reprocess(datadir = datadir,
-#'           outputdir = outputdir,
-#'           studyname = studyname,
-#'           ages = ages,
-#'           device = device,
-#'           wear_location = wear_location)
+#' reprocess(
+#'   datadir = datadir,
+#'   outputdir = outputdir,
+#'   studyname = studyname,
+#'   ages = ages,
+#'   device = device,
+#'   wear_location = wear_location
+#' )
 #' }
 reprocess <- function(datadir,
                       outputdir,
@@ -209,7 +211,11 @@ reprocess <- function(datadir,
                       verbose = TRUE,
                       ...) {
   start_time <- Sys.time()
-  if (verbose) usethis::ui_info("Starting {usethis::ui_code('process_files()')}")
+  if (verbose) {
+    usethis::ui_info(
+      "Starting {usethis::ui_code('process_files()')}"
+    )
+  }
   process_files(
     datadir, outputdir, studyname, ages, device,
     wear_location, overwrite, verbose
@@ -238,34 +244,35 @@ reprocess <- function(datadir,
   if (verbose & requireNamespace("knitr", quietly = TRUE)) {
     usethis::ui_done("Processing complete! Here is how long it took:")
 
-    time_str <- function(endtime, starttime){
+    time_str <- function(endtime, starttime) {
       out <- difftime(endtime, starttime)
-      paste(round(as.numeric(out),2), units(out))
+      paste(round(as.numeric(out), 2), units(out))
     }
 
     opts <- options(knitr.kable.NA = "-")
 
     print(
-    knitr::kable(data.frame(
-      "Process" = c(
-        "GGIR Processing", "Collate Outputs",
-        "Build Metadata", "Total"
-      ),
-      "Start Time" = c(
-        start_time, end_process_files,
-        end_collate_outputs, NA
-      ),
-      "End Time" = c(
-        end_process_files, end_collate_outputs,
-        end_build_meta, NA
-      ),
-      "Duration" = c(
-        time_str(end_process_files, start_time),
-        time_str(end_collate_outputs, end_process_files),
-        time_str(end_build_meta, end_collate_outputs),
-        time_str(end_build_meta, start_time)
-      )
-    ), format = "simple"))
+      knitr::kable(data.frame(
+        "Process" = c(
+          "GGIR Processing", "Collate Outputs",
+          "Build Metadata", "Total"
+        ),
+        "Start Time" = c(
+          start_time, end_process_files,
+          end_collate_outputs, NA
+        ),
+        "End Time" = c(
+          end_process_files, end_collate_outputs,
+          end_build_meta, NA
+        ),
+        "Duration" = c(
+          time_str(end_process_files, start_time),
+          time_str(end_collate_outputs, end_process_files),
+          time_str(end_build_meta, end_collate_outputs),
+          time_str(end_build_meta, start_time)
+        )
+      ), format = "simple")
+    )
 
     options(opts)
   }
