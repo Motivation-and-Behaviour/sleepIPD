@@ -4,7 +4,7 @@
 \alias{collate_outputs}
 \title{Collate GGIR Outputs}
 \usage{
-collate_outputs(outputdir, studyname, verbose)
+collate_outputs(outputdir, studyname, verbose = TRUE)
 }
 \arguments{
 \item{outputdir}{the outputdir that was provided in the processing call}

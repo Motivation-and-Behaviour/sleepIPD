@@ -63,7 +63,7 @@ translate_studyname <- function(studyname){
 #' @family helper functions
 #'
 #' @export
-collate_outputs <- function(outputdir, studyname, verbose) {
+collate_outputs <- function(outputdir, studyname, verbose=TRUE) {
   outputdir <- translate_filepath(outputdir)
   studyname <- translate_studyname(studyname)
 

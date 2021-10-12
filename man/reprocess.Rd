@@ -73,6 +73,23 @@ the first author is sufficent (if you are supplying multiple studies, name
 each one with the year the data were collected; e.g.,
 \code{studyname = 'Hartwig 2021'}).
 }
+\examples{
+\dontrun{
+datadir <- "C:\\\\Documents\\\\My Study\\\\Data"
+outputdir <- "C:\\\\Documents\\\\My Study\\\\Output"
+studyname <- "Hartwig 2021"
+ages <- "children"
+device <- "geneactiv"
+wear_location <- "wrist"
+
+reprocess(datadir = datadir,
+          outputdir = outputdir,
+          studyname = studyname,
+          ages = ages,
+          device = device,
+          wear_location = wear_location)
+}
+}
 \seealso{
 Other processing functions: 
 \code{\link{process_files}()}

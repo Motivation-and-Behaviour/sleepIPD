@@ -184,6 +184,21 @@ process_files <- function(datadir,
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' datadir <- "C:\\Documents\\My Study\\Data"
+#' outputdir <- "C:\\Documents\\My Study\\Output"
+#' studyname <- "Hartwig 2021"
+#' ages <- "children"
+#' device <- "geneactiv"
+#' wear_location <- "wrist"
+#'
+#' reprocess(datadir = datadir,
+#'           outputdir = outputdir,
+#'           studyname = studyname,
+#'           ages = ages,
+#'           device = device,
+#'           wear_location = wear_location)
+#' }
 reprocess <- function(datadir,
                       outputdir,
                       studyname,
@@ -228,7 +243,7 @@ reprocess <- function(datadir,
       paste(round(as.numeric(out),2), units(out))
     }
 
-    opts <- options(knitr.kable.NA = "–")
+    opts <- options(knitr.kable.NA = "-")
 
     print(
     knitr::kable(data.frame(

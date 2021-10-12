@@ -205,16 +205,52 @@ sleepIPD:::thresholds %>%
     source = "Sources"
   ) %>%
   tab_style(style = cell_text(weight = "bold"),
-            locations = cells_column_labels()) %>% 
-  cols_width(
-    source ~ pct(35),
-    everything() ~ pct(12)
-  ) %>% 
-  opt_row_striping()
+            locations = cells_column_labels()) %>%
+  cols_width(source ~ pct(35),
+             everything() ~ pct(15)) %>%
+  opt_row_striping() %>%
+  tab_header("Acceleration Thresholds for the Pooled Sleep Study") %>%
+  tab_footnote(footnote = html("Children: &le;18 years; Adults: > 18 years"),
+               locations = cells_column_labels(columns = age)) %>% 
+  tab_footnote(footnote = "Geneactiv thresholds can also be applied to Axivity devices.",
+               locations = cells_column_labels(columns = dev))
+```
+
+Note that if you have data that would fall into more than one row (e.g., your sample includes both children and adults), you can add multiple cut-points and we will extract the right values later based on the metadata.
+
+As an example, if your study included children wearing geneactiv devices on their wrists, you would include the following lines in your GGIR call:
+
+```{r eval=FALSE}
+...
+  threshold.lig = c(51.6),
+  threshold.mod = c(191.6),
+  threshold.vig = c(695.8),
+...
 ```
 
 
+## Using `sleepIPD` Helper Functions
 
-Note that
+Even if you do not use `sleepIPD` for the reprocessing, you may still find the helper functions useful.
 
-## Using `sleepIPD` to Collate Results
+`collate_outputs()` will find all of the Part 2, 4, and 5 files, collapse them so that there is a one file for each part, and move that file to the top level of the output directory. This reduces the number of files you need to submit for the analysis. You can use `collate_outputs()` like so:
+
+```{r eval=FALSE}
+collate_outputs(
+  outputdir = "C:/MyFiles", # The location you used in GGIR as outputdir
+  studyname = "Hartwig 2016" # A study name. Author surname and year is fine
+                )
+```
+
+`build_meta()` will create a metadata template for you. Additionally, it will search the output of `collate_outputs()` for the names of files, and pre-fill the metadata template with this information. The goal is to reduce the rate of unmatched data, which was a problem in previous pooled analyses. You must use `collate_outputs()` before using `build_meta()`.
+
+```{r eval=FALSE}
+build_meta(
+  outputdir = "C:/MyFiles", # Must be the same as that used in collate_outputs()
+  studyname = "Hartwig 2016" # Must be the same as that used in collate_outputs()
+)
+```
+
+If you have only a single wear location, you can (optionally) provide this (e.g., `wear_location="wrist"`) in order to pre-fill it.
+
+Note that if you have previously used `build_meta` and need to run it again, you need to specify `overwrite = TRUE`. This will replace the existing metadata template.
