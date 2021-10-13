@@ -35,7 +35,7 @@ This page will guide you through the process. How you reprocess the data will de
 
 ## Getting Help
 
-The project is led by [Dr Timothy Hartwig](mailto:Timothy.Hartwig@acu.edu.au), and this package is developed by [Dr Taren Sanders](Taren.Sanders@acu.edu.au). Please reach out if you need any support.
+The project is led by [Dr Timothy Hartwig](mailto:Timothy.Hartwig@acu.edu.au), and this package is developed by [Dr Taren Sanders](mailto:Taren.Sanders@acu.edu.au). Please reach out if you need any support.
 
 # Quick Start
 
