@@ -66,7 +66,7 @@ Next, provide sleepIPD with the information about how your data are stored, and 
 * **outputdir:** where can we safely store the outputs? *Note* - do **not** use the same location and data previously processed in GGIR. You risk overwriting your existing outputs. A new output folder just for this study would be sensible.
 * **studyname:** what should we refer to this sample as? You can always use your last name.
 * **ages:** how old is the sample?  Can be either `"children"` (for those 18 or less), `"adults"` (for >18) or both (i.e., `c("children", "adults")`). If you do not specify, both are used.
-* **device:** what device did you use? an be either `"geneactiv"`, `"actigraph"` or (in the unlikely event two devices were used) both (i.e., `c("geneactiv", "actigraph")`). If you do not specify, both are used. Note that you can use `"geneactiv"` if your device was Axivity.
+* **device:** what device did you use? Can be either `"geneactiv"`, `"actigraph"` or (in the unlikely event two devices were used) both (i.e., `c("geneactiv", "actigraph")`). If you do not specify, both are used. Note that you can use `"geneactiv"` if your device was Axivity.
 * **wear_location:** how did the sample wear the device.  Can be either `"wrist"`, `"hip"` or (in the unlikely event multiple locations were used) both (i.e., `c("wrist","hip")`). If you do not specify, both are used.
 
 An example call might look like:
@@ -120,7 +120,7 @@ The metadata template will be located in the folder you specify as the `outputdi
 
 ## Processing
 
-`sleepIPD` wraps `GGIR:g.shell.GGIR()` for the processing. If you are manually making calls to GGIR (i.e., not using this package), the settings are provide below. Please note that you **must** use GGIR Version 2.4-0. There is some evidence that GGIR can produce slightly different results for different version. Please check your version (`utils::packageVersion("GGIR")`). 
+`sleepIPD` wraps `GGIR::g.shell.GGIR()` for the processing. If you are manually making calls to GGIR (i.e., not using this package), the settings are provide below. Please note that you **must** use GGIR Version 2.4-0. There is some evidence that GGIR can produce slightly different results for different version. Please check your version (`utils::packageVersion("GGIR")`). 
 
 The full `GGIR:g.shell.GGIR()` call used in `sleepIPD` is:
 
