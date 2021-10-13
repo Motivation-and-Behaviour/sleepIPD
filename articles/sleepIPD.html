@@ -49,6 +49,9 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -98,7 +101,7 @@
 <div id="getting-help" class="section level2">
 <h2 class="hasAnchor">
 <a href="#getting-help" class="anchor"></a>Getting Help</h2>
-<p>The project is led by <a href="mailto:Timothy.Hartwig@acu.edu.au">Dr Timothy Hartwig</a>, and this package is developed by <a href="Taren.Sanders@acu.edu.au">Dr Taren Sanders</a>. Please reach out if you need any support.</p>
+<p>The project is led by <a href="mailto:Timothy.Hartwig@acu.edu.au">Dr Timothy Hartwig</a>, and this package is developed by <a href="mailto:Taren.Sanders@acu.edu.au">Dr Taren Sanders</a>. Please reach out if you need any support.</p>
 </div>
 </div>
 <div id="quick-start" class="section level1">
@@ -137,7 +140,7 @@
 <li>
 <strong>ages:</strong> how old is the sample? Can be either <code>"children"</code> (for those 18 or less), <code>"adults"</code> (for &gt;18) or both (i.e., <code><a href="https://rdrr.io/r/base/c.html">c("children", "adults")</a></code>). If you do not specify, both are used.</li>
 <li>
-<strong>device:</strong> what device did you use? an be either <code>"geneactiv"</code>, <code>"actigraph"</code> or (in the unlikely event two devices were used) both (i.e., <code><a href="https://rdrr.io/r/base/c.html">c("geneactiv", "actigraph")</a></code>). If you do not specify, both are used. Note that you can use <code>"geneactiv"</code> if your device was Axivity.</li>
+<strong>device:</strong> what device did you use? Can be either <code>"geneactiv"</code>, <code>"actigraph"</code> or (in the unlikely event two devices were used) both (i.e., <code><a href="https://rdrr.io/r/base/c.html">c("geneactiv", "actigraph")</a></code>). If you do not specify, both are used. Note that you can use <code>"geneactiv"</code> if your device was Axivity.</li>
 <li>
 <strong>wear_location:</strong> how did the sample wear the device. Can be either <code>"wrist"</code>, <code>"hip"</code> or (in the unlikely event multiple locations were used) both (i.e., <code><a href="https://rdrr.io/r/base/c.html">c("wrist","hip")</a></code>). If you do not specify, both are used.</li>
 </ul>
@@ -195,7 +198,7 @@
 <div id="processing" class="section level2">
 <h2 class="hasAnchor">
 <a href="#processing" class="anchor"></a>Processing</h2>
-<p><code>sleepIPD</code> wraps <code>GGIR:g.shell.GGIR()</code> for the processing. If you are manually making calls to GGIR (i.e., not using this package), the settings are provide below. Please note that you <strong>must</strong> use GGIR Version 2.4-0. There is some evidence that GGIR can produce slightly different results for different version. Please check your version (<code><a href="https://rdrr.io/r/utils/packageDescription.html">utils::packageVersion("GGIR")</a></code>).</p>
+<p><code>sleepIPD</code> wraps <code><a href="https://rdrr.io/pkg/GGIR/man/g.shell.GGIR.html">GGIR::g.shell.GGIR()</a></code> for the processing. If you are manually making calls to GGIR (i.e., not using this package), the settings are provide below. Please note that you <strong>must</strong> use GGIR Version 2.4-0. There is some evidence that GGIR can produce slightly different results for different version. Please check your version (<code><a href="https://rdrr.io/r/utils/packageDescription.html">utils::packageVersion("GGIR")</a></code>).</p>
 <p>The full <code>GGIR:g.shell.GGIR()</code> call used in <code>sleepIPD</code> is:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">GGIR</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GGIR/man/g.shell.GGIR.html">g.shell.GGIR</a></span><span class="op">(</span>
@@ -262,12 +265,12 @@
 <div id="thresholds" class="section level2">
 <h2 class="hasAnchor">
 <a href="#thresholds" class="anchor"></a>Thresholds</h2>
-<div id="foucrgoeek" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="rxmgyqfibc" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#foucrgoeek .gt_table {
+#rxmgyqfibc .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -292,7 +295,7 @@
   border-left-color: #D3D3D3;
 }
 
-#foucrgoeek .gt_heading {
+#rxmgyqfibc .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -304,7 +307,7 @@
   border-right-color: #D3D3D3;
 }
 
-#foucrgoeek .gt_title {
+#rxmgyqfibc .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -314,7 +317,7 @@
   border-bottom-width: 0;
 }
 
-#foucrgoeek .gt_subtitle {
+#rxmgyqfibc .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -324,13 +327,13 @@
   border-top-width: 0;
 }
 
-#foucrgoeek .gt_bottom_border {
+#rxmgyqfibc .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#foucrgoeek .gt_col_headings {
+#rxmgyqfibc .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -345,7 +348,7 @@
   border-right-color: #D3D3D3;
 }
 
-#foucrgoeek .gt_col_heading {
+#rxmgyqfibc .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -365,7 +368,7 @@
   overflow-x: hidden;
 }
 
-#foucrgoeek .gt_column_spanner_outer {
+#rxmgyqfibc .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -377,15 +380,15 @@
   padding-right: 4px;
 }
 
-#foucrgoeek .gt_column_spanner_outer:first-child {
+#rxmgyqfibc .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#foucrgoeek .gt_column_spanner_outer:last-child {
+#rxmgyqfibc .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#foucrgoeek .gt_column_spanner {
+#rxmgyqfibc .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -397,7 +400,7 @@
   width: 100%;
 }
 
-#foucrgoeek .gt_group_heading {
+#rxmgyqfibc .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -419,7 +422,7 @@
   vertical-align: middle;
 }
 
-#foucrgoeek .gt_empty_group_heading {
+#rxmgyqfibc .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -434,15 +437,15 @@
   vertical-align: middle;
 }
 
-#foucrgoeek .gt_from_md > :first-child {
+#rxmgyqfibc .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#foucrgoeek .gt_from_md > :last-child {
+#rxmgyqfibc .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#foucrgoeek .gt_row {
+#rxmgyqfibc .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -461,7 +464,7 @@
   overflow-x: hidden;
 }
 
-#foucrgoeek .gt_stub {
+#rxmgyqfibc .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -473,7 +476,7 @@
   padding-left: 12px;
 }
 
-#foucrgoeek .gt_summary_row {
+#rxmgyqfibc .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -483,7 +486,7 @@
   padding-right: 5px;
 }
 
-#foucrgoeek .gt_first_summary_row {
+#rxmgyqfibc .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -493,7 +496,7 @@
   border-top-color: #D3D3D3;
 }
 
-#foucrgoeek .gt_grand_summary_row {
+#rxmgyqfibc .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -503,7 +506,7 @@
   padding-right: 5px;
 }
 
-#foucrgoeek .gt_first_grand_summary_row {
+#rxmgyqfibc .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -513,11 +516,11 @@
   border-top-color: #D3D3D3;
 }
 
-#foucrgoeek .gt_striped {
+#rxmgyqfibc .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#foucrgoeek .gt_table_body {
+#rxmgyqfibc .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -526,7 +529,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#foucrgoeek .gt_footnotes {
+#rxmgyqfibc .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -540,13 +543,13 @@
   border-right-color: #D3D3D3;
 }
 
-#foucrgoeek .gt_footnote {
+#rxmgyqfibc .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#foucrgoeek .gt_sourcenotes {
+#rxmgyqfibc .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -560,41 +563,41 @@
   border-right-color: #D3D3D3;
 }
 
-#foucrgoeek .gt_sourcenote {
+#rxmgyqfibc .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#foucrgoeek .gt_left {
+#rxmgyqfibc .gt_left {
   text-align: left;
 }
 
-#foucrgoeek .gt_center {
+#rxmgyqfibc .gt_center {
   text-align: center;
 }
 
-#foucrgoeek .gt_right {
+#rxmgyqfibc .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#foucrgoeek .gt_font_normal {
+#rxmgyqfibc .gt_font_normal {
   font-weight: normal;
 }
 
-#foucrgoeek .gt_font_bold {
+#rxmgyqfibc .gt_font_bold {
   font-weight: bold;
 }
 
-#foucrgoeek .gt_font_italic {
+#rxmgyqfibc .gt_font_italic {
   font-style: italic;
 }
 
-#foucrgoeek .gt_super {
+#rxmgyqfibc .gt_super {
   font-size: 65%;
 }
 
-#foucrgoeek .gt_footnote_marks {
+#rxmgyqfibc .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
