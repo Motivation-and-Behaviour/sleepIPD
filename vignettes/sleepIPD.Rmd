@@ -62,12 +62,14 @@ devtools::install_github("Motivation-and-Behaviour/sleepIPD")
 
 Next, provide sleepIPD with the information about how your data are stored, and information about the sample. The essential information is:
 
-* **datadir:** where are the data stored?
-* **outputdir:** where can we safely store the outputs? *Note* - do **not** use the same location and data previously processed in GGIR. You risk overwriting your existing outputs. A new output folder just for this study would be sensible.
-* **studyname:** what should we refer to this sample as? You can always use your last name.
-* **ages:** how old is the sample?  Can be either `"children"` (for those 18 or less), `"adults"` (for >18) or both (i.e., `c("children", "adults")`). If you do not specify, both are used.
-* **device:** what device did you use? Can be either `"geneactiv"`, `"actigraph"` or (in the unlikely event two devices were used) both (i.e., `c("geneactiv", "actigraph")`). If you do not specify, both are used. Note that you can use `"geneactiv"` if your device was Axivity.
-* **wear_location:** how did the sample wear the device.  Can be either `"wrist"`, `"hip"` or (in the unlikely event multiple locations were used) both (i.e., `c("wrist","hip")`). If you do not specify, both are used.
+Parameter | Description
+------ | ------------------
+**datadir** | Where are the data stored?
+**outputdir** | Where can we safely store the outputs? *Note* - do **not** use the same location and data previously processed in GGIR. You risk overwriting your existing outputs. A new output folder just for this study would be sensible.
+**studyname** | What should we refer to this sample as? You can always use your last name.
+**ages** | How old is the sample?  Can be either `"children"` (for those 18 or less), `"adults"` (for >18) or both (i.e., `c("children", "adults")`). If you do not specify, both are used.
+**device** | What device did you use? Can be either `"geneactiv"`, `"actigraph"` or (in the unlikely event two devices were used) both (i.e., `c("geneactiv", "actigraph")`). If you do not specify, both are used. Note that you can use `"geneactiv"` if your device was Axivity.
+**wear_location** | How did the sample wear the device? Can be either `"wrist"`, `"hip"` or (in the unlikely event multiple locations were used) both (i.e., `c("wrist","hip")`). If you do not specify, both are used.
 
 An example call might look like:
 
@@ -120,9 +122,9 @@ The metadata template will be located in the folder you specify as the `outputdi
 
 ## Processing
 
-`sleepIPD` wraps `GGIR::g.shell.GGIR()` for the processing. If you are manually making calls to GGIR (i.e., not using this package), the settings are provide below. Please note that you **must** use GGIR Version 2.4-0. There is some evidence that GGIR can produce slightly different results for different version. Please check your version (`utils::packageVersion("GGIR")`). 
+`sleepIPD` wraps `GGIR::g.shell.GGIR()` for the processing. If you are manually making calls to GGIR (i.e., not using this package), the settings are provide below. You **must** use GGIR Version 2.4-0 for this project. There is some evidence that different versions of GGIR can produce slightly different results. Please check your version before you begin (`utils::packageVersion("GGIR")`). 
 
-The full `GGIR:g.shell.GGIR()` call used in `sleepIPD` is:
+The full `GGIR::g.shell.GGIR()` call used in `sleepIPD` is:
 
 ```{r eval=FALSE}
 GGIR::g.shell.GGIR(
@@ -231,7 +233,7 @@ sleepIPD:::thresholds %>%
   tab_options(table.width = pct(100))
 ```
 
-Note that if you have data that would fall into more than one row (e.g., your sample includes both children and adults), you can add multiple cut-points and we will extract the right values later based on the metadata.
+If you have data that would fall into more than one row (e.g., your sample includes both children and adults), you can add multiple cut-points and we will extract the right values later based on the metadata.
 
 As an example, if your study included children wearing geneactiv devices on their wrists, you would include the following lines in your GGIR call:
 
@@ -243,10 +245,22 @@ As an example, if your study included children wearing geneactiv devices on thei
 ...
 ```
 
+If your study included *both* children and adults wearing geneactiv devices on their wrists, your call would include:
+
+```{r eval=FALSE}
+...
+  threshold.lig = c(45.8, 51.6),
+  threshold.mod = c(93.2, 191.6),
+  threshold.vig = c(418.3, 695.8),
+...
+```
+
 
 ## Using `sleepIPD` Helper Functions
 
-Even if you do not use `sleepIPD` for the reprocessing, you may still find the helper functions useful.
+Even if you do not use `sleepIPD` for the reprocessing, you may still find the helper functions useful. The two main helper functions are `collate_outputs()` and `build_meta()`.
+
+### `collate_outputs()`
 
 `collate_outputs()` will find all of the Part 2, 4, and 5 files, collapse them so that there is a one file for each part, and move that file to the top level of the output directory. This reduces the number of files you need to submit for the analysis. You can use `collate_outputs()` like so:
 
@@ -256,6 +270,9 @@ collate_outputs(
   studyname = "Hartwig 2016" # A study name. Author surname and year is fine
                 )
 ```
+
+
+### `build_meta()`
 
 `build_meta()` will create a metadata template for you. Additionally, it will search the output of `collate_outputs()` for the names of files, and pre-fill the metadata template with this information. The goal is to reduce the rate of unmatched data, which was a problem in previous pooled analyses. You must use `collate_outputs()` before using `build_meta()`.
 
@@ -268,4 +285,4 @@ build_meta(
 
 If you have only a single wear location, you can (optionally) provide this (e.g., `wear_location="wrist"`) in order to pre-fill it.
 
-Note that if you have previously used `build_meta` and need to run it again, you need to specify `overwrite = TRUE`. This will replace the existing metadata template.
+If you have previously used `build_meta` and need to run it again, you need to specify `overwrite = TRUE`. Be warned that this will replace the existing metadata template.
