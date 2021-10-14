@@ -130,20 +130,42 @@
 <h3 class="hasAnchor">
 <a href="#reprocessing-the-data" class="anchor"></a>Reprocessing the Data</h3>
 <p>Next, provide sleepIPD with the information about how your data are stored, and information about the sample. The essential information is:</p>
-<ul>
-<li>
-<strong>datadir:</strong> where are the data stored?</li>
-<li>
-<strong>outputdir:</strong> where can we safely store the outputs? <em>Note</em> - do <strong>not</strong> use the same location and data previously processed in GGIR. You risk overwriting your existing outputs. A new output folder just for this study would be sensible.</li>
-<li>
-<strong>studyname:</strong> what should we refer to this sample as? You can always use your last name.</li>
-<li>
-<strong>ages:</strong> how old is the sample? Can be either <code>"children"</code> (for those 18 or less), <code>"adults"</code> (for &gt;18) or both (i.e., <code><a href="https://rdrr.io/r/base/c.html">c("children", "adults")</a></code>). If you do not specify, both are used.</li>
-<li>
-<strong>device:</strong> what device did you use? Can be either <code>"geneactiv"</code>, <code>"actigraph"</code> or (in the unlikely event two devices were used) both (i.e., <code><a href="https://rdrr.io/r/base/c.html">c("geneactiv", "actigraph")</a></code>). If you do not specify, both are used. Note that you can use <code>"geneactiv"</code> if your device was Axivity.</li>
-<li>
-<strong>wear_location:</strong> how did the sample wear the device. Can be either <code>"wrist"</code>, <code>"hip"</code> or (in the unlikely event multiple locations were used) both (i.e., <code><a href="https://rdrr.io/r/base/c.html">c("wrist","hip")</a></code>). If you do not specify, both are used.</li>
-</ul>
+<table class="table">
+<colgroup>
+<col width="25%">
+<col width="75%">
+</colgroup>
+<thead><tr class="header">
+<th>Parameter</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><strong>datadir</strong></td>
+<td>Where are the data stored?</td>
+</tr>
+<tr class="even">
+<td><strong>outputdir</strong></td>
+<td>Where can we safely store the outputs? <em>Note</em> - do <strong>not</strong> use the same location and data previously processed in GGIR. You risk overwriting your existing outputs. A new output folder just for this study would be sensible.</td>
+</tr>
+<tr class="odd">
+<td><strong>studyname</strong></td>
+<td>What should we refer to this sample as? You can always use your last name.</td>
+</tr>
+<tr class="even">
+<td><strong>ages</strong></td>
+<td>How old is the sample? Can be either <code>"children"</code> (for those 18 or less), <code>"adults"</code> (for &gt;18) or both (i.e., <code><a href="https://rdrr.io/r/base/c.html">c("children", "adults")</a></code>). If you do not specify, both are used.</td>
+</tr>
+<tr class="odd">
+<td><strong>device</strong></td>
+<td>What device did you use? Can be either <code>"geneactiv"</code>, <code>"actigraph"</code> or (in the unlikely event two devices were used) both (i.e., <code><a href="https://rdrr.io/r/base/c.html">c("geneactiv", "actigraph")</a></code>). If you do not specify, both are used. Note that you can use <code>"geneactiv"</code> if your device was Axivity.</td>
+</tr>
+<tr class="even">
+<td><strong>wear_location</strong></td>
+<td>How did the sample wear the device? Can be either <code>"wrist"</code>, <code>"hip"</code> or (in the unlikely event multiple locations were used) both (i.e., <code><a href="https://rdrr.io/r/base/c.html">c("wrist","hip")</a></code>). If you do not specify, both are used.</td>
+</tr>
+</tbody>
+</table>
 <p>An example call might look like:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://motivation-and-behaviour.github.io/sleepIPD">sleepIPD</a></span><span class="op">)</span>
@@ -198,8 +220,8 @@
 <div id="processing" class="section level2">
 <h2 class="hasAnchor">
 <a href="#processing" class="anchor"></a>Processing</h2>
-<p><code>sleepIPD</code> wraps <code><a href="https://rdrr.io/pkg/GGIR/man/g.shell.GGIR.html">GGIR::g.shell.GGIR()</a></code> for the processing. If you are manually making calls to GGIR (i.e., not using this package), the settings are provide below. Please note that you <strong>must</strong> use GGIR Version 2.4-0. There is some evidence that GGIR can produce slightly different results for different version. Please check your version (<code><a href="https://rdrr.io/r/utils/packageDescription.html">utils::packageVersion("GGIR")</a></code>).</p>
-<p>The full <code>GGIR:g.shell.GGIR()</code> call used in <code>sleepIPD</code> is:</p>
+<p><code>sleepIPD</code> wraps <code><a href="https://rdrr.io/pkg/GGIR/man/g.shell.GGIR.html">GGIR::g.shell.GGIR()</a></code> for the processing. If you are manually making calls to GGIR (i.e., not using this package), the settings are provide below. You <strong>must</strong> use GGIR Version 2.4-0 for this project. There is some evidence that different versions of GGIR can produce slightly different results. Please check your version before you begin (<code><a href="https://rdrr.io/r/utils/packageDescription.html">utils::packageVersion("GGIR")</a></code>).</p>
+<p>The full <code><a href="https://rdrr.io/pkg/GGIR/man/g.shell.GGIR.html">GGIR::g.shell.GGIR()</a></code> call used in <code>sleepIPD</code> is:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">GGIR</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GGIR/man/g.shell.GGIR.html">g.shell.GGIR</a></span><span class="op">(</span>
   mode <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span>,
@@ -265,12 +287,12 @@
 <div id="thresholds" class="section level2">
 <h2 class="hasAnchor">
 <a href="#thresholds" class="anchor"></a>Thresholds</h2>
-<div id="rxmgyqfibc" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="ytubdlemnc" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#rxmgyqfibc .gt_table {
+#ytubdlemnc .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -295,7 +317,7 @@
   border-left-color: #D3D3D3;
 }
 
-#rxmgyqfibc .gt_heading {
+#ytubdlemnc .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -307,7 +329,7 @@
   border-right-color: #D3D3D3;
 }
 
-#rxmgyqfibc .gt_title {
+#ytubdlemnc .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -317,7 +339,7 @@
   border-bottom-width: 0;
 }
 
-#rxmgyqfibc .gt_subtitle {
+#ytubdlemnc .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -327,13 +349,13 @@
   border-top-width: 0;
 }
 
-#rxmgyqfibc .gt_bottom_border {
+#ytubdlemnc .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#rxmgyqfibc .gt_col_headings {
+#ytubdlemnc .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -348,7 +370,7 @@
   border-right-color: #D3D3D3;
 }
 
-#rxmgyqfibc .gt_col_heading {
+#ytubdlemnc .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -368,7 +390,7 @@
   overflow-x: hidden;
 }
 
-#rxmgyqfibc .gt_column_spanner_outer {
+#ytubdlemnc .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -380,15 +402,15 @@
   padding-right: 4px;
 }
 
-#rxmgyqfibc .gt_column_spanner_outer:first-child {
+#ytubdlemnc .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#rxmgyqfibc .gt_column_spanner_outer:last-child {
+#ytubdlemnc .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#rxmgyqfibc .gt_column_spanner {
+#ytubdlemnc .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -400,7 +422,7 @@
   width: 100%;
 }
 
-#rxmgyqfibc .gt_group_heading {
+#ytubdlemnc .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -422,7 +444,7 @@
   vertical-align: middle;
 }
 
-#rxmgyqfibc .gt_empty_group_heading {
+#ytubdlemnc .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -437,15 +459,15 @@
   vertical-align: middle;
 }
 
-#rxmgyqfibc .gt_from_md > :first-child {
+#ytubdlemnc .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#rxmgyqfibc .gt_from_md > :last-child {
+#ytubdlemnc .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#rxmgyqfibc .gt_row {
+#ytubdlemnc .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -464,7 +486,7 @@
   overflow-x: hidden;
 }
 
-#rxmgyqfibc .gt_stub {
+#ytubdlemnc .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -476,7 +498,7 @@
   padding-left: 12px;
 }
 
-#rxmgyqfibc .gt_summary_row {
+#ytubdlemnc .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -486,7 +508,7 @@
   padding-right: 5px;
 }
 
-#rxmgyqfibc .gt_first_summary_row {
+#ytubdlemnc .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -496,7 +518,7 @@
   border-top-color: #D3D3D3;
 }
 
-#rxmgyqfibc .gt_grand_summary_row {
+#ytubdlemnc .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -506,7 +528,7 @@
   padding-right: 5px;
 }
 
-#rxmgyqfibc .gt_first_grand_summary_row {
+#ytubdlemnc .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -516,11 +538,11 @@
   border-top-color: #D3D3D3;
 }
 
-#rxmgyqfibc .gt_striped {
+#ytubdlemnc .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#rxmgyqfibc .gt_table_body {
+#ytubdlemnc .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -529,7 +551,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#rxmgyqfibc .gt_footnotes {
+#ytubdlemnc .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -543,13 +565,13 @@
   border-right-color: #D3D3D3;
 }
 
-#rxmgyqfibc .gt_footnote {
+#ytubdlemnc .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#rxmgyqfibc .gt_sourcenotes {
+#ytubdlemnc .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -563,41 +585,41 @@
   border-right-color: #D3D3D3;
 }
 
-#rxmgyqfibc .gt_sourcenote {
+#ytubdlemnc .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#rxmgyqfibc .gt_left {
+#ytubdlemnc .gt_left {
   text-align: left;
 }
 
-#rxmgyqfibc .gt_center {
+#ytubdlemnc .gt_center {
   text-align: center;
 }
 
-#rxmgyqfibc .gt_right {
+#ytubdlemnc .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#rxmgyqfibc .gt_font_normal {
+#ytubdlemnc .gt_font_normal {
   font-weight: normal;
 }
 
-#rxmgyqfibc .gt_font_bold {
+#ytubdlemnc .gt_font_bold {
   font-weight: bold;
 }
 
-#rxmgyqfibc .gt_font_italic {
+#ytubdlemnc .gt_font_italic {
   font-style: italic;
 }
 
-#rxmgyqfibc .gt_super {
+#ytubdlemnc .gt_super {
   font-size: 65%;
 }
 
-#rxmgyqfibc .gt_footnote_marks {
+#ytubdlemnc .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -854,32 +876,48 @@ Vig: <a href="https://doi.org/10.1249/mss.0000000000000289">Hildebrand et al., 2
     </tr></tfoot>
 </table>
 </div>
-<p>Note that if you have data that would fall into more than one row (e.g., your sample includes both children and adults), you can add multiple cut-points and we will extract the right values later based on the metadata.</p>
+<p>If you have data that would fall into more than one row (e.g., your sample includes both children and adults), you can add multiple cut-points and we will extract the right values later based on the metadata.</p>
 <p>As an example, if your study included children wearing geneactiv devices on their wrists, you would include the following lines in your GGIR call:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>...</span>
 <span id="cb4-2"><a href="#cb4-2"></a>  threshold.lig =<span class="st"> </span><span class="kw">c</span>(<span class="fl">51.6</span>),</span>
 <span id="cb4-3"><a href="#cb4-3"></a>  threshold.mod =<span class="st"> </span><span class="kw">c</span>(<span class="fl">191.6</span>),</span>
 <span id="cb4-4"><a href="#cb4-4"></a>  threshold.vig =<span class="st"> </span><span class="kw">c</span>(<span class="fl">695.8</span>),</span>
 <span id="cb4-5"><a href="#cb4-5"></a>...</span></code></pre></div>
+<p>If your study included <em>both</em> children and adults wearing geneactiv devices on their wrists, your call would include:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>...</span>
+<span id="cb5-2"><a href="#cb5-2"></a>  threshold.lig =<span class="st"> </span><span class="kw">c</span>(<span class="fl">45.8</span>, <span class="fl">51.6</span>),</span>
+<span id="cb5-3"><a href="#cb5-3"></a>  threshold.mod =<span class="st"> </span><span class="kw">c</span>(<span class="fl">93.2</span>, <span class="fl">191.6</span>),</span>
+<span id="cb5-4"><a href="#cb5-4"></a>  threshold.vig =<span class="st"> </span><span class="kw">c</span>(<span class="fl">418.3</span>, <span class="fl">695.8</span>),</span>
+<span id="cb5-5"><a href="#cb5-5"></a>...</span></code></pre></div>
 </div>
 <div id="using-sleepipd-helper-functions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-sleepipd-helper-functions" class="anchor"></a>Using <code>sleepIPD</code> Helper Functions</h2>
-<p>Even if you do not use <code>sleepIPD</code> for the reprocessing, you may still find the helper functions useful.</p>
+<p>Even if you do not use <code>sleepIPD</code> for the reprocessing, you may still find the helper functions useful. The two main helper functions are <code><a href="../reference/collate_outputs.html">collate_outputs()</a></code> and <code><a href="../reference/build_meta.html">build_meta()</a></code>.</p>
+<div id="collate_outputs" class="section level3">
+<h3 class="hasAnchor">
+<a href="#collate_outputs" class="anchor"></a><code>collate_outputs()</code>
+</h3>
 <p><code><a href="../reference/collate_outputs.html">collate_outputs()</a></code> will find all of the Part 2, 4, and 5 files, collapse them so that there is a one file for each part, and move that file to the top level of the output directory. This reduces the number of files you need to submit for the analysis. You can use <code><a href="../reference/collate_outputs.html">collate_outputs()</a></code> like so:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/collate_outputs.html">collate_outputs</a></span><span class="op">(</span>
   outputdir <span class="op">=</span> <span class="st">"C:/MyFiles"</span>, <span class="co"># The location you used in GGIR as outputdir</span>
   studyname <span class="op">=</span> <span class="st">"Hartwig 2016"</span> <span class="co"># A study name. Author surname and year is fine</span>
                 <span class="op">)</span></code></pre></div>
+</div>
+<div id="build_meta" class="section level3">
+<h3 class="hasAnchor">
+<a href="#build_meta" class="anchor"></a><code>build_meta()</code>
+</h3>
 <p><code><a href="../reference/build_meta.html">build_meta()</a></code> will create a metadata template for you. Additionally, it will search the output of <code><a href="../reference/collate_outputs.html">collate_outputs()</a></code> for the names of files, and pre-fill the metadata template with this information. The goal is to reduce the rate of unmatched data, which was a problem in previous pooled analyses. You must use <code><a href="../reference/collate_outputs.html">collate_outputs()</a></code> before using <code><a href="../reference/build_meta.html">build_meta()</a></code>.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/build_meta.html">build_meta</a></span><span class="op">(</span>
   outputdir <span class="op">=</span> <span class="st">"C:/MyFiles"</span>, <span class="co"># Must be the same as that used in collate_outputs()</span>
   studyname <span class="op">=</span> <span class="st">"Hartwig 2016"</span> <span class="co"># Must be the same as that used in collate_outputs()</span>
 <span class="op">)</span></code></pre></div>
 <p>If you have only a single wear location, you can (optionally) provide this (e.g., <code>wear_location="wrist"</code>) in order to pre-fill it.</p>
-<p>Note that if you have previously used <code>build_meta</code> and need to run it again, you need to specify <code>overwrite = TRUE</code>. This will replace the existing metadata template.</p>
+<p>If you have previously used <code>build_meta</code> and need to run it again, you need to specify <code>overwrite = TRUE</code>. Be warned that this will replace the existing metadata template.</p>
+</div>
 </div>
 </div>
   </div>
