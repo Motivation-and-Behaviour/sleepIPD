@@ -97,7 +97,7 @@ process_files <- function(datadir,
     iglevels = 50,
     ilevels = seq(0, 4000, 50),
     epochvalues2csv = FALSE,
-    winhr = 16,
+    winhr = c(1,16),
     qlevels = c(
       960 / 1440, # 2/3rds of the day
       1320 / 1440, # Top 120min
