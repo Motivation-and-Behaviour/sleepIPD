@@ -89,9 +89,9 @@ process_files <- function(datadir,
     maxdur = 0,
     includedaycrit = 16,
     qwindow = c(0, 24),
-    mvpathreshold = 100,
+    mvpathreshold = threshold_mod,
     bout.metric = 4,
-    excludefirstlast = TRUE,
+    excludefirstlast = FALSE,
     includenightcrit = 16,
     MX.ig.min.dur = 10,
     iglevels = 50,
@@ -126,7 +126,7 @@ process_files <- function(datadir,
     # =====================
     # Visual report
     # =====================
-    timewindow = c("WW"),
+    timewindow = c("WW", "MM"),
     visualreport = FALSE,
     ...
   )
