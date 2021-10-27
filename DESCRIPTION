@@ -16,13 +16,13 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Imports: 
-    dplyr,
+    dplyr (>= 1.0.0),
     GGIR (>= 2.4.0),
-    magrittr,
-    openxlsx,
+    magrittr (>= 2.0.0),
+    openxlsx (>= 4.2.0),
     readr (>= 2.0.0),
-    rlang,
-    usethis
+    rlang (>= 0.4.12),
+    usethis (>= 2.0.0)
 Depends: 
     R (>= 2.10)
 URL: https://motivation-and-behaviour.github.io/sleepIPD, https://github.com/Motivation-and-Behaviour/sleepIPD
