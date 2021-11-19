@@ -122,7 +122,7 @@ The metadata template will be located in the folder you specify as the `outputdi
 
 ## Processing
 
-`sleepIPD` wraps `GGIR::g.shell.GGIR()` for the processing. If you are manually making calls to GGIR (i.e., not using this package), the settings are provide below. You **must** use GGIR Version 2.4-0 for this project. There is some evidence that different versions of GGIR can produce slightly different results. Please check your version before you begin (`utils::packageVersion("GGIR")`). 
+`sleepIPD` wraps `GGIR::g.shell.GGIR()` for the processing. If you are manually making calls to GGIR (i.e., not using this package), the settings are provide below. You **must** use GGIR Version 2.5-1 for this project. There is some evidence that different versions of GGIR can produce slightly different results. Please check your version before you begin (`utils::packageVersion("GGIR")`). 
 
 The full `GGIR::g.shell.GGIR()` call used in `sleepIPD` is:
 

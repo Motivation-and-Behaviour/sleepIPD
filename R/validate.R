@@ -10,7 +10,7 @@
 #' @export
 validate_GGIR <- function(verbose = TRUE) { # nolint
   ggir_ver <- utils::packageVersion("GGIR")
-  req_ver <- "2.4.0"
+  req_ver <- "2.5.1"
 
   if (ggir_ver == req_ver) {
     if (verbose) {
