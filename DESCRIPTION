@@ -23,6 +23,8 @@ Imports:
     readr (>= 2.0.0),
     rlang (>= 0.4.12),
     usethis (>= 2.0.0)
+Remotes:
+    wadpac/GGIR@2.5-1
 Depends: 
     R (>= 2.10)
 URL: https://motivation-and-behaviour.github.io/sleepIPD, https://github.com/Motivation-and-Behaviour/sleepIPD
@@ -34,7 +36,5 @@ Suggests:
     gt,
     purrr,
     testthat (>= 3.0.0)
-remotes:
-    wadpac/GGIR@2.5-1
 VignetteBuilder: knitr
 Config/testthat/edition: 3

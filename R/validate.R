@@ -37,7 +37,7 @@ validate_GGIR <- function(verbose = TRUE) { # nolint
         utils::install.packages("devtools")
       }
       detach("package:GGIR", unload = TRUE)
-      devtools::install_version("GGIR", version = req_ver)
+      devtools::install_github("wadpac/GGIR@2.5-1")
       validate_GGIR()
     } else {
       stop_msg <-
