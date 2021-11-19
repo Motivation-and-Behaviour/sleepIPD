@@ -162,20 +162,20 @@ metadata.</p></td>
     <tr>
       <th>ages</th>
       <td><p>The age of the sample. Can be either <code>"children"</code> (for those 18
-or less), <code>"adults"</code> (for &gt;18) or both (i.e., <code><a href='https://rdrr.io/r/base/c.html'>c("children", "adults")</a></code>). If
+or less), <code>"adults"</code> (for &gt;18) or both (i.e., <code>c("children", "adults")</code>). If
 you do not specify, both are used.</p></td>
     </tr>
     <tr>
       <th>device</th>
       <td><p>The device used in the study. Can be either <code>"geneactiv"</code>,
 <code>"actigraph"</code> or (in the unlikely event two devices were used) both (i.e.,
-<code><a href='https://rdrr.io/r/base/c.html'>c("geneactiv", "actigraph")</a></code>). If you do not specify, both are used.</p></td>
+<code>c("geneactiv", "actigraph")</code>). If you do not specify, both are used.</p></td>
     </tr>
     <tr>
       <th>wear_location</th>
       <td><p>The location the device was warn. Can be either
 <code>"wrist"</code>, <code>"hip"</code> or (in the unlikely event multiple locations were used)
-both (i.e., <code><a href='https://rdrr.io/r/base/c.html'>c("wrist","hip")</a></code>). If you do not specify, both are used.</p></td>
+both (i.e., <code>c("wrist","hip")</code>). If you do not specify, both are used.</p></td>
     </tr>
     <tr>
       <th>overwrite</th>
@@ -218,24 +218,24 @@ each one with the year the data were collected; e.g.,
 <code><a href='process_files.html'>process_files</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='va'>datadir</span> <span class='op'>&lt;-</span> <span class='st'>"C:\\Documents\\My Study\\Data"</span>
-<span class='va'>outputdir</span> <span class='op'>&lt;-</span> <span class='st'>"C:\\Documents\\My Study\\Output"</span>
-<span class='va'>studyname</span> <span class='op'>&lt;-</span> <span class='st'>"Hartwig 2021"</span>
-<span class='va'>ages</span> <span class='op'>&lt;-</span> <span class='st'>"children"</span>
-<span class='va'>device</span> <span class='op'>&lt;-</span> <span class='st'>"geneactiv"</span>
-<span class='va'>wear_location</span> <span class='op'>&lt;-</span> <span class='st'>"wrist"</span>
-
-<span class='fu'>reprocess</span><span class='op'>(</span>
-  datadir <span class='op'>=</span> <span class='va'>datadir</span>,
-  outputdir <span class='op'>=</span> <span class='va'>outputdir</span>,
-  studyname <span class='op'>=</span> <span class='va'>studyname</span>,
-  ages <span class='op'>=</span> <span class='va'>ages</span>,
-  device <span class='op'>=</span> <span class='va'>device</span>,
-  wear_location <span class='op'>=</span> <span class='va'>wear_location</span>
-<span class='op'>)</span>
-<span class='op'>}</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span class='r-in'><span class='va'>datadir</span> <span class='op'>&lt;-</span> <span class='st'>"C:\\Documents\\My Study\\Data"</span></span>
+<span class='r-in'><span class='va'>outputdir</span> <span class='op'>&lt;-</span> <span class='st'>"C:\\Documents\\My Study\\Output"</span></span>
+<span class='r-in'><span class='va'>studyname</span> <span class='op'>&lt;-</span> <span class='st'>"Hartwig 2021"</span></span>
+<span class='r-in'><span class='va'>ages</span> <span class='op'>&lt;-</span> <span class='st'>"children"</span></span>
+<span class='r-in'><span class='va'>device</span> <span class='op'>&lt;-</span> <span class='st'>"geneactiv"</span></span>
+<span class='r-in'><span class='va'>wear_location</span> <span class='op'>&lt;-</span> <span class='st'>"wrist"</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>reprocess</span><span class='op'>(</span></span>
+<span class='r-in'>  datadir <span class='op'>=</span> <span class='va'>datadir</span>,</span>
+<span class='r-in'>  outputdir <span class='op'>=</span> <span class='va'>outputdir</span>,</span>
+<span class='r-in'>  studyname <span class='op'>=</span> <span class='va'>studyname</span>,</span>
+<span class='r-in'>  ages <span class='op'>=</span> <span class='va'>ages</span>,</span>
+<span class='r-in'>  device <span class='op'>=</span> <span class='va'>device</span>,</span>
+<span class='r-in'>  wear_location <span class='op'>=</span> <span class='va'>wear_location</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>}</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
