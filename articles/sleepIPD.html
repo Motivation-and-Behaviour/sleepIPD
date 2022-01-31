@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sleepIPD</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9000</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../articles/sleepIPD.html">Get started</a>
 </li>
@@ -55,7 +51,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/Motivation-and-Behaviour/sleepIPD/">
+  <a href="https://github.com/Motivation-and-Behaviour/sleepIPD/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -76,59 +72,58 @@
       <h1 data-toc-skip>Using <code>sleepIPD</code> to Reprocess Data</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/Motivation-and-Behaviour/sleepIPD/blob/master/vignettes/sleepIPD.Rmd"><code>vignettes/sleepIPD.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/Motivation-and-Behaviour/sleepIPD/blob/HEAD/vignettes/sleepIPD.Rmd" class="external-link"><code>vignettes/sleepIPD.Rmd</code></a></small>
       <div class="hidden name"><code>sleepIPD.Rmd</code></div>
 
     </div>
 
     
     
-<div id="introduction" class="section level1">
-<h1 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h1>
-<p>The purpose of this package is to simplify the reprocessing of accelerometer data for project <em>The relationship between sleep and physical activity across the lifespan</em>. This project wraps functions from <a href="https://cran.r-project.org/web/packages/GGIR/vignettes/GGIR.html">GGIR</a>, along with functions to make collating the results easier.</p>
-<div id="getting-started" class="section level2">
-<h2 class="hasAnchor">
-<a href="#getting-started" class="anchor"></a>Getting Started</h2>
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
+<p>The purpose of this package is to simplify the reprocessing of accelerometer data for project <em>The relationship between sleep and physical activity across the lifespan</em>. This project wraps functions from <a href="https://cran.r-project.org/web/packages/GGIR/vignettes/GGIR.html" class="external-link">GGIR</a>, along with functions to make collating the results easier.</p>
+<div class="section level3">
+<h3 id="getting-started">Getting Started<a class="anchor" aria-label="anchor" href="#getting-started"></a>
+</h3>
 <p>This page will guide you through the process. How you reprocess the data will depend on a number of factors.</p>
 <ul>
 <li>If you are familiar with R and intend to reprocess data on a single machine, follow the <a href="#quick-start">Quick Start</a> guide.</li>
 <li>If you have a large number of files and will be reprocessing on a cluster, read the <a href="#key-ggir-settings">Key GGIR Settings</a>
 </li>
-<li>If you are new to R (e.g., you would normally process data with ActiLife), <a href="https://moderndive.netlify.app/1-getting-started.html">this chapter</a> is a good introduction. The key steps are to <a href="https://cloud.r-project.org/">install R</a>, install an IDE (I strongly recommend <a href="https://www.rstudio.com/products/rstudio/download/">RStudio</a>), and get familiar with how to run scripts. You can then move to the <a href="#quick-start">Quick Start</a> guide.</li>
+<li>If you are new to R (e.g., you would normally process data with ActiLife), <a href="https://moderndive.netlify.app/1-getting-started.html" class="external-link">this chapter</a> is a good introduction. The key steps are to <a href="https://cloud.r-project.org/" class="external-link">install R</a>, install an IDE (I strongly recommend <a href="https://www.rstudio.com/products/rstudio/download/" class="external-link">RStudio</a>), and get familiar with how to run scripts. You can then move to the <a href="#quick-start">Quick Start</a> guide.</li>
 </ul>
 </div>
-<div id="getting-help" class="section level2">
-<h2 class="hasAnchor">
-<a href="#getting-help" class="anchor"></a>Getting Help</h2>
+<div class="section level3">
+<h3 id="getting-help">Getting Help<a class="anchor" aria-label="anchor" href="#getting-help"></a>
+</h3>
 <p>The project is led by <a href="mailto:Timothy.Hartwig@acu.edu.au">Dr Timothy Hartwig</a>, and this package is developed by <a href="mailto:Taren.Sanders@acu.edu.au">Dr Taren Sanders</a>. Please reach out if you need any support.</p>
 </div>
 </div>
-<div id="quick-start" class="section level1">
-<h1 class="hasAnchor">
-<a href="#quick-start" class="anchor"></a>Quick Start</h1>
+<div class="section level2">
+<h2 id="quick-start">Quick Start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
+</h2>
 <p>One of the goals for this package was to make reprocessing data as easy as possible. If your study meets all of the criteria below, you should be able to reprocess your data with just a single call to <code><a href="../reference/reprocess.html">reprocess()</a></code>.</p>
 <p><strong>Criteria</strong></p>
 <ol style="list-style-type: decimal">
 <li>You intend to run the analysis on a single computer (i.e., you do not intend to use a cluster).</li>
-<li>Your data are stored in a format that <a href="https://cran.r-project.org/web/packages/GGIR/vignettes/GGIR.html#22_Prepare_folder_structure">GGIR understands</a> (Geneactiv <code>.bin</code> or <code>.csv</code>, Actigraph raw <code>.csv</code>, or Axivity <code>.cwa</code>).</li>
+<li>Your data are stored in a format that <a href="https://cran.r-project.org/web/packages/GGIR/vignettes/GGIR.html#22_Prepare_folder_structure" class="external-link">GGIR understands</a> (Geneactiv <code>.bin</code> or <code>.csv</code>, Actigraph raw <code>.csv</code>, or Axivity <code>.cwa</code>).</li>
 <li>Your folder structure contains only one of the above formats (i.e., your data are not duplicated in multiple formats).</li>
 </ol>
-<div id="running-with-reprocess" class="section level2">
-<h2 class="hasAnchor">
-<a href="#running-with-reprocess" class="anchor"></a>Running with <code>reprocess()</code>
-</h2>
-<div id="installation" class="section level3">
-<h3 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h3>
-<p>First, install the package. Since the package is not on CRAN, you will need <code><a href="https://devtools.r-lib.org//reference/remote-reexports.html">devtools::install_github()</a></code> or <code><a href="https://remotes.r-lib.org/reference/install_github.html">remotes::install_github()</a></code>. You will need to install one of these packages if you do not already have one. I recommend <code>devtools</code>.</p>
+<div class="section level3">
+<h3 id="running-with-reprocess">Running with <code>reprocess()</code><a class="anchor" aria-label="anchor" href="#running-with-reprocess"></a>
+</h3>
+<div class="section level4">
+<h4 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h4>
+<p>First, install the package. Since the package is not on CRAN, you will need <code><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">devtools::install_github()</a></code> or <code><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">remotes::install_github()</a></code>. You will need to install one of these packages if you do not already have one. I recommend <code>devtools</code>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools") # uncomment if needed</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"Motivation-and-Behaviour/sleepIPD"</span><span class="op">)</span></code></pre></div>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"Motivation-and-Behaviour/sleepIPD"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="reprocessing-the-data" class="section level3">
-<h3 class="hasAnchor">
-<a href="#reprocessing-the-data" class="anchor"></a>Reprocessing the Data</h3>
+<div class="section level4">
+<h4 id="reprocessing-the-data">Reprocessing the Data<a class="anchor" aria-label="anchor" href="#reprocessing-the-data"></a>
+</h4>
 <p>Next, provide sleepIPD with the information about how your data are stored, and information about the sample. The essential information is:</p>
 <table class="table">
 <colgroup>
@@ -168,7 +163,7 @@
 </table>
 <p>An example call might look like:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://motivation-and-behaviour.github.io/sleepIPD">sleepIPD</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://motivation-and-behaviour.github.io/sleepIPD">sleepIPD</a></span><span class="op">)</span>
 
 <span class="va">datadir</span> <span class="op">&lt;-</span> <span class="st">"C:\\Documents\\My Study\\Data"</span>
 <span class="va">outputdir</span> <span class="op">&lt;-</span> <span class="st">"C:\\Documents\\My Study\\Output"</span>
@@ -185,49 +180,49 @@
           wear_location <span class="op">=</span> <span class="va">wear_location</span><span class="op">)</span></code></pre></div>
 <p>Note that if you discover you have made a mistake and need to run this again, you’ll need to additionally set <code>overwrite = TRUE</code>.</p>
 </div>
-<div id="what-does-reprocess-do" class="section level3">
-<h3 class="hasAnchor">
-<a href="#what-does-reprocess-do" class="anchor"></a>What Does <code>reprocess()</code> Do?</h3>
+<div class="section level4">
+<h4 id="what-does-reprocess-do">What Does <code>reprocess()</code> Do?<a class="anchor" aria-label="anchor" href="#what-does-reprocess-do"></a>
+</h4>
 <p><code><a href="../reference/reprocess.html">reprocess()</a></code> performs three steps, and moves the data between each step.</p>
-<div id="step-one-reprocess-files" class="section level4">
-<h4 class="hasAnchor">
-<a href="#step-one-reprocess-files" class="anchor"></a>Step One: Reprocess Files</h4>
+<div class="section level5">
+<h5 id="step-one-reprocess-files">Step One: Reprocess Files<a class="anchor" aria-label="anchor" href="#step-one-reprocess-files"></a>
+</h5>
 <p>This is the largest step. Here, sleepIPD calls <code><a href="../reference/process_files.html">process_files()</a></code>, which does the following:</p>
 <ol style="list-style-type: decimal">
 <li>Checks that you have the correct version of GGIR installed. sleepIPD can help you install the right version if it cannot find the correct version.</li>
 <li>Determines the correct cut-points to apply to the data, based on information about your sample.</li>
-<li>Calls <code><a href="https://rdrr.io/pkg/GGIR/man/g.shell.GGIR.html">GGIR::g.shell.GGIR()</a></code> to reprocess the data. This is where &gt;99% of the time will be spent.</li>
+<li>Calls <code><a href="https://rdrr.io/pkg/GGIR/man/g.shell.GGIR.html" class="external-link">GGIR::g.shell.GGIR()</a></code> to reprocess the data. This is where &gt;99% of the time will be spent.</li>
 </ol>
 </div>
-<div id="step-two-collate-the-outputs" class="section level4">
-<h4 class="hasAnchor">
-<a href="#step-two-collate-the-outputs" class="anchor"></a>Step Two: Collate the Outputs</h4>
+<div class="section level5">
+<h5 id="step-two-collate-the-outputs">Step Two: Collate the Outputs<a class="anchor" aria-label="anchor" href="#step-two-collate-the-outputs"></a>
+</h5>
 <p>GGIR can produce a lot of output files, but we only really need the summaries. Even so, depending on the configuration, there could be more than 1000 summary files. In this second step, sleepIPD calls <code><a href="../reference/collate_outputs.html">collate_outputs()</a></code>, which finds all of the output files and collapses them into just three files. These three files are stored in a new folder called <code>sleepIPD_output</code>, which will be located under the folder you specify in <code>outputdir</code>.</p>
 <p>For example, if <code>outputdir</code> is <code>"C:\\Documents\\My Study\\Output"</code>, the collated files will be stored in <code>"C:\\Documents\\My Study\\Output\\sleepIPD_output"</code>.</p>
 </div>
-<div id="step-three-create-the-metadata-template" class="section level4">
-<h4 class="hasAnchor">
-<a href="#step-three-create-the-metadata-template" class="anchor"></a>Step Three: Create the Metadata Template</h4>
+<div class="section level5">
+<h5 id="step-three-create-the-metadata-template">Step Three: Create the Metadata Template<a class="anchor" aria-label="anchor" href="#step-three-create-the-metadata-template"></a>
+</h5>
 <p>To perform the integrated analysis, we will need additional information about the sample such as demographics. To try to make this simpler, sleepIPD calls <code><a href="../reference/build_meta.html">build_meta()</a></code> which will create the metadata template file and pre-fill it with the names of the files, and the wear location (if a single location was selected). You can then add the remaining information in, either by matching it to an existing spreadsheet or filling it manually.</p>
 <p>The metadata template will be located in the folder you specify as the <code>outputdir</code>, and will be named <code>&lt;studyname&gt;-metadata.xlsx</code>. The <code>Metadata</code> sheet contains the information to fill out, and the other sheets explain the expected format.</p>
 </div>
 </div>
 </div>
 </div>
-<div id="key-ggir-settings" class="section level1">
-<h1 class="hasAnchor">
-<a href="#key-ggir-settings" class="anchor"></a>Key GGIR Settings</h1>
-<div id="processing" class="section level2">
-<h2 class="hasAnchor">
-<a href="#processing" class="anchor"></a>Processing</h2>
-<p><code>sleepIPD</code> wraps <code><a href="https://rdrr.io/pkg/GGIR/man/g.shell.GGIR.html">GGIR::g.shell.GGIR()</a></code> for the processing. If you are manually making calls to GGIR (i.e., not using this package), the settings are provide below. You <strong>must</strong> use GGIR Version 2.5-1 for this project. There is some evidence that different versions of GGIR can produce slightly different results. Please check your version before you begin (<code>utils::packageVersion("GGIR")</code>).</p>
-<p>The full <code><a href="https://rdrr.io/pkg/GGIR/man/g.shell.GGIR.html">GGIR::g.shell.GGIR()</a></code> call used in <code>sleepIPD</code> is:</p>
+<div class="section level2">
+<h2 id="key-ggir-settings">Key GGIR Settings<a class="anchor" aria-label="anchor" href="#key-ggir-settings"></a>
+</h2>
+<div class="section level3">
+<h3 id="processing">Processing<a class="anchor" aria-label="anchor" href="#processing"></a>
+</h3>
+<p><code>sleepIPD</code> wraps <code><a href="https://rdrr.io/pkg/GGIR/man/g.shell.GGIR.html" class="external-link">GGIR::g.shell.GGIR()</a></code> for the processing. If you are manually making calls to GGIR (i.e., not using this package), the settings are provide below. You <strong>must</strong> use GGIR Version 2.5-1 for this project. There is some evidence that different versions of GGIR can produce slightly different results. Please check your version before you begin (<code>utils::packageVersion("GGIR")</code>).</p>
+<p>The full <code><a href="https://rdrr.io/pkg/GGIR/man/g.shell.GGIR.html" class="external-link">GGIR::g.shell.GGIR()</a></code> call used in <code>sleepIPD</code> is:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">GGIR</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GGIR/man/g.shell.GGIR.html">g.shell.GGIR</a></span><span class="op">(</span>
-  mode <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span>,
+<code class="sourceCode R"><span class="fu">GGIR</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GGIR/man/g.shell.GGIR.html" class="external-link">g.shell.GGIR</a></span><span class="op">(</span>
+  mode <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span>,
   datadir <span class="op">=</span> <span class="va">datadir</span>,
   outputdir <span class="op">=</span> <span class="va">outputdir</span>,
-  do.report <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span>,
+  do.report <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span>,
   overwrite <span class="op">=</span> <span class="va">overwrite</span>,
   do.enmo <span class="op">=</span> <span class="cn">TRUE</span>,
   do.hfen <span class="op">=</span> <span class="cn">TRUE</span>,
@@ -240,23 +235,23 @@
   strategy <span class="op">=</span> <span class="fl">2</span>,
   maxdur <span class="op">=</span> <span class="fl">0</span>,
   includedaycrit <span class="op">=</span> <span class="fl">16</span>,
-  qwindow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">6</span>, <span class="fl">12</span>, <span class="fl">18</span>, <span class="fl">24</span><span class="op">)</span>,
+  qwindow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">6</span>, <span class="fl">12</span>, <span class="fl">18</span>, <span class="fl">24</span><span class="op">)</span>,
   mvpathreshold <span class="op">=</span> <span class="va">threshold_mod</span>,
   bout.metric <span class="op">=</span> <span class="fl">4</span>,
   excludefirstlast <span class="op">=</span> <span class="cn">FALSE</span>,
   includenightcrit <span class="op">=</span> <span class="fl">16</span>,
   MX.ig.min.dur <span class="op">=</span> <span class="fl">10</span>,
   iglevels <span class="op">=</span> <span class="fl">50</span>,
-  ilevels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">4000</span>, <span class="fl">50</span><span class="op">)</span>,
+  ilevels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">4000</span>, <span class="fl">50</span><span class="op">)</span>,
   epochvalues2csv <span class="op">=</span> <span class="cn">FALSE</span>,
-  winhr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">16</span>,         <span class="co"># Most active 16 hours</span>
-            <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">60</span> <span class="op">/</span> <span class="fl">60</span><span class="op">)</span>, <span class="co"># Most active hour</span>
-            <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">30</span> <span class="op">/</span> <span class="fl">60</span><span class="op">)</span>, <span class="co"># Most active half hour</span>
-            <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">15</span> <span class="op">/</span> <span class="fl">60</span><span class="op">)</span>, <span class="co"># Most active 15 min</span>
-            <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span> <span class="op">/</span> <span class="fl">60</span><span class="op">)</span>, <span class="co"># Most active 10 min</span>
-            <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span> <span class="op">/</span> <span class="fl">60</span><span class="op">)</span>   <span class="co"># Most active 5 min)</span>
+  winhr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">16</span>,         <span class="co"># Most active 16 hours</span>
+            <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">60</span> <span class="op">/</span> <span class="fl">60</span><span class="op">)</span>, <span class="co"># Most active hour</span>
+            <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">30</span> <span class="op">/</span> <span class="fl">60</span><span class="op">)</span>, <span class="co"># Most active half hour</span>
+            <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">15</span> <span class="op">/</span> <span class="fl">60</span><span class="op">)</span>, <span class="co"># Most active 15 min</span>
+            <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span> <span class="op">/</span> <span class="fl">60</span><span class="op">)</span>, <span class="co"># Most active 10 min</span>
+            <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span> <span class="op">/</span> <span class="fl">60</span><span class="op">)</span>   <span class="co"># Most active 5 min)</span>
   <span class="op">)</span>,
-  qlevels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
+  qlevels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>
     <span class="fl">960</span> <span class="op">/</span> <span class="fl">1440</span>, <span class="co"># 2/3rds of the day</span>
     <span class="fl">1320</span> <span class="op">/</span> <span class="fl">1440</span>, <span class="co"># Top 120min</span>
     <span class="fl">1380</span> <span class="op">/</span> <span class="fl">1440</span>, <span class="co"># Top 60min</span>
@@ -278,27 +273,27 @@
   threshold.mod <span class="op">=</span> <span class="va">threshold_mod</span>,
   threshold.vig <span class="op">=</span> <span class="va">threshold_vig</span>,
   boutcriter <span class="op">=</span> <span class="fl">0.8</span>, boutcriter.in <span class="op">=</span> <span class="fl">0.9</span>, boutcriter.lig <span class="op">=</span> <span class="fl">0.8</span>,
-  boutcriter.mvpa <span class="op">=</span> <span class="fl">0.8</span>, boutdur.in <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span>, <span class="fl">30</span><span class="op">)</span>, boutdur.lig <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span>,
-  boutdur.mvpa <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>,
+  boutcriter.mvpa <span class="op">=</span> <span class="fl">0.8</span>, boutdur.in <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span>, <span class="fl">30</span><span class="op">)</span>, boutdur.lig <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span>,
+  boutdur.mvpa <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>,
   includedaycrit.part5 <span class="op">=</span> <span class="fl">2</span> <span class="op">/</span> <span class="fl">3</span>,
   <span class="co"># =====================</span>
   <span class="co"># Visual report</span>
   <span class="co"># =====================</span>
-  timewindow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"WW"</span>, <span class="st">"MM"</span><span class="op">)</span>,
+  timewindow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"WW"</span>, <span class="st">"MM"</span><span class="op">)</span>,
   visualreport <span class="op">=</span> <span class="cn">FALSE</span>,
   <span class="va">...</span>
 <span class="op">)</span></code></pre></div>
 <p>Note that <code>datadir</code>, <code>outputdir</code>, <code>overwrite</code>, and <code>studyname</code> are set elsewhere in <code>sleepIPD</code>. The thresholds (i.e., <code>threshold_lig</code>, <code>threshold_mod</code>, and <code>threshold_vig</code>) will depend on the device you are using, the age of the sample, and where the accelerometer was worn. See details below.</p>
 </div>
-<div id="thresholds" class="section level2">
-<h2 class="hasAnchor">
-<a href="#thresholds" class="anchor"></a>Thresholds</h2>
-<div id="veuyikkspu" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div class="section level3">
+<h3 id="thresholds">Thresholds<a class="anchor" aria-label="anchor" href="#thresholds"></a>
+</h3>
+<div id="rlpsicehev" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#veuyikkspu .gt_table {
+#rlpsicehev .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -323,7 +318,7 @@
   border-left-color: #D3D3D3;
 }
 
-#veuyikkspu .gt_heading {
+#rlpsicehev .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -335,7 +330,7 @@
   border-right-color: #D3D3D3;
 }
 
-#veuyikkspu .gt_title {
+#rlpsicehev .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -345,7 +340,7 @@
   border-bottom-width: 0;
 }
 
-#veuyikkspu .gt_subtitle {
+#rlpsicehev .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -355,13 +350,13 @@
   border-top-width: 0;
 }
 
-#veuyikkspu .gt_bottom_border {
+#rlpsicehev .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#veuyikkspu .gt_col_headings {
+#rlpsicehev .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -376,7 +371,7 @@
   border-right-color: #D3D3D3;
 }
 
-#veuyikkspu .gt_col_heading {
+#rlpsicehev .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -396,7 +391,7 @@
   overflow-x: hidden;
 }
 
-#veuyikkspu .gt_column_spanner_outer {
+#rlpsicehev .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -408,15 +403,15 @@
   padding-right: 4px;
 }
 
-#veuyikkspu .gt_column_spanner_outer:first-child {
+#rlpsicehev .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#veuyikkspu .gt_column_spanner_outer:last-child {
+#rlpsicehev .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#veuyikkspu .gt_column_spanner {
+#rlpsicehev .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -428,7 +423,7 @@
   width: 100%;
 }
 
-#veuyikkspu .gt_group_heading {
+#rlpsicehev .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -450,7 +445,7 @@
   vertical-align: middle;
 }
 
-#veuyikkspu .gt_empty_group_heading {
+#rlpsicehev .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -465,15 +460,15 @@
   vertical-align: middle;
 }
 
-#veuyikkspu .gt_from_md > :first-child {
+#rlpsicehev .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#veuyikkspu .gt_from_md > :last-child {
+#rlpsicehev .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#veuyikkspu .gt_row {
+#rlpsicehev .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -492,7 +487,7 @@
   overflow-x: hidden;
 }
 
-#veuyikkspu .gt_stub {
+#rlpsicehev .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -504,7 +499,7 @@
   padding-left: 12px;
 }
 
-#veuyikkspu .gt_summary_row {
+#rlpsicehev .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -514,7 +509,7 @@
   padding-right: 5px;
 }
 
-#veuyikkspu .gt_first_summary_row {
+#rlpsicehev .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -524,7 +519,7 @@
   border-top-color: #D3D3D3;
 }
 
-#veuyikkspu .gt_grand_summary_row {
+#rlpsicehev .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -534,7 +529,7 @@
   padding-right: 5px;
 }
 
-#veuyikkspu .gt_first_grand_summary_row {
+#rlpsicehev .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -544,11 +539,11 @@
   border-top-color: #D3D3D3;
 }
 
-#veuyikkspu .gt_striped {
+#rlpsicehev .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#veuyikkspu .gt_table_body {
+#rlpsicehev .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -557,7 +552,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#veuyikkspu .gt_footnotes {
+#rlpsicehev .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -571,13 +566,13 @@
   border-right-color: #D3D3D3;
 }
 
-#veuyikkspu .gt_footnote {
+#rlpsicehev .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#veuyikkspu .gt_sourcenotes {
+#rlpsicehev .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -591,47 +586,47 @@
   border-right-color: #D3D3D3;
 }
 
-#veuyikkspu .gt_sourcenote {
+#rlpsicehev .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#veuyikkspu .gt_left {
+#rlpsicehev .gt_left {
   text-align: left;
 }
 
-#veuyikkspu .gt_center {
+#rlpsicehev .gt_center {
   text-align: center;
 }
 
-#veuyikkspu .gt_right {
+#rlpsicehev .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#veuyikkspu .gt_font_normal {
+#rlpsicehev .gt_font_normal {
   font-weight: normal;
 }
 
-#veuyikkspu .gt_font_bold {
+#rlpsicehev .gt_font_bold {
   font-weight: bold;
 }
 
-#veuyikkspu .gt_font_italic {
+#rlpsicehev .gt_font_italic {
   font-style: italic;
 }
 
-#veuyikkspu .gt_super {
+#rlpsicehev .gt_super {
   font-size: 65%;
 }
 
-#veuyikkspu .gt_footnote_marks {
+#rlpsicehev .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
 }
 </style>
-<table class="table gt_table">
+<table class="table gt_table" style="table-layout: fixed;; width: 100%">
 <colgroup>
 <col style="width:13.3%;">
 <col style="width:13.3%;">
@@ -683,9 +678,9 @@
 <p>695.8</p>
 </div></td>
 <td class="gt_row gt_left"><div class="gt_from_md">
-<p>Light: <a href="https://doi.org/10.3390/children5120172">Hurter et al., 2018</a><br>
-Mod: <a href="https://doi.org/10.1249/mss.0000000000000289">Hildebrand et al., 2014</a><br>
-Vig: <a href="https://doi.org/10.1249/mss.0000000000000289">Hildebrand et al., 2014</a></p>
+<p>Light: <a href="https://doi.org/10.3390/children5120172" class="external-link">Hurter et al., 2018</a><br>
+Mod: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a><br>
+Vig: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a></p>
 </div></td>
 </tr>
 <tr>
@@ -708,9 +703,9 @@ Vig: <a href="https://doi.org/10.1249/mss.0000000000000289">Hildebrand et al., 2
 <p>707</p>
 </div></td>
 <td class="gt_row gt_left gt_striped"><div class="gt_from_md">
-<p>Light: <a href="https://doi.org/10.3390/children5120172">Hurter et al., 2018</a><br>
-Mod: <a href="https://doi.org/10.1249/mss.0000000000000289">Hildebrand et al., 2014</a><br>
-Vig: <a href="https://doi.org/10.1249/mss.0000000000000289">Hildebrand et al., 2014</a></p>
+<p>Light: <a href="https://doi.org/10.3390/children5120172" class="external-link">Hurter et al., 2018</a><br>
+Mod: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a><br>
+Vig: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a></p>
 </div></td>
 </tr>
 <tr>
@@ -733,9 +728,9 @@ Vig: <a href="https://doi.org/10.1249/mss.0000000000000289">Hildebrand et al., 2
 <p>514.3</p>
 </div></td>
 <td class="gt_row gt_left"><div class="gt_from_md">
-<p>Light: <a href="https://doi.org/10.1111/sms.12795">Hildebrand et al., 2016</a><br>
-Mod: <a href="https://doi.org/10.1249/mss.0000000000000289">Hildebrand et al., 2014</a><br>
-Vig: <a href="https://doi.org/10.1249/mss.0000000000000289">Hildebrand et al., 2014</a></p>
+<p>Light: <a href="https://doi.org/10.1111/sms.12795" class="external-link">Hildebrand et al., 2016</a><br>
+Mod: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a><br>
+Vig: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a></p>
 </div></td>
 </tr>
 <tr>
@@ -758,9 +753,9 @@ Vig: <a href="https://doi.org/10.1249/mss.0000000000000289">Hildebrand et al., 2
 <p>464.6</p>
 </div></td>
 <td class="gt_row gt_left gt_striped"><div class="gt_from_md">
-<p>Light: <a href="https://doi.org/10.3390/children5120172">Hurter et al., 2018</a><br>
-Mod: <a href="https://doi.org/10.1249/mss.0000000000000289">Hildebrand et al., 2014</a><br>
-Vig: <a href="https://doi.org/10.1249/mss.0000000000000289">Hildebrand et al., 2014</a></p>
+<p>Light: <a href="https://doi.org/10.3390/children5120172" class="external-link">Hurter et al., 2018</a><br>
+Mod: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a><br>
+Vig: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a></p>
 </div></td>
 </tr>
 <tr>
@@ -783,9 +778,9 @@ Vig: <a href="https://doi.org/10.1249/mss.0000000000000289">Hildebrand et al., 2
 <p>418.3</p>
 </div></td>
 <td class="gt_row gt_left"><div class="gt_from_md">
-<p>Light: <a href="https://doi.org/10.1111/sms.12795">Hildebrand et al., 2016</a><br>
-Mod: <a href="https://doi.org/10.1249/mss.0000000000000289">Hildebrand et al., 2014</a><br>
-Vig: <a href="https://doi.org/10.1249/mss.0000000000000289">Hildebrand et al., 2014</a></p>
+<p>Light: <a href="https://doi.org/10.1111/sms.12795" class="external-link">Hildebrand et al., 2016</a><br>
+Mod: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a><br>
+Vig: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a></p>
 </div></td>
 </tr>
 <tr>
@@ -808,9 +803,9 @@ Vig: <a href="https://doi.org/10.1249/mss.0000000000000289">Hildebrand et al., 2
 <p>428.8</p>
 </div></td>
 <td class="gt_row gt_left gt_striped"><div class="gt_from_md">
-<p>Light: <a href="https://doi.org/10.1111/sms.12795">Hildebrand et al., 2016</a><br>
-Mod: <a href="https://doi.org/10.1249/mss.0000000000000289">Hildebrand et al., 2014</a><br>
-Vig: <a href="https://doi.org/10.1249/mss.0000000000000289">Hildebrand et al., 2014</a></p>
+<p>Light: <a href="https://doi.org/10.1111/sms.12795" class="external-link">Hildebrand et al., 2016</a><br>
+Mod: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a><br>
+Vig: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a></p>
 </div></td>
 </tr>
 <tr>
@@ -833,9 +828,9 @@ Vig: <a href="https://doi.org/10.1249/mss.0000000000000289">Hildebrand et al., 2
 <p>266.8</p>
 </div></td>
 <td class="gt_row gt_left"><div class="gt_from_md">
-<p>Light: <a href="https://doi.org/10.1111/sms.12795">Hildebrand et al., 2016</a><br>
-Mod: <a href="https://doi.org/10.1249/mss.0000000000000289">Hildebrand et al., 2014</a><br>
-Vig: <a href="https://doi.org/10.1249/mss.0000000000000289">Hildebrand et al., 2014</a></p>
+<p>Light: <a href="https://doi.org/10.1111/sms.12795" class="external-link">Hildebrand et al., 2016</a><br>
+Mod: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a><br>
+Vig: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a></p>
 </div></td>
 </tr>
 <tr>
@@ -858,9 +853,9 @@ Vig: <a href="https://doi.org/10.1249/mss.0000000000000289">Hildebrand et al., 2
 <p>258.7</p>
 </div></td>
 <td class="gt_row gt_left gt_striped"><div class="gt_from_md">
-<p>Light: <a href="https://doi.org/10.1111/sms.12795">Hildebrand et al., 2016</a><br>
-Mod: <a href="https://doi.org/10.1249/mss.0000000000000289">Hildebrand et al., 2014</a><br>
-Vig: <a href="https://doi.org/10.1249/mss.0000000000000289">Hildebrand et al., 2014</a></p>
+<p>Light: <a href="https://doi.org/10.1111/sms.12795" class="external-link">Hildebrand et al., 2016</a><br>
+Mod: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a><br>
+Vig: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a></p>
 </div></td>
 </tr>
 </tbody>
@@ -896,14 +891,14 @@ Vig: <a href="https://doi.org/10.1249/mss.0000000000000289">Hildebrand et al., 2
 <span id="cb5-4"><a href="#cb5-4"></a>  threshold.vig =<span class="st"> </span><span class="kw">c</span>(<span class="fl">418.3</span>, <span class="fl">695.8</span>),</span>
 <span id="cb5-5"><a href="#cb5-5"></a>...</span></code></pre></div>
 </div>
-<div id="using-sleepipd-helper-functions" class="section level2">
-<h2 class="hasAnchor">
-<a href="#using-sleepipd-helper-functions" class="anchor"></a>Using <code>sleepIPD</code> Helper Functions</h2>
-<p>Even if you do not use <code>sleepIPD</code> for the reprocessing, you may still find the helper functions useful. The two main helper functions are <code><a href="../reference/collate_outputs.html">collate_outputs()</a></code> and <code><a href="../reference/build_meta.html">build_meta()</a></code>.</p>
-<div id="collate_outputs" class="section level3">
-<h3 class="hasAnchor">
-<a href="#collate_outputs" class="anchor"></a><code>collate_outputs()</code>
+<div class="section level3">
+<h3 id="using-sleepipd-helper-functions">Using <code>sleepIPD</code> Helper Functions<a class="anchor" aria-label="anchor" href="#using-sleepipd-helper-functions"></a>
 </h3>
+<p>Even if you do not use <code>sleepIPD</code> for the reprocessing, you may still find the helper functions useful. The two main helper functions are <code><a href="../reference/collate_outputs.html">collate_outputs()</a></code> and <code><a href="../reference/build_meta.html">build_meta()</a></code>.</p>
+<div class="section level4">
+<h4 id="collate_outputs">
+<code>collate_outputs()</code><a class="anchor" aria-label="anchor" href="#collate_outputs"></a>
+</h4>
 <p><code><a href="../reference/collate_outputs.html">collate_outputs()</a></code> will find all of the Part 2, 4, and 5 files, collapse them so that there is a one file for each part, and move that file to the top level of the output directory. This reduces the number of files you need to submit for the analysis. You can use <code><a href="../reference/collate_outputs.html">collate_outputs()</a></code> like so:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/collate_outputs.html">collate_outputs</a></span><span class="op">(</span>
@@ -911,10 +906,10 @@ Vig: <a href="https://doi.org/10.1249/mss.0000000000000289">Hildebrand et al., 2
   studyname <span class="op">=</span> <span class="st">"Hartwig 2016"</span> <span class="co"># A study name. Author surname and year is fine</span>
                 <span class="op">)</span></code></pre></div>
 </div>
-<div id="build_meta" class="section level3">
-<h3 class="hasAnchor">
-<a href="#build_meta" class="anchor"></a><code>build_meta()</code>
-</h3>
+<div class="section level4">
+<h4 id="build_meta">
+<code>build_meta()</code><a class="anchor" aria-label="anchor" href="#build_meta"></a>
+</h4>
 <p><code><a href="../reference/build_meta.html">build_meta()</a></code> will create a metadata template for you. Additionally, it will search the output of <code><a href="../reference/collate_outputs.html">collate_outputs()</a></code> for the names of files, and pre-fill the metadata template with this information. The goal is to reduce the rate of unmatched data, which was a problem in previous pooled analyses. You must use <code><a href="../reference/collate_outputs.html">collate_outputs()</a></code> before using <code><a href="../reference/build_meta.html">build_meta()</a></code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/build_meta.html">build_meta</a></span><span class="op">(</span>
@@ -939,11 +934,13 @@ Vig: <a href="https://doi.org/10.1249/mss.0000000000000289">Hildebrand et al., 2
 
 
       <footer><div class="copyright">
-  <p>Developed by Taren Sanders.</p>
+  <p></p>
+<p>Developed by Taren Sanders.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -951,6 +948,8 @@ Vig: <a href="https://doi.org/10.1249/mss.0000000000000289">Hildebrand et al., 2
 
   
 
+
+  
 
   </body>
 </html>
