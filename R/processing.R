@@ -97,12 +97,13 @@ process_files <- function(datadir,
     iglevels = 50,
     ilevels = seq(0, 4000, 50),
     epochvalues2csv = FALSE,
-    winhr = c(16,         # Most active 16 hours
-              c(60 / 60), # Most active hour
-              c(30 / 60), # Most active half hour
-              c(15 / 60), # Most active 15 min
-              c(10 / 60), # Most active 10 min
-              c(5 / 60)   # Most active 5 min)
+    winhr = c(
+      16, # Most active 16 hours
+      c(60 / 60), # Most active hour
+      c(30 / 60), # Most active half hour
+      c(15 / 60), # Most active 15 min
+      c(10 / 60), # Most active 10 min
+      c(5 / 60) # Most active 5 min)
     ),
     qlevels = c(
       960 / 1440, # 2/3rds of the day
@@ -224,7 +225,7 @@ reprocess <- function(datadir,
   }
   process_files(
     datadir, outputdir, studyname, ages, device,
-    wear_location, overwrite, verbose
+    wear_location, overwrite, verbose, ...
   )
   end_process_files <- Sys.time()
 
