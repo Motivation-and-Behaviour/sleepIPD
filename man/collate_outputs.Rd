@@ -22,6 +22,7 @@ part 5 outputs, they are collapsed to a single csv file.
 \seealso{
 Other helper functions: 
 \code{\link{build_meta}()},
+\code{\link{find_problem_files}()},
 \code{\link{translate_filepath}()}
 }
 \concept{helper functions}

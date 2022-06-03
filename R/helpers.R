@@ -244,3 +244,57 @@ check_outfiles <- function(part, expect, found, verbose) {
     usethis::ui_done("Found {usethis::ui_value(found)} part {part} {files}")
   }
 }
+
+
+#' Find Problem Files
+#'
+#' A helper function to identify which files failed to process. The heuristic is
+#' that files that are in the previous metadata but not in the current metadata
+#' are likely to be the files that have issues.
+#'
+#' If this list is long, don't remove all of the files. Instead, use a binary
+#' search (or similar) to find which file or files are the problem.
+#'
+#' @param outputdir The folder that contains the output of GGIR
+#' (one level up from the 'meta' folder).
+#' @param previous The last fully completed stage of processing that was
+#' completed. This is the name of the folder (e.g., 'ms2.out', not the GGIR
+#' part number).
+#'
+#' @return Invisibly returns a list of files that were missing in the current
+#' metadata.
+#'
+#' @family helper functions
+#'
+#' @export
+#' @examples
+#' \dontrun{
+#' outputdir <- "C:\\Documents\\My Study\\Output\\output_mystudy"
+#' find_problem_files(outputdir, "ms2.out")
+#' }
+find_problem_files <- function(outputdir,
+                               previous = c(
+                                 "basic", "ms2.out", "ms3.out", "ms4.out",
+                                 "ms5.out"
+                               )) {
+  folders <- c("basic", "ms2.out", "ms3.out", "ms4.out", "ms5.out")
+  previous <- rlang::arg_match(previous, folders)
+  current <- folders[[which(folders == previous) + 1]]
+
+  meta_dir <- file.path(outputdir, "meta")
+
+  prev_files <- list.files(file.path(meta_dir, previous), recursive = TRUE)
+  curr_files <- list.files(file.path(meta_dir, current), recursive = TRUE)
+
+  if (previous == "basic") {
+    prev_files <- substring(prev_files, 6)
+  }
+
+  missing <- setdiff(prev_files, curr_files)
+
+  usethis::ui_info(
+    paste("These files are not in previous folder:", missing, sep = "\n\t")
+  )
+
+  invisible(missing)
+}

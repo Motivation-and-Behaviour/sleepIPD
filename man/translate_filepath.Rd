@@ -24,6 +24,7 @@ translate_filepath(example_path)
 \seealso{
 Other helper functions: 
 \code{\link{build_meta}()},
-\code{\link{collate_outputs}()}
+\code{\link{collate_outputs}()},
+\code{\link{find_problem_files}()}
 }
 \concept{helper functions}

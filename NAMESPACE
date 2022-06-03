@@ -2,6 +2,7 @@
 
 export(build_meta)
 export(collate_outputs)
+export(find_problem_files)
 export(process_files)
 export(reprocess)
 export(translate_filepath)

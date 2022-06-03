@@ -24,6 +24,7 @@ Create Pre-filled Metadata Template
 \seealso{
 Other helper functions: 
 \code{\link{collate_outputs}()},
+\code{\link{find_problem_files}()},
 \code{\link{translate_filepath}()}
 }
 \concept{helper functions}
