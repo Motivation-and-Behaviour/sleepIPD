@@ -22,7 +22,8 @@ Imports:
     openxlsx (>= 4.2.0),
     readr (>= 2.0.0),
     rlang (>= 0.4.12),
-    usethis (>= 2.0.0)
+    usethis (>= 2.0.0),
+    XML (>= 3.99-0.7)
 Remotes:
     wadpac/GGIR@2.5-1
 Depends: 
