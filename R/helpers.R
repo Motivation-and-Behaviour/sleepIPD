@@ -292,9 +292,13 @@ find_problem_files <- function(outputdir,
 
   missing <- setdiff(prev_files, curr_files)
 
-  usethis::ui_info(
-    paste("These files are not in previous folder:", missing, sep = "\n\t")
-  )
+  if (length(missing) == 0) {
+    usethis::ui_done("No files missing from metadata")
+  } else {
+    usethis::ui_done("Found {usethis::ui_value(length(missing))} missing files")
+    usethis::ui_info("These files are not in previous folder:")
+    cat(paste0("\t", missing), sep = "\n")
+  }
 
   invisible(missing)
 }
