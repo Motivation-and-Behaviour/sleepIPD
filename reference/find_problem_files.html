@@ -19,7 +19,7 @@ are likely to be the files that have issues."><!-- mathjax --><script src="https
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sleepIPD</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9002</span>
       </span>
     </div>
 
@@ -60,10 +60,10 @@ are likely to be the files that have issues.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">find_problem_files</span><span class="op">(</span>
-  <span class="va">outputdir</span>,
-  previous <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basic"</span>, <span class="st">"ms2.out"</span>, <span class="st">"ms3.out"</span>, <span class="st">"ms4.out"</span>, <span class="st">"ms5.out"</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">find_problem_files</span><span class="op">(</span></span>
+<span>  <span class="va">outputdir</span>,</span>
+<span>  previous <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basic"</span>, <span class="st">"ms2.out"</span>, <span class="st">"ms3.out"</span>, <span class="st">"ms4.out"</span>, <span class="st">"ms5.out"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -71,14 +71,19 @@ are likely to be the files that have issues.</p>
     <dl><dt>outputdir</dt>
 <dd><p>The folder that contains the output of GGIR
 (one level up from the 'meta' folder).</p></dd>
+
+
 <dt>previous</dt>
 <dd><p>The last fully completed stage of processing that was
 completed. This is the name of the folder (e.g., 'ms2.out', not the GGIR
 part number).</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Invisibly returns a list of files that were missing in the current
+    
+
+<p>Invisibly returns a list of files that were missing in the current
 metadata.</p>
     </div>
     <div id="details">
@@ -96,10 +101,10 @@ search (or similar) to find which file or files are the problem.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="va">outputdir</span> <span class="op">&lt;-</span> <span class="st">"C:\\Documents\\My Study\\Output\\output_mystudy"</span></span>
-<span class="r-in"><span class="fu">find_problem_files</span><span class="op">(</span><span class="va">outputdir</span>, <span class="st">"ms2.out"</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="va">outputdir</span> <span class="op">&lt;-</span> <span class="st">"C:\\Documents\\My Study\\Output\\output_mystudy"</span></span></span>
+<span class="r-in"><span><span class="fu">find_problem_files</span><span class="op">(</span><span class="va">outputdir</span>, <span class="st">"ms2.out"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -114,7 +119,7 @@ search (or similar) to find which file or files are the problem.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

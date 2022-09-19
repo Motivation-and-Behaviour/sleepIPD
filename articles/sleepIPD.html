@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sleepIPD</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9002</span>
       </span>
     </div>
 
@@ -116,10 +116,10 @@
 <div class="section level4">
 <h4 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h4>
-<p>First, install the package. Since the package is not on CRAN, you will need <code><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">devtools::install_github()</a></code> or <code><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">remotes::install_github()</a></code>. You will need to install one of these packages if you do not already have one. I recommend <code>devtools</code>.</p>
+<p>First, install the package. Since the package is not on CRAN, you will need <code><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">devtools::install_github()</a></code> or <code><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">remotes::install_github()</a></code>. You will need to install one of these packages if you do not already have one. I recommend <code>devtools</code>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># install.packages("devtools") # uncomment if needed</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"Motivation-and-Behaviour/sleepIPD"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># install.packages("devtools") # uncomment if needed</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"Motivation-and-Behaviour/sleepIPD"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="reprocessing-the-data">Reprocessing the Data<a class="anchor" aria-label="anchor" href="#reprocessing-the-data"></a>
@@ -163,21 +163,21 @@
 </table>
 <p>An example call might look like:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://motivation-and-behaviour.github.io/sleepIPD">sleepIPD</a></span><span class="op">)</span>
-
-<span class="va">datadir</span> <span class="op">&lt;-</span> <span class="st">"C:\\Documents\\My Study\\Data"</span>
-<span class="va">outputdir</span> <span class="op">&lt;-</span> <span class="st">"C:\\Documents\\My Study\\Output"</span>
-<span class="va">studyname</span> <span class="op">&lt;-</span> <span class="st">"Hartwig 2021"</span>
-<span class="va">ages</span> <span class="op">&lt;-</span> <span class="st">"children"</span>
-<span class="va">device</span> <span class="op">&lt;-</span> <span class="st">"geneactiv"</span>
-<span class="va">wear_location</span> <span class="op">&lt;-</span> <span class="st">"wrist"</span>
-
-<span class="fu"><a href="../reference/reprocess.html">reprocess</a></span><span class="op">(</span>datadir <span class="op">=</span> <span class="va">datadir</span>, 
-          outputdir <span class="op">=</span> <span class="va">outputdir</span>, 
-          studyname <span class="op">=</span> <span class="va">studyname</span>, 
-          ages <span class="op">=</span> <span class="va">ages</span>,
-          device <span class="op">=</span> <span class="va">device</span>, 
-          wear_location <span class="op">=</span> <span class="va">wear_location</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://motivation-and-behaviour.github.io/sleepIPD">sleepIPD</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">datadir</span> <span class="op">&lt;-</span> <span class="st">"C:\\Documents\\My Study\\Data"</span></span>
+<span><span class="va">outputdir</span> <span class="op">&lt;-</span> <span class="st">"C:\\Documents\\My Study\\Output"</span></span>
+<span><span class="va">studyname</span> <span class="op">&lt;-</span> <span class="st">"Hartwig 2021"</span></span>
+<span><span class="va">ages</span> <span class="op">&lt;-</span> <span class="st">"children"</span></span>
+<span><span class="va">device</span> <span class="op">&lt;-</span> <span class="st">"geneactiv"</span></span>
+<span><span class="va">wear_location</span> <span class="op">&lt;-</span> <span class="st">"wrist"</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/reprocess.html">reprocess</a></span><span class="op">(</span>datadir <span class="op">=</span> <span class="va">datadir</span>, </span>
+<span>          outputdir <span class="op">=</span> <span class="va">outputdir</span>, </span>
+<span>          studyname <span class="op">=</span> <span class="va">studyname</span>, </span>
+<span>          ages <span class="op">=</span> <span class="va">ages</span>,</span>
+<span>          device <span class="op">=</span> <span class="va">device</span>, </span>
+<span>          wear_location <span class="op">=</span> <span class="va">wear_location</span><span class="op">)</span></span></code></pre></div>
 <p>Note that if you discover you have made a mistake and need to run this again, you’ll need to additionally set <code>overwrite = TRUE</code>.</p>
 </div>
 <div class="section level4">
@@ -218,82 +218,82 @@
 <p><code>sleepIPD</code> wraps <code><a href="https://rdrr.io/pkg/GGIR/man/g.shell.GGIR.html" class="external-link">GGIR::g.shell.GGIR()</a></code> for the processing. If you are manually making calls to GGIR (i.e., not using this package), the settings are provide below. You <strong>must</strong> use GGIR Version 2.5-1 for this project. There is some evidence that different versions of GGIR can produce slightly different results. Please check your version before you begin (<code>utils::packageVersion("GGIR")</code>).</p>
 <p>The full <code><a href="https://rdrr.io/pkg/GGIR/man/g.shell.GGIR.html" class="external-link">GGIR::g.shell.GGIR()</a></code> call used in <code>sleepIPD</code> is:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">GGIR</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GGIR/man/g.shell.GGIR.html" class="external-link">g.shell.GGIR</a></span><span class="op">(</span>
-  mode <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span>,
-  datadir <span class="op">=</span> <span class="va">datadir</span>,
-  outputdir <span class="op">=</span> <span class="va">outputdir</span>,
-  do.report <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span>,
-  overwrite <span class="op">=</span> <span class="va">overwrite</span>,
-  do.enmo <span class="op">=</span> <span class="cn">TRUE</span>,
-  do.hfen <span class="op">=</span> <span class="cn">TRUE</span>,
-  do.enmoa <span class="op">=</span> <span class="cn">TRUE</span>,
-  studyname <span class="op">=</span> <span class="va">studyname</span>,
-  <span class="co"># =====================</span>
-  <span class="co"># Part 2</span>
-  <span class="co"># =====================</span>
-  do.imp <span class="op">=</span> <span class="cn">TRUE</span>,
-  strategy <span class="op">=</span> <span class="fl">2</span>,
-  maxdur <span class="op">=</span> <span class="fl">0</span>,
-  includedaycrit <span class="op">=</span> <span class="fl">16</span>,
-  qwindow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">6</span>, <span class="fl">12</span>, <span class="fl">18</span>, <span class="fl">24</span><span class="op">)</span>,
-  mvpathreshold <span class="op">=</span> <span class="va">threshold_mod</span>,
-  bout.metric <span class="op">=</span> <span class="fl">4</span>,
-  excludefirstlast <span class="op">=</span> <span class="cn">FALSE</span>,
-  includenightcrit <span class="op">=</span> <span class="fl">16</span>,
-  MX.ig.min.dur <span class="op">=</span> <span class="fl">10</span>,
-  iglevels <span class="op">=</span> <span class="fl">50</span>,
-  ilevels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">4000</span>, <span class="fl">50</span><span class="op">)</span>,
-  epochvalues2csv <span class="op">=</span> <span class="cn">FALSE</span>,
-  winhr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">16</span>,         <span class="co"># Most active 16 hours</span>
-            <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">60</span> <span class="op">/</span> <span class="fl">60</span><span class="op">)</span>, <span class="co"># Most active hour</span>
-            <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">30</span> <span class="op">/</span> <span class="fl">60</span><span class="op">)</span>, <span class="co"># Most active half hour</span>
-            <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">15</span> <span class="op">/</span> <span class="fl">60</span><span class="op">)</span>, <span class="co"># Most active 15 min</span>
-            <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span> <span class="op">/</span> <span class="fl">60</span><span class="op">)</span>, <span class="co"># Most active 10 min</span>
-            <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span> <span class="op">/</span> <span class="fl">60</span><span class="op">)</span>   <span class="co"># Most active 5 min)</span>
-  <span class="op">)</span>,
-  qlevels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>
-    <span class="fl">960</span> <span class="op">/</span> <span class="fl">1440</span>, <span class="co"># 2/3rds of the day</span>
-    <span class="fl">1320</span> <span class="op">/</span> <span class="fl">1440</span>, <span class="co"># Top 120min</span>
-    <span class="fl">1380</span> <span class="op">/</span> <span class="fl">1440</span>, <span class="co"># Top 60min</span>
-    <span class="fl">1410</span> <span class="op">/</span> <span class="fl">1440</span>, <span class="co"># Top 30min</span>
-    <span class="fl">1425</span> <span class="op">/</span> <span class="fl">1440</span>, <span class="co"># Top 15min</span>
-    <span class="fl">1435</span> <span class="op">/</span> <span class="fl">1440</span> <span class="co"># Top 5min</span>
-  <span class="op">)</span>,
-  <span class="co"># =====================</span>
-  <span class="co"># Part 3 + 4</span>
-  <span class="co"># =====================</span>
-  def.noc.sleep <span class="op">=</span> <span class="fl">1</span>,
-  outliers.only <span class="op">=</span> <span class="cn">TRUE</span>,
-  criterror <span class="op">=</span> <span class="fl">4</span>,
-  do.visual <span class="op">=</span> <span class="cn">TRUE</span>,
-  <span class="co"># =====================</span>
-  <span class="co"># Part 5</span>
-  <span class="co"># =====================</span>
-  threshold.lig <span class="op">=</span> <span class="va">threshold_lig</span>,
-  threshold.mod <span class="op">=</span> <span class="va">threshold_mod</span>,
-  threshold.vig <span class="op">=</span> <span class="va">threshold_vig</span>,
-  boutcriter <span class="op">=</span> <span class="fl">0.8</span>, boutcriter.in <span class="op">=</span> <span class="fl">0.9</span>, boutcriter.lig <span class="op">=</span> <span class="fl">0.8</span>,
-  boutcriter.mvpa <span class="op">=</span> <span class="fl">0.8</span>, boutdur.in <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span>, <span class="fl">30</span><span class="op">)</span>, boutdur.lig <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span>,
-  boutdur.mvpa <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>,
-  includedaycrit.part5 <span class="op">=</span> <span class="fl">2</span> <span class="op">/</span> <span class="fl">3</span>,
-  <span class="co"># =====================</span>
-  <span class="co"># Visual report</span>
-  <span class="co"># =====================</span>
-  timewindow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"WW"</span>, <span class="st">"MM"</span><span class="op">)</span>,
-  visualreport <span class="op">=</span> <span class="cn">FALSE</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">GGIR</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GGIR/man/g.shell.GGIR.html" class="external-link">g.shell.GGIR</a></span><span class="op">(</span></span>
+<span>  mode <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span>,</span>
+<span>  datadir <span class="op">=</span> <span class="va">datadir</span>,</span>
+<span>  outputdir <span class="op">=</span> <span class="va">outputdir</span>,</span>
+<span>  do.report <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span>,</span>
+<span>  overwrite <span class="op">=</span> <span class="va">overwrite</span>,</span>
+<span>  do.enmo <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  do.hfen <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  do.enmoa <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  studyname <span class="op">=</span> <span class="va">studyname</span>,</span>
+<span>  <span class="co"># =====================</span></span>
+<span>  <span class="co"># Part 2</span></span>
+<span>  <span class="co"># =====================</span></span>
+<span>  do.imp <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  strategy <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  maxdur <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  includedaycrit <span class="op">=</span> <span class="fl">16</span>,</span>
+<span>  qwindow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">6</span>, <span class="fl">12</span>, <span class="fl">18</span>, <span class="fl">24</span><span class="op">)</span>,</span>
+<span>  mvpathreshold <span class="op">=</span> <span class="va">threshold_mod</span>,</span>
+<span>  bout.metric <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>  excludefirstlast <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  includenightcrit <span class="op">=</span> <span class="fl">16</span>,</span>
+<span>  MX.ig.min.dur <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  iglevels <span class="op">=</span> <span class="fl">50</span>,</span>
+<span>  ilevels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">4000</span>, <span class="fl">50</span><span class="op">)</span>,</span>
+<span>  epochvalues2csv <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  winhr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">16</span>,         <span class="co"># Most active 16 hours</span></span>
+<span>            <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">60</span> <span class="op">/</span> <span class="fl">60</span><span class="op">)</span>, <span class="co"># Most active hour</span></span>
+<span>            <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">30</span> <span class="op">/</span> <span class="fl">60</span><span class="op">)</span>, <span class="co"># Most active half hour</span></span>
+<span>            <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">15</span> <span class="op">/</span> <span class="fl">60</span><span class="op">)</span>, <span class="co"># Most active 15 min</span></span>
+<span>            <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span> <span class="op">/</span> <span class="fl">60</span><span class="op">)</span>, <span class="co"># Most active 10 min</span></span>
+<span>            <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span> <span class="op">/</span> <span class="fl">60</span><span class="op">)</span>   <span class="co"># Most active 5 min)</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  qlevels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>    <span class="fl">960</span> <span class="op">/</span> <span class="fl">1440</span>, <span class="co"># 2/3rds of the day</span></span>
+<span>    <span class="fl">1320</span> <span class="op">/</span> <span class="fl">1440</span>, <span class="co"># Top 120min</span></span>
+<span>    <span class="fl">1380</span> <span class="op">/</span> <span class="fl">1440</span>, <span class="co"># Top 60min</span></span>
+<span>    <span class="fl">1410</span> <span class="op">/</span> <span class="fl">1440</span>, <span class="co"># Top 30min</span></span>
+<span>    <span class="fl">1425</span> <span class="op">/</span> <span class="fl">1440</span>, <span class="co"># Top 15min</span></span>
+<span>    <span class="fl">1435</span> <span class="op">/</span> <span class="fl">1440</span> <span class="co"># Top 5min</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  <span class="co"># =====================</span></span>
+<span>  <span class="co"># Part 3 + 4</span></span>
+<span>  <span class="co"># =====================</span></span>
+<span>  def.noc.sleep <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  outliers.only <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  criterror <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>  do.visual <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  <span class="co"># =====================</span></span>
+<span>  <span class="co"># Part 5</span></span>
+<span>  <span class="co"># =====================</span></span>
+<span>  threshold.lig <span class="op">=</span> <span class="va">threshold_lig</span>,</span>
+<span>  threshold.mod <span class="op">=</span> <span class="va">threshold_mod</span>,</span>
+<span>  threshold.vig <span class="op">=</span> <span class="va">threshold_vig</span>,</span>
+<span>  boutcriter <span class="op">=</span> <span class="fl">0.8</span>, boutcriter.in <span class="op">=</span> <span class="fl">0.9</span>, boutcriter.lig <span class="op">=</span> <span class="fl">0.8</span>,</span>
+<span>  boutcriter.mvpa <span class="op">=</span> <span class="fl">0.8</span>, boutdur.in <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span>, <span class="fl">30</span><span class="op">)</span>, boutdur.lig <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span>,</span>
+<span>  boutdur.mvpa <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>,</span>
+<span>  includedaycrit.part5 <span class="op">=</span> <span class="fl">2</span> <span class="op">/</span> <span class="fl">3</span>,</span>
+<span>  <span class="co"># =====================</span></span>
+<span>  <span class="co"># Visual report</span></span>
+<span>  <span class="co"># =====================</span></span>
+<span>  timewindow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"WW"</span>, <span class="st">"MM"</span><span class="op">)</span>,</span>
+<span>  visualreport <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p>Note that <code>datadir</code>, <code>outputdir</code>, <code>overwrite</code>, and <code>studyname</code> are set elsewhere in <code>sleepIPD</code>. The thresholds (i.e., <code>threshold_lig</code>, <code>threshold_mod</code>, and <code>threshold_vig</code>) will depend on the device you are using, the age of the sample, and where the accelerometer was worn. See details below.</p>
 </div>
 <div class="section level3">
 <h3 id="thresholds">Thresholds<a class="anchor" aria-label="anchor" href="#thresholds"></a>
 </h3>
-<div id="mldgsynvgm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="ruwqglsdta" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#mldgsynvgm .gt_table {
+#ruwqglsdta .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -318,7 +318,7 @@
   border-left-color: #D3D3D3;
 }
 
-#mldgsynvgm .gt_heading {
+#ruwqglsdta .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -330,7 +330,7 @@
   border-right-color: #D3D3D3;
 }
 
-#mldgsynvgm .gt_title {
+#ruwqglsdta .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -342,7 +342,7 @@
   border-bottom-width: 0;
 }
 
-#mldgsynvgm .gt_subtitle {
+#ruwqglsdta .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -354,13 +354,13 @@
   border-top-width: 0;
 }
 
-#mldgsynvgm .gt_bottom_border {
+#ruwqglsdta .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#mldgsynvgm .gt_col_headings {
+#ruwqglsdta .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -375,7 +375,7 @@
   border-right-color: #D3D3D3;
 }
 
-#mldgsynvgm .gt_col_heading {
+#ruwqglsdta .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -395,7 +395,7 @@
   overflow-x: hidden;
 }
 
-#mldgsynvgm .gt_column_spanner_outer {
+#ruwqglsdta .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -407,15 +407,15 @@
   padding-right: 4px;
 }
 
-#mldgsynvgm .gt_column_spanner_outer:first-child {
+#ruwqglsdta .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#mldgsynvgm .gt_column_spanner_outer:last-child {
+#ruwqglsdta .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#mldgsynvgm .gt_column_spanner {
+#ruwqglsdta .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -427,7 +427,7 @@
   width: 100%;
 }
 
-#mldgsynvgm .gt_group_heading {
+#ruwqglsdta .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -452,7 +452,7 @@
   vertical-align: middle;
 }
 
-#mldgsynvgm .gt_empty_group_heading {
+#ruwqglsdta .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -467,15 +467,15 @@
   vertical-align: middle;
 }
 
-#mldgsynvgm .gt_from_md > :first-child {
+#ruwqglsdta .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#mldgsynvgm .gt_from_md > :last-child {
+#ruwqglsdta .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#mldgsynvgm .gt_row {
+#ruwqglsdta .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -494,7 +494,7 @@
   overflow-x: hidden;
 }
 
-#mldgsynvgm .gt_stub {
+#ruwqglsdta .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -507,7 +507,7 @@
   padding-right: 5px;
 }
 
-#mldgsynvgm .gt_stub_row_group {
+#ruwqglsdta .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -521,11 +521,11 @@
   vertical-align: top;
 }
 
-#mldgsynvgm .gt_row_group_first td {
+#ruwqglsdta .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#mldgsynvgm .gt_summary_row {
+#ruwqglsdta .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -535,16 +535,16 @@
   padding-right: 5px;
 }
 
-#mldgsynvgm .gt_first_summary_row {
+#ruwqglsdta .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#mldgsynvgm .gt_first_summary_row.thick {
+#ruwqglsdta .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#mldgsynvgm .gt_last_summary_row {
+#ruwqglsdta .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -554,7 +554,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#mldgsynvgm .gt_grand_summary_row {
+#ruwqglsdta .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -564,7 +564,7 @@
   padding-right: 5px;
 }
 
-#mldgsynvgm .gt_first_grand_summary_row {
+#ruwqglsdta .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -574,11 +574,11 @@
   border-top-color: #D3D3D3;
 }
 
-#mldgsynvgm .gt_striped {
+#ruwqglsdta .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#mldgsynvgm .gt_table_body {
+#ruwqglsdta .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -587,7 +587,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#mldgsynvgm .gt_footnotes {
+#ruwqglsdta .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -601,7 +601,7 @@
   border-right-color: #D3D3D3;
 }
 
-#mldgsynvgm .gt_footnote {
+#ruwqglsdta .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -610,7 +610,7 @@
   padding-right: 5px;
 }
 
-#mldgsynvgm .gt_sourcenotes {
+#ruwqglsdta .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -624,7 +624,7 @@
   border-right-color: #D3D3D3;
 }
 
-#mldgsynvgm .gt_sourcenote {
+#ruwqglsdta .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -632,72 +632,65 @@
   padding-right: 5px;
 }
 
-#mldgsynvgm .gt_left {
+#ruwqglsdta .gt_left {
   text-align: left;
 }
 
-#mldgsynvgm .gt_center {
+#ruwqglsdta .gt_center {
   text-align: center;
 }
 
-#mldgsynvgm .gt_right {
+#ruwqglsdta .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#mldgsynvgm .gt_font_normal {
+#ruwqglsdta .gt_font_normal {
   font-weight: normal;
 }
 
-#mldgsynvgm .gt_font_bold {
+#ruwqglsdta .gt_font_bold {
   font-weight: bold;
 }
 
-#mldgsynvgm .gt_font_italic {
+#ruwqglsdta .gt_font_italic {
   font-style: italic;
 }
 
-#mldgsynvgm .gt_super {
+#ruwqglsdta .gt_super {
   font-size: 65%;
 }
 
-#mldgsynvgm .gt_two_val_uncert {
-  display: inline-block;
-  line-height: 1em;
-  text-align: right;
-  font-size: 60%;
-  vertical-align: -0.25em;
-  margin-left: 0.1em;
-}
-
-#mldgsynvgm .gt_footnote_marks {
+#ruwqglsdta .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#mldgsynvgm .gt_asterisk {
+#ruwqglsdta .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#mldgsynvgm .gt_slash_mark {
-  font-size: 0.7em;
-  line-height: 0.7em;
-  vertical-align: 0.15em;
+#ruwqglsdta .gt_indent_1 {
+  text-indent: 5px;
 }
 
-#mldgsynvgm .gt_fraction_numerator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: 0.45em;
+#ruwqglsdta .gt_indent_2 {
+  text-indent: 10px;
 }
 
-#mldgsynvgm .gt_fraction_denominator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: -0.05em;
+#ruwqglsdta .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ruwqglsdta .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ruwqglsdta .gt_indent_5 {
+  text-indent: 25px;
 }
 </style>
 <table class="table gt_table" style="table-layout: fixed;; width: 100%">
@@ -712,23 +705,23 @@
 </colgroup>
 <thead class="gt_col_headings">
 <tr>
-<th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="3" style="font-weight: bold;">
+<th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="3" style="font-weight: bold;" scope="colgroup">
         <span class="gt_column_spanner">Study Design</span>
       </th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="3" style="font-weight: bold;">
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="3" style="font-weight: bold;" scope="colgroup">
         <span class="gt_column_spanner">Thresholds</span>
       </th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="font-weight: bold;">Sources</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="font-weight: bold;" scope="col">Sources</th>
     </tr>
 <tr>
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-weight: bold;">Age<sup class="gt_footnote_marks">1</sup>
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-weight: bold;" scope="col">Age<sup class="gt_footnote_marks">1</sup>
 </th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-weight: bold;">Device<sup class="gt_footnote_marks">2</sup>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-weight: bold;" scope="col">Device<sup class="gt_footnote_marks">2</sup>
 </th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-weight: bold;">Worn on</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-weight: bold;">Light</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-weight: bold;">Moderate</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-weight: bold;">Vigorous</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-weight: bold;" scope="col">Worn on</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-weight: bold;" scope="col">Light</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-weight: bold;" scope="col">Moderate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-weight: bold;" scope="col">Vigorous</th>
     </tr>
 </thead>
 <tbody class="gt_table_body">
@@ -969,10 +962,10 @@ Vig: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link
 </h4>
 <p><code><a href="../reference/collate_outputs.html">collate_outputs()</a></code> will find all of the Part 2, 4, and 5 files, collapse them so that there is a one file for each part, and move that file to the top level of the output directory. This reduces the number of files you need to submit for the analysis. You can use <code><a href="../reference/collate_outputs.html">collate_outputs()</a></code> like so:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/collate_outputs.html">collate_outputs</a></span><span class="op">(</span>
-  outputdir <span class="op">=</span> <span class="st">"C:/MyFiles"</span>, <span class="co"># The location you used in GGIR as outputdir</span>
-  studyname <span class="op">=</span> <span class="st">"Hartwig 2016"</span> <span class="co"># A study name. Author surname and year is fine</span>
-                <span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/collate_outputs.html">collate_outputs</a></span><span class="op">(</span></span>
+<span>  outputdir <span class="op">=</span> <span class="st">"C:/MyFiles"</span>, <span class="co"># The location you used in GGIR as outputdir</span></span>
+<span>  studyname <span class="op">=</span> <span class="st">"Hartwig 2016"</span> <span class="co"># A study name. Author surname and year is fine</span></span>
+<span>                <span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="build_meta">
@@ -980,10 +973,10 @@ Vig: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link
 </h4>
 <p><code><a href="../reference/build_meta.html">build_meta()</a></code> will create a metadata template for you. Additionally, it will search the output of <code><a href="../reference/collate_outputs.html">collate_outputs()</a></code> for the names of files, and pre-fill the metadata template with this information. The goal is to reduce the rate of unmatched data, which was a problem in previous pooled analyses. You must use <code><a href="../reference/collate_outputs.html">collate_outputs()</a></code> before using <code><a href="../reference/build_meta.html">build_meta()</a></code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/build_meta.html">build_meta</a></span><span class="op">(</span>
-  outputdir <span class="op">=</span> <span class="st">"C:/MyFiles"</span>, <span class="co"># Must be the same as that used in collate_outputs()</span>
-  studyname <span class="op">=</span> <span class="st">"Hartwig 2016"</span> <span class="co"># Must be the same as that used in collate_outputs()</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/build_meta.html">build_meta</a></span><span class="op">(</span></span>
+<span>  outputdir <span class="op">=</span> <span class="st">"C:/MyFiles"</span>, <span class="co"># Must be the same as that used in collate_outputs()</span></span>
+<span>  studyname <span class="op">=</span> <span class="st">"Hartwig 2016"</span> <span class="co"># Must be the same as that used in collate_outputs()</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p>If you have only a single wear location, you can (optionally) provide this (e.g., <code>wear_location="wrist"</code>) in order to pre-fill it.</p>
 <p>If you have previously used <code>build_meta</code> and need to run it again, you need to specify <code>overwrite = TRUE</code>. Be warned that this will replace the existing metadata template.</p>
 </div>
@@ -1008,7 +1001,7 @@ Vig: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
