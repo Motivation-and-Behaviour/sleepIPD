@@ -3,7 +3,7 @@ pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   sleepIPD: sleepIPD.html
-last_built: 2022-11-10T04:17Z
+last_built: 2022-11-10T04:18Z
 urls:
   reference: https://motivation-and-behaviour.github.io/sleepIPD/reference
   article: https://motivation-and-behaviour.github.io/sleepIPD/articles
