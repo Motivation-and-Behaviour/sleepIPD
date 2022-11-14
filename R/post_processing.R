@@ -1,3 +1,14 @@
+#' FUNCTION_TITLE
+#'
+#' FUNCTION_DESCRIPTION
+#'
+#' @param folder DESCRIPTION.
+#'
+#' @return RETURN_DESCRIPTION
+#'
+#' @importFrom dplyr %>%
+#' @examples
+#' # ADD_EXAMPLES_HERE
 assemble_datasheet <- function(folder) {
   folder_files <- list.files(folder, pattern = ".csv$")
 
@@ -9,15 +20,14 @@ assemble_datasheet <- function(folder) {
 
   part2_df <-
     part2_df %>%
-    select(
+    dplyr::select(
       # Meta
-      filename, `N valid hours`, `N hours`, weekday, measurementday,
+      "filename", "N valid hours", "N hours", "weekday", "measurementday",
       # Intensity gradient
-      `ig_gradient_ENMO_0-24hr`, `ig_intercept_ENMO_0-24hr`,
-      `ig_rsquared_ENMO_0-24hr`,
-      `M16hr_ENMO_mg_0-24hr`, `M16_ENMO_mg_0-24hr`,
-      `M16_ig_gradient_ENMO_mg_0-24hr`, `M16_ig_intercept_ENMO_mg_0-24hr`,
-      `M16_ig_rsquared_ENMO_mg_0-24hr`, matches("^p.*_ENMO_mg_0-24hr$")
+      "ig_gradient_ENMO_0-24hr", "ig_intercept_ENMO_0-24hr",
+      "ig_rsquared_ENMO_0-24hr", "M16hr_ENMO_mg_0-24hr", "M16_ENMO_mg_0-24hr",
+      "M16_ig_gradient_ENMO_mg_0-24hr", "M16_ig_intercept_ENMO_mg_0-24hr",
+      "M16_ig_rsquared_ENMO_mg_0-24hr", dplyr::matches("^p.*_ENMO_mg_0-24hr$")
     )
 
   # Part 4 file
