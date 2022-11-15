@@ -18,7 +18,7 @@ the files accordingly."><!-- mathjax --><script src="https://cdnjs.cloudflare.co
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sleepIPD</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.1</span>
       </span>
     </div>
 
@@ -64,7 +64,7 @@ the files accordingly.</p>
 <span>  studyname <span class="op">=</span> <span class="st">"NA"</span>,</span>
 <span>  ages <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"children"</span>, <span class="st">"adults"</span><span class="op">)</span>,</span>
 <span>  device <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"geneactiv"</span>, <span class="st">"actigraph"</span><span class="op">)</span>,</span>
-<span>  wear_location <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"wrist"</span>, <span class="st">"hip"</span><span class="op">)</span>,</span>
+<span>  wear_location <span class="op">=</span> <span class="st">"wrist"</span>,</span>
 <span>  overwrite <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  <span class="va">...</span></span>
@@ -102,8 +102,8 @@ you do not specify, both are used.</p></dd>
 
 <dt>wear_location</dt>
 <dd><p>The location the device was warn. Can be either
-<code>"wrist"</code>, <code>"hip"</code> or (in the unlikely event multiple locations were used)
-both (i.e., <code>c("wrist","hip")</code>). If you do not specify, both are used.</p></dd>
+<code>"wrist"</code> (the default) or <code>"hip"</code> If the study has mixed wear locations,
+you need to run the function twice, once for each location.</p></dd>
 
 
 <dt>overwrite</dt>
