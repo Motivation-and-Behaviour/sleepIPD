@@ -247,7 +247,7 @@ reprocess <- function(datadir,
 
   if (verbose) usethis::ui_done("Completed {usethis::ui_code('build_meta()')}")
 
-  if (verbose & requireNamespace("knitr", quietly = TRUE)) {
+  if (verbose && requireNamespace("knitr", quietly = TRUE)) {
     usethis::ui_done("Processing complete! Here is how long it took:")
 
     time_str <- function(endtime, starttime) {

@@ -226,16 +226,26 @@ sleepIPD:::thresholds %>%
     footnote = html("Children: &le;18 years; Adults: > 18 years"),
     locations = cells_column_labels(columns = age)
   ) %>%
-  tab_footnote(footnote = "Geneactiv thresholds can also be applied to Axivity devices.",
-               locations = cells_column_labels(columns = dev)) %>%
-  tab_spanner(label = "Study Design",
-              columns = c(age, dev, wear_loc)) %>%
-  tab_spanner(label = "Thresholds",
-              columns = c(light, mod, vig)) %>%
-  tab_style(style = cell_text(weight = "bold"),
-            locations = cells_column_labels()) %>%
-  tab_style(style = cell_text(weight = "bold"),
-            locations = cells_column_spanners()) %>%
+  tab_footnote(
+    footnote = "Geneactiv thresholds can also be applied to Axivity devices.",
+    locations = cells_column_labels(columns = dev)
+  ) %>%
+  tab_spanner(
+    label = "Study Design",
+    columns = c(age, dev, wear_loc)
+  ) %>%
+  tab_spanner(
+    label = "Thresholds",
+    columns = c(light, mod, vig)
+  ) %>%
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = cells_column_labels()
+  ) %>%
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = cells_column_spanners()
+  ) %>%
   tab_options(table.width = pct(100))
 ```
 

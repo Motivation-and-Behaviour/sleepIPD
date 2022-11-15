@@ -163,7 +163,7 @@ build_meta <- function(outputdir,
     package = "sleepIPD"
   )
 
-  if (!overwrite & file.exists(new_filename)) {
+  if (!overwrite && file.exists(new_filename)) {
     err_msg <- "A file already exists at {usethis::ui_path(new_filename)}.
     Use {usethis::ui_code('overwrite = TRUE')} to replace."
     usethis::ui_stop(err_msg)
