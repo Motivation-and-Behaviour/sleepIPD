@@ -69,7 +69,7 @@ Parameter | Description
 **studyname** | What should we refer to this sample as? You can always use your last name.
 **ages** | How old is the sample?  Can be either `"children"` (for those 18 or less), `"adults"` (for >18) or both (i.e., `c("children", "adults")`). If you do not specify, both are used.
 **device** | What device did you use? Can be either `"geneactiv"`, `"actigraph"` or (in the unlikely event two devices were used) both (i.e., `c("geneactiv", "actigraph")`). If you do not specify, both are used. Note that you can use `"geneactiv"` if your device was Axivity.
-**wear_location** | How did the sample wear the device? Can be either `"wrist"`, `"hip"` or (in the unlikely event multiple locations were used) both (i.e., `c("wrist","hip")`). If you do not specify, both are used.
+**wear_location** | How did the sample wear the device? Can be either `"wrist"` (the default) or `"hip"`. In the unlikely event multiple locations were used within the same study, you need to run the function twice, once with each location. Note that you would also need to ensure that they have different study names or output locations so they don't collide. 
 
 An example call might look like:
 
@@ -83,11 +83,11 @@ ages <- "children"
 device <- "geneactiv"
 wear_location <- "wrist"
 
-reprocess(datadir = datadir, 
-          outputdir = outputdir, 
-          studyname = studyname, 
+reprocess(datadir = datadir,
+          outputdir = outputdir,
+          studyname = studyname,
           ages = ages,
-          device = device, 
+          device = device,
           wear_location = wear_location)
 ```
 
@@ -114,7 +114,7 @@ For example, if `outputdir` is `"C:\\Documents\\My Study\\Output"`, the collated
 
 #### Step Three: Create the Metadata Template
 
-To perform the integrated analysis, we will need additional information about the sample such as demographics. To try to make this simpler, sleepIPD calls `build_meta()` which will create the metadata template file and pre-fill it with the names of the files, and the wear location (if a single location was selected). You can then add the remaining information in, either by matching it to an existing spreadsheet or filling it manually.
+To perform the integrated analysis, we will need additional information about the sample such as demographics. To try to make this simpler, sleepIPD calls `build_meta()` which will create the metadata template file and pre-fill it with the names of the files, and the wear location. You can then add the remaining information in, either by matching it to an existing spreadsheet or filling it manually.
 
 The metadata template will be located in the folder you specify as the `outputdir`, and will be named `<studyname>-metadata.xlsx`. The `Metadata` sheet contains the information to fill out, and the other sheets explain the expected format.
 
