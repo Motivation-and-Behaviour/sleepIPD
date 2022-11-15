@@ -28,8 +28,8 @@
 #'  `"actigraph"` or (in the unlikely event two devices were used) both (i.e.,
 #'  `c("geneactiv", "actigraph")`). If you do not specify, both are used.
 #' @param wear_location The location the device was warn. Can be either
-#' `"wrist"`, `"hip"` or (in the unlikely event multiple locations were used)
-#' both (i.e., `c("wrist","hip")`). If you do not specify, both are used.
+#' `"wrist"` (the default) or `"hip"` If the study has mixed wear locations,
+#' you need to run the function twice, once for each location.
 #' @param overwrite If the existing output should be replaced. `FALSE` by
 #' default.
 #' @param verbose Determines how much output the function returns. Useful for
@@ -45,7 +45,7 @@ process_files <- function(datadir,
                           studyname = "NA",
                           ages = c("children", "adults"),
                           device = c("geneactiv", "actigraph"),
-                          wear_location = c("wrist", "hip"),
+                          wear_location = "wrist",
                           overwrite = FALSE,
                           verbose = TRUE,
                           ...) {
@@ -55,9 +55,7 @@ process_files <- function(datadir,
   # Build the cut point settings
   ages <- match.arg(ages, c("children", "adults"), several.ok = TRUE)
   device <- match.arg(device, c("geneactiv", "actigraph"), several.ok = TRUE)
-  wear_location <- match.arg(wear_location, c("wrist", "hip"),
-    several.ok = TRUE
-  )
+  wear_location <- match.arg(wear_location, c("wrist", "hip"))
 
   threshold_lig <- apply_thresholds("light", ages, device, wear_location)
   threshold_mod <- apply_thresholds("mod", ages, device, wear_location)
@@ -120,6 +118,7 @@ process_files <- function(datadir,
     outliers.only = TRUE,
     criterror = 4,
     do.visual = TRUE,
+    sleep.location = wear_location,
     # =====================
     # Part 5
     # =====================
@@ -178,8 +177,8 @@ process_files <- function(datadir,
 #'  `"actigraph"` or (in the unlikely event two devices were used) both (i.e.,
 #'  `c("geneactiv", "actigraph")`). If you do not specify, both are used.
 #' @param wear_location The location the device was warn. Can be either
-#' `"wrist"`, `"hip"` or (in the unlikely event multiple locations were used)
-#' both (i.e., `c("wrist","hip")`). If you do not specify, both are used.
+#' `"wrist"` (the default) or `"hip"` If the study has mixed wear locations,
+#' you need to run the function twice, once for each location.
 #' @param overwrite If the existing output (including metadata) should be
 #' replaced. `FALSE` by default.
 #' @param verbose Determines how much output the function returns. Useful for
@@ -213,7 +212,7 @@ reprocess <- function(datadir,
                       studyname,
                       ages = c("children", "adults"),
                       device = c("geneactiv", "actigraph"),
-                      wear_location = c("wrist", "hip"),
+                      wear_location = "wrist",
                       overwrite = FALSE,
                       verbose = TRUE,
                       ...) {
@@ -248,7 +247,7 @@ reprocess <- function(datadir,
 
   if (verbose) usethis::ui_done("Completed {usethis::ui_code('build_meta()')}")
 
-  if (verbose & requireNamespace("knitr", quietly = TRUE)) {
+  if (verbose && requireNamespace("knitr", quietly = TRUE)) {
     usethis::ui_done("Processing complete! Here is how long it took:")
 
     time_str <- function(endtime, starttime) {
