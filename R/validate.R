@@ -31,8 +31,10 @@ validate_GGIR <- function(verbose = TRUE) { # nolint
     if (resp) {
       if (!requireNamespace("devtools", quietly = TRUE)) {
         usethis::ui_info(
-          paste0("{usethis::ui_code('devtools')} is also required ",
-                 "and will be installed.")
+          paste0(
+            "{usethis::ui_code('devtools')} is also required ",
+            "and will be installed."
+          )
         )
         utils::install.packages("devtools")
       }
@@ -45,8 +47,4 @@ validate_GGIR <- function(verbose = TRUE) { # nolint
       usethis::ui_stop(stop_msg)
     }
   }
-}
-
-validate_manual <- function() {
-  # TODO if a user wants to run GGIR manually, validate on a known file
 }
