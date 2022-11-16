@@ -60,6 +60,7 @@ process_files <- function(datadir,
   device <- match.arg(device, c("geneactiv", "actigraph"), several.ok = TRUE)
   wear_location <- match.arg(wear_location, c("wrist", "hip"))
   sleep_window <- if (wear_location == "hip") "TimeInBed" else "SPT"
+  HASPT <- if (wear_location == "hip") "HorAngle" else "HDCZA"
 
   threshold_lig <- apply_thresholds("light", ages, device, wear_location)
   threshold_mod <- apply_thresholds("mod", ages, device, wear_location)
@@ -127,6 +128,7 @@ process_files <- function(datadir,
     do.visual = TRUE,
     sleep.location = wear_location,
     sleepwindowType = sleep_window,
+    HASPT.algo = HASPT,
     # =====================
     # Part 5
     # =====================
