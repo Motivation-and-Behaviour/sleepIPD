@@ -10,7 +10,7 @@ reprocess(
   studyname,
   ages = c("children", "adults"),
   device = c("geneactiv", "actigraph"),
-  wear_location = c("wrist", "hip"),
+  wear_location = "wrist",
   overwrite = FALSE,
   verbose = TRUE,
   ...
@@ -35,8 +35,8 @@ you do not specify, both are used.}
 \code{c("geneactiv", "actigraph")}). If you do not specify, both are used.}
 
 \item{wear_location}{The location the device was warn. Can be either
-\code{"wrist"}, \code{"hip"} or (in the unlikely event multiple locations were used)
-both (i.e., \code{c("wrist","hip")}). If you do not specify, both are used.}
+\code{"wrist"} (the default) or \code{"hip"} If the study has mixed wear locations,
+you need to run the function twice, once for each location.}
 
 \item{overwrite}{If the existing output (including metadata) should be
 replaced. \code{FALSE} by default.}
