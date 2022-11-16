@@ -67,6 +67,7 @@ the files accordingly.</p>
 <span>  wear_location <span class="op">=</span> <span class="st">"wrist"</span>,</span>
 <span>  overwrite <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  redo <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -114,6 +115,11 @@ default.</p></dd>
 <dt>verbose</dt>
 <dd><p>Determines how much output the function returns. Useful for
 understanding what the package is doing. <code>TRUE</code> by default.</p></dd>
+
+
+<dt>redo</dt>
+<dd><p>For advanced usecases. If <code>TRUE</code>, the function will redo parts
+2 through 5, assuming that part 1 has already been completed.</p></dd>
 
 
 <dt>...</dt>
