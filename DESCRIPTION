@@ -17,11 +17,13 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.2
 Imports: 
     dplyr (>= 1.0.0),
+    fuzzyjoin,
     GGIR (>= 2.5.1),
     magrittr (>= 2.0.0),
     openxlsx (>= 4.2.0),
     readr (>= 2.0.0),
     rlang (>= 0.4.12),
+    tidyselect,
     usethis (>= 2.0.0),
     XML (>= 3.99-0.7)
 Remotes:
