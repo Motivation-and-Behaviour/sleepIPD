@@ -34,6 +34,8 @@
 #' default.
 #' @param verbose Determines how much output the function returns. Useful for
 #' understanding what the package is doing. `TRUE` by default.
+#' @param redo For advanced usecases. If `TRUE`, the function will redo parts
+#' 2 through 5, assuming that part 1 has already been completed.
 #' @param ... Pass additional parameters to [GGIR::g.shell.GGIR()]. Refer to the
 #' `GGIR` manual for details.
 #'
@@ -48,6 +50,7 @@ process_files <- function(datadir,
                           wear_location = "wrist",
                           overwrite = FALSE,
                           verbose = TRUE,
+                          redo = FALSE,
                           ...) {
   validate_GGIR(verbose)
 
@@ -56,6 +59,8 @@ process_files <- function(datadir,
   ages <- match.arg(ages, c("children", "adults"), several.ok = TRUE)
   device <- match.arg(device, c("geneactiv", "actigraph"), several.ok = TRUE)
   wear_location <- match.arg(wear_location, c("wrist", "hip"))
+  sleep_window <- if (wear_location == "hip") "TimeInBed" else "SPT"
+  HASPT <- if (wear_location == "hip") "HorAngle" else "HDCZA"
 
   threshold_lig <- apply_thresholds("light", ages, device, wear_location)
   threshold_mod <- apply_thresholds("mod", ages, device, wear_location)
@@ -66,11 +71,14 @@ process_files <- function(datadir,
   datadir <- translate_filepath(datadir)
   outputdir <- translate_filepath(outputdir)
 
+  # Change settings for redo
+  mode <- if (redo) c(2, 3, 4, 5) else c(1, 2, 3, 4, 5)
+
   # Call GGIR
   if (verbose) usethis::ui_info("Calling GGIR")
 
   GGIR::g.shell.GGIR(
-    mode = c(1, 2, 3, 4, 5),
+    mode = mode,
     datadir = datadir,
     outputdir = outputdir,
     do.report = c(2, 4, 5),
@@ -119,6 +127,8 @@ process_files <- function(datadir,
     criterror = 4,
     do.visual = TRUE,
     sleep.location = wear_location,
+    sleepwindowType = sleep_window,
+    HASPT.algo = HASPT,
     # =====================
     # Part 5
     # =====================

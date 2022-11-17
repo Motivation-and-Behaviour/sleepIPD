@@ -13,6 +13,7 @@ process_files(
   wear_location = "wrist",
   overwrite = FALSE,
   verbose = TRUE,
+  redo = FALSE,
   ...
 )
 }
@@ -43,6 +44,9 @@ default.}
 
 \item{verbose}{Determines how much output the function returns. Useful for
 understanding what the package is doing. \code{TRUE} by default.}
+
+\item{redo}{For advanced usecases. If \code{TRUE}, the function will redo parts
+2 through 5, assuming that part 1 has already been completed.}
 
 \item{...}{Pass additional parameters to \code{\link[GGIR:g.shell.GGIR]{GGIR::g.shell.GGIR()}}. Refer to the
 \code{GGIR} manual for details.}
