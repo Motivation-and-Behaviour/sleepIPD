@@ -1,6 +1,6 @@
 Package: sleepIPD
 Title: Opinionated Accelerometer Reprocessing for the SleepIPD Study
-Version: 0.1.2
+Version: 0.2.0
 Authors@R: 
     person(given = "Taren",
            family = "Sanders",
@@ -19,10 +19,12 @@ Imports:
     dplyr (>= 1.0.0),
     fuzzyjoin,
     GGIR (>= 2.5.1),
+    lubridate,
     magrittr (>= 2.0.0),
     openxlsx (>= 4.2.0),
     readr (>= 2.0.0),
     rlang (>= 0.4.12),
+    stringr,
     tidyselect,
     usethis (>= 2.0.0),
     XML (>= 3.99-0.7)

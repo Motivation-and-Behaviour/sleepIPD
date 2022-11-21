@@ -9,3 +9,4 @@
 ^\.github$
 ^test_files$
 ^renovate\.json$
+^\.lintr$

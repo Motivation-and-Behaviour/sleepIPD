@@ -1,20 +1,37 @@
-#' FUNCTION_TITLE
+#' Assemble Datasheet
 #'
-#' FUNCTION_DESCRIPTION
+#' Find the outputs of reprocessing and assemble them into a datasheet.
 #'
-#' @param folder DESCRIPTION.
+#' @param folder The folder that [collate_outputs()] (or [reprocess()]) wrote to
+#' during reprocessing.
+#' @param verbose Should a success messages be displayed? `TRUE` by default.
 #'
-#' @return RETURN_DESCRIPTION
+#' @return Nothing is returned. A new datasheet is saved to the folder.
 #'
 #' @importFrom dplyr %>%
+#' @importFrom rlang .data
 #' @examples
-#' # ADD_EXAMPLES_HERE
-assemble_datasheet <- function(folder) {
+#' \dontrun{
+#' outfolder <- "C:\\Documents\\My Study\\Output\\sleepIPD_output"
+#' assemble_datasheet(outfolder)
+#' }
+assemble_datasheet <- function(folder, verbose = TRUE) {
   folder_files <- list.files(folder, pattern = ".csv$")
-
-  # Part 2 file
   part2_filepath <-
     file.path(folder, folder_files[grepl("^part2", folder_files)])
+  part4_filepath <-
+    file.path(folder, folder_files[grepl("^part4", folder_files)])
+  part5_filepath <-
+    file.path(folder, folder_files[grepl("^part5", folder_files)])
+
+  if (!all(file.exists(part2_filepath, part4_filepath, part5_filepath))) {
+    usethis::ui_stop(
+      "Could not find all required files. Are you in the right folder?"
+    )
+  }
+  if (verbose) usethis::ui_done("Located files.")
+
+  # Part 2
 
   part2_cols <- c(
     # Meta
@@ -27,15 +44,19 @@ assemble_datasheet <- function(folder) {
     "M16_ig_rsquared_ENMO_mg_0-24hr"
   )
 
-  part2_df <- readr::read_csv(part2_filepath) %>%
+  part2_df <-
+    readr::read_csv(
+      part2_filepath,
+      col_types = readr::cols(), progress = FALSE
+    ) %>%
     dplyr::select(
       dplyr::any_of(part2_cols),
       dplyr::matches("^p.*_ENMO_mg_0-24hr$")
     )
 
-  # Part 4 file
-  part4_filepath <-
-    file.path(folder, folder_files[grepl("^part4", folder_files)])
+  if (verbose) usethis::ui_done("Loaded part 2.")
+
+  # Part 4
 
   part4_cols <- c(
     # Meta
@@ -51,12 +72,15 @@ assemble_datasheet <- function(folder) {
     "SriFractionValid", "sleeplatency", "sleepefficiency"
   )
 
-  part4_df <- readr::read_csv(part4_filepath) %>%
+  part4_df <- readr::read_csv(
+    part4_filepath,
+    col_types = readr::cols(), progress = FALSE
+  ) %>%
     dplyr::select(dplyr::any_of(part4_cols))
 
-  # Part 5 file
-  part5_filepath <-
-    file.path(folder, folder_files[grepl("^part5", folder_files)])
+  if (verbose) usethis::ui_done("Loaded part 4.")
+
+  # Part 5
 
   # TODO: check if this can be further reduced
   part5_cols <- c(
@@ -109,16 +133,22 @@ assemble_datasheet <- function(folder) {
   thresh_strings <-
     thresholds %>%
     dplyr::transmute(
-      thresh = paste0("L", light, "M", mod, "V", vig),
-      thresh_age = age, thresh_dev = dev, thresh_wear_loc = wear_loc
+      thresh = paste0("L", .data$light, "M", .data$mod, "V", .data$vig),
+      thresh_age = .data$age,
+      thresh_dev = .data$dev,
+      thresh_wear_loc = .data$wear_loc
     )
 
-  part5_df <- readr::read_csv(part5_filepath) %>%
+  part5_df <- readr::read_csv(
+    part5_filepath,
+    col_types = readr::cols(), progress = FALSE
+  ) %>%
     dplyr::filter(
       # Just use the MM files
-      stringr::str_detect(p5filename, "^part5_daysummary_MM") &
+      stringr::str_detect(.data$p5filename, "^part5_daysummary_MM") &
         stringr::str_detect(
-          p5filename, paste(dplyr::pull(thresh_strings, thresh), collapse = "|")
+          .data$p5filename,
+          paste(dplyr::pull(thresh_strings, .data$thresh), collapse = "|")
         )
     ) %>%
     fuzzyjoin::regex_left_join(
@@ -130,40 +160,44 @@ assemble_datasheet <- function(folder) {
       tidyselect::starts_with("thresh_")
     )
 
+  if (verbose) usethis::ui_done("Loaded part 5.")
+
   # Make the dataframes consistent
   part2_df_clean <-
     part2_df %>%
-    dplyr::mutate(calendar_date = lubridate::as_date(calendar_date))
+    dplyr::mutate(calendar_date = lubridate::as_date(.data$calendar_date))
 
   part4_df_clean <-
     part4_df %>%
     dplyr::mutate(
-      calendar_date = lubridate::as_date(calendar_date, format = "%d/%m/%Y"),
-      filename = stringr::str_replace(filename, ".RData", "")
+      calendar_date =
+        lubridate::as_date(.data$calendar_date, format = "%d/%m/%Y"),
+      filename = stringr::str_replace(.data$filename, ".RData", "")
     ) %>%
     dplyr::rename(
-      sleeponset_p4 = sleeponset, wakeup_p4 = wakeup,
-      sleeponset_ts_p4 = sleeponset_ts, wakeup_ts_p4 = wakeup_ts
+      sleeponset_p4 = .data$sleeponset, wakeup_p4 = .data$wakeup,
+      sleeponset_ts_p4 = .data$sleeponset_ts, wakeup_ts_p4 = .data$wakeup_ts
     )
 
   part5_df_clean <-
     part5_df %>%
     dplyr::mutate(
-      calendar_date = lubridate::as_date(calendar_date, format = "%d/%m/%Y"),
-      filename = stringr::str_replace(filename, ".RData", "")
+      calendar_date =
+        lubridate::as_date(.data$calendar_date, format = "%d/%m/%Y"),
+      filename = stringr::str_replace(.data$filename, ".RData", "")
     ) %>%
     dplyr::rename(
-      sleeponset_p5 = sleeponset, wakeup_p5 = wakeup,
-      sleeponset_ts_p5 = sleeponset_ts, wakeup_ts_p5 = wakeup_ts
+      sleeponset_p5 = .data$sleeponset, wakeup_p5 = .data$wakeup,
+      sleeponset_ts_p5 = .data$sleeponset_ts, wakeup_ts_p5 = .data$wakeup_ts
     )
 
-  # TODO: Merge the dataframes together
+  # Merge the dataframes together
+  merged_df <-
+    part2_df_clean %>%
+    dplyr::full_join(part4_df_clean, by = c("filename", "calendar_date")) %>%
+    dplyr::left_join(part5_df_clean, by = c("filename", "calendar_date"))
 
-  # TODO: Write out the data
+  # Write out the data
+  readr::write_csv(merged_df, file.path(folder, "merged_data.csv"))
+  if (verbose) usethis::ui_done("Wrote datasheet.")
 }
-
-part2_df %>%
-  select(measurementday) %>%
-  head()
-
-intersect(p5_cols, p2_cols)
