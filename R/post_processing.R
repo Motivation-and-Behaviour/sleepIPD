@@ -10,6 +10,7 @@
 #'
 #' @importFrom dplyr %>%
 #' @importFrom rlang .data
+#' @export
 #' @examples
 #' \dontrun{
 #' outfolder <- "C:\\Documents\\My Study\\Output\\sleepIPD_output"
