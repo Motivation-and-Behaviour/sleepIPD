@@ -166,18 +166,23 @@ assemble_datasheet <- function(folder, verbose = TRUE) {
   # Make the dataframes consistent
   part2_df_clean <-
     part2_df %>%
-    dplyr::mutate(calendar_date = lubridate::as_date(.data$calendar_date))
+    dplyr::mutate(
+      calendar_date = lubridate::as_date(.data$calendar_date),
+      filename = as.character(.data$filename)
+    )
 
   part4_df_clean <-
     part4_df %>%
     dplyr::mutate(
       calendar_date =
         lubridate::as_date(.data$calendar_date, format = "%d/%m/%Y"),
-      filename = stringr::str_replace(.data$filename, ".RData", "")
+      filename = as.character(
+        stringr::str_replace(.data$filename, ".RData", "")
+      )
     ) %>%
     dplyr::rename(
-      sleeponset_p4 = .data$sleeponset, wakeup_p4 = .data$wakeup,
-      sleeponset_ts_p4 = .data$sleeponset_ts, wakeup_ts_p4 = .data$wakeup_ts
+      sleeponset_p4 = "sleeponset", wakeup_p4 = "wakeup",
+      sleeponset_ts_p4 = "sleeponset_ts", wakeup_ts_p4 = "wakeup_ts"
     )
 
   part5_df_clean <-
@@ -185,11 +190,12 @@ assemble_datasheet <- function(folder, verbose = TRUE) {
     dplyr::mutate(
       calendar_date =
         lubridate::as_date(.data$calendar_date, format = "%d/%m/%Y"),
-      filename = stringr::str_replace(.data$filename, ".RData", "")
+      filename =
+        as.character(stringr::str_replace(.data$filename, ".RData", ""))
     ) %>%
     dplyr::rename(
-      sleeponset_p5 = .data$sleeponset, wakeup_p5 = .data$wakeup,
-      sleeponset_ts_p5 = .data$sleeponset_ts, wakeup_ts_p5 = .data$wakeup_ts
+      sleeponset_p5 = "sleeponset", wakeup_p5 = "wakeup",
+      sleeponset_ts_p5 = "sleeponset_ts", wakeup_ts_p5 = "wakeup_ts"
     )
 
   # Merge the dataframes together
