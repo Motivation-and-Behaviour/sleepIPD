@@ -126,7 +126,7 @@ process_files <- function(datadir,
     outliers.only = TRUE,
     criterror = 4,
     do.visual = TRUE,
-    sleep.location = wear_location,
+    sensor.location = wear_location,
     sleepwindowType = sleep_window,
     HASPT.algo = HASPT,
     # =====================
