@@ -203,7 +203,12 @@ assemble_datasheet <- function(folder, verbose = TRUE) {
   part2_df_clean <-
     part2_df %>%
     dplyr::mutate(
-      calendar_date = lubridate::as_date(.data$calendar_date),
+      calendar_date = lubridate::as_date(
+        lubridate::parse_date_time(
+          .data$calendar_date,
+          orders = c("dmY HM", "Ymd HMS")
+        )
+      ),
       filename = as.character(.data$filename)
     )
 
