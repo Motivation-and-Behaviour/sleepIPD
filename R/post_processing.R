@@ -128,7 +128,10 @@ assemble_datasheet <- function(folder, verbose = TRUE) {
     "Nblocks_day_total_IN", "Nblocks_day_total_LIG", "Nblocks_day_total_MOD",
     "Nblocks_day_total_VIG", "boutcriter.in", "boutcriter.lig",
     "boutcriter.mvpa", "boutdur.in", "boutdur.lig", "boutdur.mvpa",
-    "bout.metric", "ig_gradient", "ig_intercept", "ig_rsquared"
+    "bout.metric", "ig_gradient", "ig_intercept", "ig_rsquared",
+    "dur_day_total_IN_min_MM", "dur_day_total_LIG_min_MM",
+    "dur_day_total_MOD_min_MM", "dur_day_total_VIG_min_MM", "dur_day_min_MM",
+    "dur_spt_min_MM"
   )
 
   thresh_strings <-
@@ -143,7 +146,10 @@ assemble_datasheet <- function(folder, verbose = TRUE) {
   part5_df <- readr::read_csv(
     part5_filepath,
     col_types = readr::cols(), progress = FALSE
-  ) %>%
+  )
+
+  part5_df_mm <-
+    part5_df %>%
     dplyr::filter(
       # Just use the MM files
       stringr::str_detect(.data$p5filename, "^part5_daysummary_MM") &
@@ -151,6 +157,21 @@ assemble_datasheet <- function(folder, verbose = TRUE) {
           .data$p5filename,
           paste(dplyr::pull(thresh_strings, .data$thresh), collapse = "|")
         )
+    ) %>%
+    dplyr::rename_with(.cols = c(
+      "dur_day_total_IN_min", "dur_day_total_LIG_min",
+      "dur_day_total_MOD_min", "dur_day_total_VIG_min", "dur_day_min",
+      "dur_spt_min"
+    ), ~ paste0(., "_MM")) %>%
+    dplyr::select(
+      "p5filename", "filename", "calendar_date", dplyr::ends_with("_MM")
+    )
+
+  part5_df_all <-
+    part5_df %>%
+    dplyr::left_join(
+      part5_df_mm,
+      by = c("p5filename", "filename", "calendar_date")
     ) %>%
     fuzzyjoin::regex_left_join(
       thresh_strings,
@@ -186,7 +207,7 @@ assemble_datasheet <- function(folder, verbose = TRUE) {
     )
 
   part5_df_clean <-
-    part5_df %>%
+    part5_df_all %>%
     dplyr::mutate(
       calendar_date =
         lubridate::as_date(.data$calendar_date, format = "%d/%m/%Y"),
