@@ -164,14 +164,21 @@ assemble_datasheet <- function(folder, verbose = TRUE) {
       "dur_spt_min"
     ), ~ paste0(., "_MM")) %>%
     dplyr::select(
-      "p5filename", "filename", "calendar_date", dplyr::ends_with("_MM")
+      "filename", "calendar_date", dplyr::ends_with("_MM")
     )
 
   part5_df_all <-
     part5_df %>%
+    dplyr::filter(
+      stringr::str_detect(.data$p5filename, "^part5_daysummary_WW") &
+        stringr::str_detect(
+          .data$p5filename,
+          paste(dplyr::pull(thresh_strings, .data$thresh), collapse = "|")
+        )
+    ) %>%
     dplyr::left_join(
       part5_df_mm,
-      by = c("p5filename", "filename", "calendar_date")
+      by = c("filename", "calendar_date")
     ) %>%
     fuzzyjoin::regex_left_join(
       thresh_strings,
