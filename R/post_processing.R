@@ -163,8 +163,13 @@ assemble_datasheet <- function(folder, verbose = TRUE) {
       "dur_day_total_MOD_min", "dur_day_total_VIG_min", "dur_day_min",
       "dur_spt_min"
     ), ~ paste0(., "_MM")) %>%
+    fuzzyjoin::regex_left_join(
+      thresh_strings,
+      by = c("p5filename" = "thresh")
+    ) %>%
     dplyr::select(
-      "filename", "calendar_date", dplyr::ends_with("_MM")
+      "filename", "calendar_date", dplyr::ends_with("_MM"),
+      tidyselect::starts_with("thresh_")
     )
 
   part5_df_all <-
@@ -176,13 +181,16 @@ assemble_datasheet <- function(folder, verbose = TRUE) {
           paste(dplyr::pull(thresh_strings, .data$thresh), collapse = "|")
         )
     ) %>%
-    dplyr::left_join(
-      part5_df_mm,
-      by = c("filename", "calendar_date")
-    ) %>%
     fuzzyjoin::regex_left_join(
       thresh_strings,
       by = c("p5filename" = "thresh")
+    ) %>%
+    dplyr::left_join(
+      part5_df_mm,
+      by = c(
+        "filename", "calendar_date", "thresh_age", "thresh_dev",
+        "thresh_wear_loc"
+      )
     ) %>%
     dplyr::select(
       dplyr::any_of(part5_cols),
