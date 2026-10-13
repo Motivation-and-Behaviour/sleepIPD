@@ -1,6 +1,6 @@
 Package: sleepIPD
 Title: Opinionated Accelerometer Reprocessing for the SleepIPD Study
-Version: 0.2.2
+Version: 0.2.3
 Authors@R: 
     person(given = "Taren",
            family = "Sanders",
@@ -14,7 +14,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.2
+RoxygenNote: 7.3.3
 Imports: 
     dplyr (>= 1.0.0),
     fuzzyjoin,
@@ -40,6 +40,7 @@ Suggests:
     rmarkdown,
     gt,
     purrr,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    withr
 VignetteBuilder: knitr
 Config/testthat/edition: 3

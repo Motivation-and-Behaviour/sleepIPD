@@ -22,6 +22,7 @@ correct number are found.
 \seealso{
 Other helper functions (internal): 
 \code{\link{apply_thresholds}()},
+\code{\link{parse_ggir_date}()},
 \code{\link{translate_studyname}()}
 }
 \concept{helper functions (internal)}

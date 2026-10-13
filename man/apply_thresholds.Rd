@@ -26,6 +26,7 @@ invoked directly by the user.
 \seealso{
 Other helper functions (internal): 
 \code{\link{check_outfiles}()},
+\code{\link{parse_ggir_date}()},
 \code{\link{translate_studyname}()}
 }
 \concept{helper functions (internal)}
