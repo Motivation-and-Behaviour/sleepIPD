@@ -13,11 +13,14 @@ parse_ggir_date(x)
 A \code{Date} vector.
 }
 \description{
-GGIR writes \code{calendar_date} differently in each part: part 2 is an ISO 8601
-timestamp with a UTC offset (e.g. \verb{2016-02-26T00:00:00+0100}), part 4 is
+GGIR 2.5-1 writes \code{calendar_date} differently in each part: part 2 is an ISO
+8601 timestamp with a UTC offset (e.g. \verb{2016-02-26T00:00:00+0100}), part 4 is
 \code{dd/mm/YYYY} and part 5 is \code{YYYY-MM-DD}. Some contributors' part 2 data is
 \verb{dd/mm/YYYY HH:MM}. All of these are returned as the local calendar date,
-ignoring any UTC offset. Values that cannot be parsed are an error.
+ignoring any UTC offset. Timestamps are first rounded to the nearest minute,
+because GGIR 2.5-1 stamps the last partial day a few seconds before midnight.
+Values ending in \code{Z} were converted to UTC upstream, so the local date cannot
+be recovered; these, and values that cannot be parsed, are an error.
 }
 \seealso{
 Other helper functions (internal): 

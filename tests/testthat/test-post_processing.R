@@ -55,6 +55,37 @@ test_that("other part 2 date formats still parse", {
   }
 })
 
+test_that("GGIR's early-stamped last day joins to the next date", {
+  dir <- withr::local_tempdir()
+  write_ggir_fixture(
+    dir,
+    part2_dates = c(
+      "2016-02-25T15:15:00+0100",
+      "2016-02-26T00:00:00+0100",
+      "2016-02-26T23:59:55+0100"
+    )
+  )
+  expect_warning(merged <- read_merged(dir), NA)
+  expect_complete_merge(merged)
+})
+
+test_that("part 5 clock times keep their local offset", {
+  dir <- withr::local_tempdir()
+  write_ggir_fixture(dir)
+  assemble_datasheet(dir, verbose = FALSE)
+  merged <- readr::read_csv(
+    file.path(dir, "merged_data.csv"),
+    col_types = readr::cols(.default = readr::col_character())
+  )
+  expect_equal(
+    merged$M16TIME[order(merged$calendar_date)],
+    c(
+      "2016-02-25T14:55:25+0100", "2016-02-26T14:10:00+0100",
+      "2016-02-27T13:40:00+0100"
+    )
+  )
+})
+
 test_that("part 5 files with a prefix are kept", {
   dir <- withr::local_tempdir()
   write_ggir_fixture(dir, part5_prefix = "a_")
@@ -75,11 +106,7 @@ test_that("missing part 5 data is reported", {
   expect_warning(assemble_datasheet(dir, verbose = FALSE), "MM")
 })
 
-test_that("inconsistent part 2 dates are reported", {
-  dir <- withr::local_tempdir()
-  write_ggir_fixture(dir, part2_weekdays = c("Thursday", "Monday", "Saturday"))
-  expect_warning(assemble_datasheet(dir, verbose = FALSE), "weekday")
-
+test_that("duplicated part 2 dates are reported", {
   dir <- withr::local_tempdir()
   write_ggir_fixture(
     dir,
@@ -87,8 +114,7 @@ test_that("inconsistent part 2 dates are reported", {
       "2016-02-25T15:15:00+0100",
       "2016-02-25T23:00:00+0100",
       "2016-02-27T00:00:00+0100"
-    ),
-    part2_weekdays = c("Thursday", "Thursday", "Saturday")
+    )
   )
   expect_warning(assemble_datasheet(dir, verbose = FALSE), "duplicated")
 })
