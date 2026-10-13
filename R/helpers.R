@@ -21,6 +21,36 @@ apply_thresholds <- function(intensity, ages, device, wear_location) {
     dplyr::pull(intensity)
 }
 
+#' Parse a GGIR Calendar Date
+#'
+#' GGIR 2.5-1 writes `calendar_date` differently in each part: part 2 is an ISO 
+#' 8601 timestamp with a UTC offset (e.g. `2016-02-26T00:00:00+0100`), part 4 is
+#' `dd/mm/YYYY` and part 5 is `YYYY-MM-DD`. Some contributors' part 2 data is
+#' `dd/mm/YYYY HH:MM`. All of these are returned as the local calendar date,
+#' ignoring any UTC offset. Values that cannot be parsed are an error.
+#'
+#' @param x A character vector of dates or timestamps.
+#' @family helper functions (internal)
+#'
+#' @return A `Date` vector.
+parse_ggir_date <- function(x) {
+  x <- as.character(x)
+  # Drop the UTC offset so the local date is kept
+  x <- stringr::str_remove(x, "([+-]\\d{2}:?\\d{2}|Z)$")
+  parsed <- lubridate::parse_date_time(
+    x,
+    orders = c("dmY HMS", "Ymd HMS"), truncated = 3, quiet = TRUE
+  )
+  failed <- unique(x[!is.na(x) & x != "" & is.na(parsed)])
+  if (length(failed) > 0) {
+    failed <- failed[seq_len(min(3, length(failed)))]
+    usethis::ui_stop(
+      "Could not parse dates such as {usethis::ui_value(failed)}"
+    )
+  }
+  lubridate::as_date(parsed)
+}
+
 #' Convert a File or Folder Path
 #'
 #' GGIR uses some code which does not play nice with some file paths on Windows

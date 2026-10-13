@@ -18,6 +18,7 @@ Remove White Space from a Study Name
 \seealso{
 Other helper functions (internal): 
 \code{\link{apply_thresholds}()},
-\code{\link{check_outfiles}()}
+\code{\link{check_outfiles}()},
+\code{\link{parse_ggir_date}()}
 }
 \concept{helper functions (internal)}

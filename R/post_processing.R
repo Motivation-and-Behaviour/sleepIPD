@@ -45,11 +45,14 @@ assemble_datasheet <- function(folder, verbose = TRUE) {
     "M16_ig_rsquared_ENMO_mg_0-24hr"
   )
 
+  # readr would otherwise convert part 2's timestamps to UTC and shift the date
+  ggir_cols <- readr::cols(
+    filename = readr::col_character(),
+    calendar_date = readr::col_character()
+  )
+
   part2_df <-
-    readr::read_csv(
-      part2_filepath,
-      col_types = readr::cols(), progress = FALSE
-    ) %>%
+    readr::read_csv(part2_filepath, col_types = ggir_cols, progress = FALSE) %>%
     dplyr::select(
       dplyr::any_of(part2_cols),
       dplyr::matches("^p.*_ENMO_mg_0-24hr$")
@@ -75,9 +78,14 @@ assemble_datasheet <- function(folder, verbose = TRUE) {
 
   part4_df <- readr::read_csv(
     part4_filepath,
-    col_types = readr::cols(), progress = FALSE
+    col_types = ggir_cols, progress = FALSE
   ) %>%
     dplyr::select(dplyr::any_of(part4_cols))
+
+  has_sri <- "SleepRegularityIndex" %in% names(part4_df)
+  if (!has_sri || all(is.na(part4_df$SleepRegularityIndex))) {
+    usethis::ui_warn("Part 4 has no SleepRegularityIndex values.")
+  }
 
   if (verbose) usethis::ui_done("Loaded part 4.")
 
@@ -145,14 +153,14 @@ assemble_datasheet <- function(folder, verbose = TRUE) {
 
   part5_df <- readr::read_csv(
     part5_filepath,
-    col_types = readr::cols(), progress = FALSE
+    col_types = ggir_cols, progress = FALSE
   )
 
   part5_df_mm <-
     part5_df %>%
     dplyr::filter(
       # Just use the MM files
-      stringr::str_detect(.data$p5filename, "^part5_daysummary_MM") &
+      stringr::str_detect(.data$p5filename, "part5_daysummary_MM") &
         stringr::str_detect(
           .data$p5filename,
           paste(dplyr::pull(thresh_strings, .data$thresh), collapse = "|")
@@ -172,10 +180,14 @@ assemble_datasheet <- function(folder, verbose = TRUE) {
       tidyselect::starts_with("thresh_")
     )
 
+  if (nrow(part5_df_mm) == 0) {
+    usethis::ui_warn("No part 5 MM rows found. The _MM columns will be NA.")
+  }
+
   part5_df_all <-
     part5_df %>%
     dplyr::filter(
-      stringr::str_detect(.data$p5filename, "^part5_daysummary_WW") &
+      stringr::str_detect(.data$p5filename, "part5_daysummary_WW") &
         stringr::str_detect(
           .data$p5filename,
           paste(dplyr::pull(thresh_strings, .data$thresh), collapse = "|")
@@ -197,29 +209,51 @@ assemble_datasheet <- function(folder, verbose = TRUE) {
       tidyselect::starts_with("thresh_")
     )
 
+  if (nrow(part5_df_all) == 0) {
+    usethis::ui_stop(c(
+      "No part 5 WW rows matched the sleepIPD thresholds.",
+      "Example part 5 file name: {usethis::ui_value(part5_df$p5filename[1])}"
+    ))
+  }
+
   if (verbose) usethis::ui_done("Loaded part 5.")
 
   # Make the dataframes consistent
   part2_df_clean <-
     part2_df %>%
-    dplyr::mutate(
-      calendar_date = lubridate::as_date(
-        lubridate::parse_date_time(
-          .data$calendar_date,
-          orders = c("dmY HM", "Ymd HMS")
-        )
-      ),
-      filename = as.character(.data$filename)
+    dplyr::mutate(calendar_date = parse_ggir_date(.data$calendar_date))
+
+  duplicates <- part2_df_clean %>%
+    dplyr::count(.data$filename, .data$calendar_date) %>%
+    dplyr::filter(.data$n > 1)
+
+  if (nrow(duplicates) > 0) {
+    usethis::ui_warn(
+      "Part 2 has {nrow(duplicates)} duplicated filename/calendar_date pairs."
     )
+  }
+
+  if ("weekday" %in% names(part2_df_clean)) {
+    day_names <- c(
+      "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+      "Saturday"
+    )
+    expected <- day_names[
+      lubridate::wday(part2_df_clean$calendar_date, week_start = 7)
+    ]
+    mismatches <- sum(part2_df_clean$weekday != expected, na.rm = TRUE)
+    if (mismatches > 0) {
+      usethis::ui_warn(
+        "Part 2 weekday disagrees with calendar_date on {mismatches} rows."
+      )
+    }
+  }
 
   part4_df_clean <-
     part4_df %>%
     dplyr::mutate(
-      calendar_date =
-        lubridate::as_date(.data$calendar_date, format = "%d/%m/%Y"),
-      filename = as.character(
-        stringr::str_replace(.data$filename, ".RData", "")
-      )
+      calendar_date = parse_ggir_date(.data$calendar_date),
+      filename = stringr::str_remove(.data$filename, "\\.RData$")
     ) %>%
     dplyr::rename(
       sleeponset_p4 = "sleeponset", wakeup_p4 = "wakeup",
@@ -229,10 +263,8 @@ assemble_datasheet <- function(folder, verbose = TRUE) {
   part5_df_clean <-
     part5_df_all %>%
     dplyr::mutate(
-      calendar_date =
-        lubridate::as_date(.data$calendar_date, format = "%d/%m/%Y"),
-      filename =
-        as.character(stringr::str_replace(.data$filename, ".RData", ""))
+      calendar_date = parse_ggir_date(.data$calendar_date),
+      filename = stringr::str_remove(.data$filename, "\\.RData$")
     ) %>%
     dplyr::rename(
       sleeponset_p5 = "sleeponset", wakeup_p5 = "wakeup",
@@ -244,6 +276,12 @@ assemble_datasheet <- function(folder, verbose = TRUE) {
     part2_df_clean %>%
     dplyr::full_join(part4_df_clean, by = c("filename", "calendar_date")) %>%
     dplyr::left_join(part5_df_clean, by = c("filename", "calendar_date"))
+
+  part5_values <-
+    setdiff(names(part5_df_clean), c("filename", "calendar_date"))
+  if (all(is.na(merged_df[part5_values]))) {
+    usethis::ui_warn("No part 5 rows joined to parts 2 and 4. Check filenames.")
+  }
 
   # Write out the data
   readr::write_csv(merged_df, file.path(folder, "merged_data.csv"))
