@@ -6,20 +6,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Using `sleepIPD` to Reprocess Data • sleepIPD</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Using `sleepIPD` to Reprocess Data">
-<meta property="og:description" content="sleepIPD">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -33,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sleepIPD</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.3</span>
       </span>
     </div>
 
@@ -53,7 +52,7 @@
 <li>
   <a href="https://github.com/Motivation-and-Behaviour/sleepIPD/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul>
@@ -64,7 +63,7 @@
 </div>
 <!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="col-md-9 contents">
@@ -73,7 +72,7 @@
 Data</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/Motivation-and-Behaviour/sleepIPD/blob/HEAD/vignettes/sleepIPD.Rmd" class="external-link"><code>vignettes/sleepIPD.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/Motivation-and-Behaviour/sleepIPD/blob/main/vignettes/sleepIPD.Rmd" class="external-link"><code>vignettes/sleepIPD.Rmd</code></a></small>
       <div class="hidden name"><code>sleepIPD.Rmd</code></div>
 
     </div>
@@ -139,13 +138,13 @@ your data are not duplicated in multiple formats).</li>
 <h4 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h4>
 <p>First, install the package. Since the package is not on CRAN, you
-will need <code><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">devtools::install_github()</a></code> or
-<code><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">remotes::install_github()</a></code>. You will need to install one of
+will need <code><a href="https://devtools.r-lib.org/reference/install-deprecated.html" class="external-link">devtools::install_github()</a></code> or
+<code>remotes::install_github()</code>. You will need to install one of
 these packages if you do not already have one. I recommend
 <code>devtools</code>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools") # uncomment if needed</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"Motivation-and-Behaviour/sleepIPD"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/install-deprecated.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"Motivation-and-Behaviour/sleepIPD"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="reprocessing-the-data">Reprocessing the Data<a class="anchor" aria-label="anchor" href="#reprocessing-the-data"></a>
@@ -370,14 +369,26 @@ accelerometer was worn. See details below.</p>
 <div class="section level3">
 <h3 id="thresholds">Thresholds<a class="anchor" aria-label="anchor" href="#thresholds"></a>
 </h3>
-<div id="yonejcxgvg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+<div id="mwlefoodfi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mwlefoodfi table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-#yonejcxgvg .gt_table {
+#mwlefoodfi thead, #mwlefoodfi tbody, #mwlefoodfi tfoot, #mwlefoodfi tr, #mwlefoodfi td, #mwlefoodfi th {
+  border-style: none;
+}
+
+#mwlefoodfi p {
+  margin: 0;
+  padding: 0;
+}
+
+#mwlefoodfi .gt_table {
   display: table;
   border-collapse: collapse;
+  line-height: normal;
   margin-left: auto;
   margin-right: auto;
   color: #333333;
@@ -400,24 +411,12 @@ accelerometer was worn. See details below.</p>
   border-left-color: #D3D3D3;
 }
 
-#yonejcxgvg .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#yonejcxgvg .gt_caption {
+#mwlefoodfi .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#yonejcxgvg .gt_title {
+#mwlefoodfi .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -429,25 +428,37 @@ accelerometer was worn. See details below.</p>
   border-bottom-width: 0;
 }
 
-#yonejcxgvg .gt_subtitle {
+#mwlefoodfi .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
+  padding-top: 3px;
+  padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
 
-#yonejcxgvg .gt_bottom_border {
+#mwlefoodfi .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mwlefoodfi .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#yonejcxgvg .gt_col_headings {
+#mwlefoodfi .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -462,7 +473,7 @@ accelerometer was worn. See details below.</p>
   border-right-color: #D3D3D3;
 }
 
-#yonejcxgvg .gt_col_heading {
+#mwlefoodfi .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -482,7 +493,7 @@ accelerometer was worn. See details below.</p>
   overflow-x: hidden;
 }
 
-#yonejcxgvg .gt_column_spanner_outer {
+#mwlefoodfi .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -494,15 +505,15 @@ accelerometer was worn. See details below.</p>
   padding-right: 4px;
 }
 
-#yonejcxgvg .gt_column_spanner_outer:first-child {
+#mwlefoodfi .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#yonejcxgvg .gt_column_spanner_outer:last-child {
+#mwlefoodfi .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#yonejcxgvg .gt_column_spanner {
+#mwlefoodfi .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -514,7 +525,11 @@ accelerometer was worn. See details below.</p>
   width: 100%;
 }
 
-#yonejcxgvg .gt_group_heading {
+#mwlefoodfi .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#mwlefoodfi .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -540,7 +555,7 @@ accelerometer was worn. See details below.</p>
   text-align: left;
 }
 
-#yonejcxgvg .gt_empty_group_heading {
+#mwlefoodfi .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -555,15 +570,15 @@ accelerometer was worn. See details below.</p>
   vertical-align: middle;
 }
 
-#yonejcxgvg .gt_from_md > :first-child {
+#mwlefoodfi .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#yonejcxgvg .gt_from_md > :last-child {
+#mwlefoodfi .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#yonejcxgvg .gt_row {
+#mwlefoodfi .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -582,7 +597,7 @@ accelerometer was worn. See details below.</p>
   overflow-x: hidden;
 }
 
-#yonejcxgvg .gt_stub {
+#mwlefoodfi .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -595,7 +610,7 @@ accelerometer was worn. See details below.</p>
   padding-right: 5px;
 }
 
-#yonejcxgvg .gt_stub_row_group {
+#mwlefoodfi .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -609,11 +624,15 @@ accelerometer was worn. See details below.</p>
   vertical-align: top;
 }
 
-#yonejcxgvg .gt_row_group_first td {
+#mwlefoodfi .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#yonejcxgvg .gt_summary_row {
+#mwlefoodfi .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#mwlefoodfi .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -623,16 +642,16 @@ accelerometer was worn. See details below.</p>
   padding-right: 5px;
 }
 
-#yonejcxgvg .gt_first_summary_row {
+#mwlefoodfi .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#yonejcxgvg .gt_first_summary_row.thick {
+#mwlefoodfi .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#yonejcxgvg .gt_last_summary_row {
+#mwlefoodfi .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -642,7 +661,7 @@ accelerometer was worn. See details below.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#yonejcxgvg .gt_grand_summary_row {
+#mwlefoodfi .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -652,7 +671,7 @@ accelerometer was worn. See details below.</p>
   padding-right: 5px;
 }
 
-#yonejcxgvg .gt_first_grand_summary_row {
+#mwlefoodfi .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -662,11 +681,21 @@ accelerometer was worn. See details below.</p>
   border-top-color: #D3D3D3;
 }
 
-#yonejcxgvg .gt_striped {
+#mwlefoodfi .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mwlefoodfi .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#yonejcxgvg .gt_table_body {
+#mwlefoodfi .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -675,7 +704,7 @@ accelerometer was worn. See details below.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#yonejcxgvg .gt_footnotes {
+#mwlefoodfi .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -689,30 +718,8 @@ accelerometer was worn. See details below.</p>
   border-right-color: #D3D3D3;
 }
 
-#yonejcxgvg .gt_footnote {
+#mwlefoodfi .gt_footnote {
   margin: 0px;
-  font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#yonejcxgvg .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#yonejcxgvg .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -720,68 +727,98 @@ accelerometer was worn. See details below.</p>
   padding-right: 5px;
 }
 
-#yonejcxgvg .gt_left {
+#mwlefoodfi .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mwlefoodfi .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mwlefoodfi .gt_left {
   text-align: left;
 }
 
-#yonejcxgvg .gt_center {
+#mwlefoodfi .gt_center {
   text-align: center;
 }
 
-#yonejcxgvg .gt_right {
+#mwlefoodfi .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#yonejcxgvg .gt_font_normal {
+#mwlefoodfi .gt_font_normal {
   font-weight: normal;
 }
 
-#yonejcxgvg .gt_font_bold {
+#mwlefoodfi .gt_font_bold {
   font-weight: bold;
 }
 
-#yonejcxgvg .gt_font_italic {
+#mwlefoodfi .gt_font_italic {
   font-style: italic;
 }
 
-#yonejcxgvg .gt_super {
+#mwlefoodfi .gt_super {
   font-size: 65%;
 }
 
-#yonejcxgvg .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
+#mwlefoodfi .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
+  position: initial;
 }
 
-#yonejcxgvg .gt_asterisk {
+#mwlefoodfi .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#yonejcxgvg .gt_indent_1 {
+#mwlefoodfi .gt_indent_1 {
   text-indent: 5px;
 }
 
-#yonejcxgvg .gt_indent_2 {
+#mwlefoodfi .gt_indent_2 {
   text-indent: 10px;
 }
 
-#yonejcxgvg .gt_indent_3 {
+#mwlefoodfi .gt_indent_3 {
   text-indent: 15px;
 }
 
-#yonejcxgvg .gt_indent_4 {
+#mwlefoodfi .gt_indent_4 {
   text-indent: 20px;
 }
 
-#yonejcxgvg .gt_indent_5 {
+#mwlefoodfi .gt_indent_5 {
   text-indent: 25px;
 }
+
+#mwlefoodfi .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#mwlefoodfi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
-<table class="table gt_table" style="table-layout: fixed;; width: 100%">
+<table class="table gt_table" style="table-layout:fixed;width:100%;" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <colgroup>
 <col style="width:13.3%;">
 <col style="width:13.3%;">
@@ -791,237 +828,125 @@ accelerometer was worn. See details below.</p>
 <col style="width:10%;">
 <col style="width:30%;">
 </colgroup>
-<thead class="gt_col_headings">
-<tr>
+<thead>
+<tr class="gt_col_headings gt_spanner_row">
 <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="3" style="font-weight: bold;" scope="colgroup" id="Study Design">
-        <span class="gt_column_spanner">Study Design</span>
+        <div class="gt_column_spanner">Study Design</div>
       </th>
       <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="3" style="font-weight: bold;" scope="colgroup" id="Thresholds">
-        <span class="gt_column_spanner">Thresholds</span>
+        <div class="gt_column_spanner">Thresholds</div>
       </th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="font-weight: bold;" scope="col" id="Sources">Sources</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="font-weight: bold;" scope="col" id="source">Sources</th>
     </tr>
-<tr>
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-weight: bold;" scope="col" id='Age&lt;sup class="gt_footnote_marks"&gt;1&lt;/sup&gt;'>Age<sup class="gt_footnote_marks">1</sup>
+<tr class="gt_col_headings">
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-weight: bold;" scope="col" id="age">Age<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span>
 </th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-weight: bold;" scope="col" id='Device&lt;sup class="gt_footnote_marks"&gt;2&lt;/sup&gt;'>Device<sup class="gt_footnote_marks">2</sup>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-weight: bold;" scope="col" id="dev">Device<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span>
 </th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-weight: bold;" scope="col" id="Worn on">Worn on</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-weight: bold;" scope="col" id="Light">Light</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-weight: bold;" scope="col" id="Moderate">Moderate</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-weight: bold;" scope="col" id="Vigorous">Vigorous</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-weight: bold;" scope="col" id="wear_loc">Worn on</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-weight: bold;" scope="col" id="light">Light</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-weight: bold;" scope="col" id="mod">Moderate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-weight: bold;" scope="col" id="vig">Vigorous</th>
     </tr>
 </thead>
 <tbody class="gt_table_body">
 <tr>
-<td headers="age" class="gt_row gt_left"><div class="gt_from_md">
-<p>children</p>
-</div></td>
-<td headers="dev" class="gt_row gt_left"><div class="gt_from_md">
-<p>geneactiv</p>
-</div></td>
-<td headers="wear_loc" class="gt_row gt_left"><div class="gt_from_md">
-<p>wrist</p>
-</div></td>
-<td headers="light" class="gt_row gt_right"><div class="gt_from_md">
-<p>51.6</p>
-</div></td>
-<td headers="mod" class="gt_row gt_right"><div class="gt_from_md">
-<p>191.6</p>
-</div></td>
-<td headers="vig" class="gt_row gt_right"><div class="gt_from_md">
-<p>695.8</p>
-</div></td>
-<td headers="source" class="gt_row gt_left"><div class="gt_from_md">
-<p>Light: <a href="https://doi.org/10.3390/children5120172" class="external-link">Hurter et al., 2018</a><br>
+<td headers="age" class="gt_row gt_left"><span class="gt_from_md">children</span></td>
+<td headers="dev" class="gt_row gt_left"><span class="gt_from_md">geneactiv</span></td>
+<td headers="wear_loc" class="gt_row gt_left"><span class="gt_from_md">wrist</span></td>
+<td headers="light" class="gt_row gt_right"><span class="gt_from_md">51.6</span></td>
+<td headers="mod" class="gt_row gt_right"><span class="gt_from_md">191.6</span></td>
+<td headers="vig" class="gt_row gt_right"><span class="gt_from_md">695.8</span></td>
+<td headers="source" class="gt_row gt_left"><span class="gt_from_md">Light: <a href="https://doi.org/10.3390/children5120172" class="external-link">Hurter et al., 2018</a><br>
 Mod: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a><br>
-Vig: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a></p>
-</div></td>
+Vig: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a></span></td>
 </tr>
 <tr>
-<td headers="age" class="gt_row gt_left gt_striped"><div class="gt_from_md">
-<p>children</p>
-</div></td>
-<td headers="dev" class="gt_row gt_left gt_striped"><div class="gt_from_md">
-<p>actigraph</p>
-</div></td>
-<td headers="wear_loc" class="gt_row gt_left gt_striped"><div class="gt_from_md">
-<p>wrist</p>
-</div></td>
-<td headers="light" class="gt_row gt_right gt_striped"><div class="gt_from_md">
-<p>48.1</p>
-</div></td>
-<td headers="mod" class="gt_row gt_right gt_striped"><div class="gt_from_md">
-<p>201.4</p>
-</div></td>
-<td headers="vig" class="gt_row gt_right gt_striped"><div class="gt_from_md">
-<p>707</p>
-</div></td>
-<td headers="source" class="gt_row gt_left gt_striped"><div class="gt_from_md">
-<p>Light: <a href="https://doi.org/10.3390/children5120172" class="external-link">Hurter et al., 2018</a><br>
+<td headers="age" class="gt_row gt_left gt_striped"><span class="gt_from_md">children</span></td>
+<td headers="dev" class="gt_row gt_left gt_striped"><span class="gt_from_md">actigraph</span></td>
+<td headers="wear_loc" class="gt_row gt_left gt_striped"><span class="gt_from_md">wrist</span></td>
+<td headers="light" class="gt_row gt_right gt_striped"><span class="gt_from_md">48.1</span></td>
+<td headers="mod" class="gt_row gt_right gt_striped"><span class="gt_from_md">201.4</span></td>
+<td headers="vig" class="gt_row gt_right gt_striped"><span class="gt_from_md">707</span></td>
+<td headers="source" class="gt_row gt_left gt_striped"><span class="gt_from_md">Light: <a href="https://doi.org/10.3390/children5120172" class="external-link">Hurter et al., 2018</a><br>
 Mod: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a><br>
-Vig: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a></p>
-</div></td>
+Vig: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a></span></td>
 </tr>
 <tr>
-<td headers="age" class="gt_row gt_left"><div class="gt_from_md">
-<p>children</p>
-</div></td>
-<td headers="dev" class="gt_row gt_left"><div class="gt_from_md">
-<p>geneactiv</p>
-</div></td>
-<td headers="wear_loc" class="gt_row gt_left"><div class="gt_from_md">
-<p>hip</p>
-</div></td>
-<td headers="light" class="gt_row gt_right"><div class="gt_from_md">
-<p>64.1</p>
-</div></td>
-<td headers="mod" class="gt_row gt_right"><div class="gt_from_md">
-<p>152.8</p>
-</div></td>
-<td headers="vig" class="gt_row gt_right"><div class="gt_from_md">
-<p>514.3</p>
-</div></td>
-<td headers="source" class="gt_row gt_left"><div class="gt_from_md">
-<p>Light: <a href="https://doi.org/10.1111/sms.12795" class="external-link">Hildebrand et al., 2016</a><br>
+<td headers="age" class="gt_row gt_left"><span class="gt_from_md">children</span></td>
+<td headers="dev" class="gt_row gt_left"><span class="gt_from_md">geneactiv</span></td>
+<td headers="wear_loc" class="gt_row gt_left"><span class="gt_from_md">hip</span></td>
+<td headers="light" class="gt_row gt_right"><span class="gt_from_md">64.1</span></td>
+<td headers="mod" class="gt_row gt_right"><span class="gt_from_md">152.8</span></td>
+<td headers="vig" class="gt_row gt_right"><span class="gt_from_md">514.3</span></td>
+<td headers="source" class="gt_row gt_left"><span class="gt_from_md">Light: <a href="https://doi.org/10.1111/sms.12795" class="external-link">Hildebrand et al., 2016</a><br>
 Mod: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a><br>
-Vig: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a></p>
-</div></td>
+Vig: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a></span></td>
 </tr>
 <tr>
-<td headers="age" class="gt_row gt_left gt_striped"><div class="gt_from_md">
-<p>children</p>
-</div></td>
-<td headers="dev" class="gt_row gt_left gt_striped"><div class="gt_from_md">
-<p>actigraph</p>
-</div></td>
-<td headers="wear_loc" class="gt_row gt_left gt_striped"><div class="gt_from_md">
-<p>hip</p>
-</div></td>
-<td headers="light" class="gt_row gt_right gt_striped"><div class="gt_from_md">
-<p>32.6</p>
-</div></td>
-<td headers="mod" class="gt_row gt_right gt_striped"><div class="gt_from_md">
-<p>142.6</p>
-</div></td>
-<td headers="vig" class="gt_row gt_right gt_striped"><div class="gt_from_md">
-<p>464.6</p>
-</div></td>
-<td headers="source" class="gt_row gt_left gt_striped"><div class="gt_from_md">
-<p>Light: <a href="https://doi.org/10.3390/children5120172" class="external-link">Hurter et al., 2018</a><br>
+<td headers="age" class="gt_row gt_left gt_striped"><span class="gt_from_md">children</span></td>
+<td headers="dev" class="gt_row gt_left gt_striped"><span class="gt_from_md">actigraph</span></td>
+<td headers="wear_loc" class="gt_row gt_left gt_striped"><span class="gt_from_md">hip</span></td>
+<td headers="light" class="gt_row gt_right gt_striped"><span class="gt_from_md">32.6</span></td>
+<td headers="mod" class="gt_row gt_right gt_striped"><span class="gt_from_md">142.6</span></td>
+<td headers="vig" class="gt_row gt_right gt_striped"><span class="gt_from_md">464.6</span></td>
+<td headers="source" class="gt_row gt_left gt_striped"><span class="gt_from_md">Light: <a href="https://doi.org/10.3390/children5120172" class="external-link">Hurter et al., 2018</a><br>
 Mod: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a><br>
-Vig: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a></p>
-</div></td>
+Vig: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a></span></td>
 </tr>
 <tr>
-<td headers="age" class="gt_row gt_left"><div class="gt_from_md">
-<p>adults</p>
-</div></td>
-<td headers="dev" class="gt_row gt_left"><div class="gt_from_md">
-<p>geneactiv</p>
-</div></td>
-<td headers="wear_loc" class="gt_row gt_left"><div class="gt_from_md">
-<p>wrist</p>
-</div></td>
-<td headers="light" class="gt_row gt_right"><div class="gt_from_md">
-<p>45.8</p>
-</div></td>
-<td headers="mod" class="gt_row gt_right"><div class="gt_from_md">
-<p>93.2</p>
-</div></td>
-<td headers="vig" class="gt_row gt_right"><div class="gt_from_md">
-<p>418.3</p>
-</div></td>
-<td headers="source" class="gt_row gt_left"><div class="gt_from_md">
-<p>Light: <a href="https://doi.org/10.1111/sms.12795" class="external-link">Hildebrand et al., 2016</a><br>
+<td headers="age" class="gt_row gt_left"><span class="gt_from_md">adults</span></td>
+<td headers="dev" class="gt_row gt_left"><span class="gt_from_md">geneactiv</span></td>
+<td headers="wear_loc" class="gt_row gt_left"><span class="gt_from_md">wrist</span></td>
+<td headers="light" class="gt_row gt_right"><span class="gt_from_md">45.8</span></td>
+<td headers="mod" class="gt_row gt_right"><span class="gt_from_md">93.2</span></td>
+<td headers="vig" class="gt_row gt_right"><span class="gt_from_md">418.3</span></td>
+<td headers="source" class="gt_row gt_left"><span class="gt_from_md">Light: <a href="https://doi.org/10.1111/sms.12795" class="external-link">Hildebrand et al., 2016</a><br>
 Mod: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a><br>
-Vig: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a></p>
-</div></td>
+Vig: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a></span></td>
 </tr>
 <tr>
-<td headers="age" class="gt_row gt_left gt_striped"><div class="gt_from_md">
-<p>adults</p>
-</div></td>
-<td headers="dev" class="gt_row gt_left gt_striped"><div class="gt_from_md">
-<p>actigraph</p>
-</div></td>
-<td headers="wear_loc" class="gt_row gt_left gt_striped"><div class="gt_from_md">
-<p>wrist</p>
-</div></td>
-<td headers="light" class="gt_row gt_right gt_striped"><div class="gt_from_md">
-<p>44.8</p>
-</div></td>
-<td headers="mod" class="gt_row gt_right gt_striped"><div class="gt_from_md">
-<p>100.6</p>
-</div></td>
-<td headers="vig" class="gt_row gt_right gt_striped"><div class="gt_from_md">
-<p>428.8</p>
-</div></td>
-<td headers="source" class="gt_row gt_left gt_striped"><div class="gt_from_md">
-<p>Light: <a href="https://doi.org/10.1111/sms.12795" class="external-link">Hildebrand et al., 2016</a><br>
+<td headers="age" class="gt_row gt_left gt_striped"><span class="gt_from_md">adults</span></td>
+<td headers="dev" class="gt_row gt_left gt_striped"><span class="gt_from_md">actigraph</span></td>
+<td headers="wear_loc" class="gt_row gt_left gt_striped"><span class="gt_from_md">wrist</span></td>
+<td headers="light" class="gt_row gt_right gt_striped"><span class="gt_from_md">44.8</span></td>
+<td headers="mod" class="gt_row gt_right gt_striped"><span class="gt_from_md">100.6</span></td>
+<td headers="vig" class="gt_row gt_right gt_striped"><span class="gt_from_md">428.8</span></td>
+<td headers="source" class="gt_row gt_left gt_striped"><span class="gt_from_md">Light: <a href="https://doi.org/10.1111/sms.12795" class="external-link">Hildebrand et al., 2016</a><br>
 Mod: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a><br>
-Vig: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a></p>
-</div></td>
+Vig: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a></span></td>
 </tr>
 <tr>
-<td headers="age" class="gt_row gt_left"><div class="gt_from_md">
-<p>adults</p>
-</div></td>
-<td headers="dev" class="gt_row gt_left"><div class="gt_from_md">
-<p>geneactiv</p>
-</div></td>
-<td headers="wear_loc" class="gt_row gt_left"><div class="gt_from_md">
-<p>hip</p>
-</div></td>
-<td headers="light" class="gt_row gt_right"><div class="gt_from_md">
-<p>46.9</p>
-</div></td>
-<td headers="mod" class="gt_row gt_right"><div class="gt_from_md">
-<p>68.7</p>
-</div></td>
-<td headers="vig" class="gt_row gt_right"><div class="gt_from_md">
-<p>266.8</p>
-</div></td>
-<td headers="source" class="gt_row gt_left"><div class="gt_from_md">
-<p>Light: <a href="https://doi.org/10.1111/sms.12795" class="external-link">Hildebrand et al., 2016</a><br>
+<td headers="age" class="gt_row gt_left"><span class="gt_from_md">adults</span></td>
+<td headers="dev" class="gt_row gt_left"><span class="gt_from_md">geneactiv</span></td>
+<td headers="wear_loc" class="gt_row gt_left"><span class="gt_from_md">hip</span></td>
+<td headers="light" class="gt_row gt_right"><span class="gt_from_md">46.9</span></td>
+<td headers="mod" class="gt_row gt_right"><span class="gt_from_md">68.7</span></td>
+<td headers="vig" class="gt_row gt_right"><span class="gt_from_md">266.8</span></td>
+<td headers="source" class="gt_row gt_left"><span class="gt_from_md">Light: <a href="https://doi.org/10.1111/sms.12795" class="external-link">Hildebrand et al., 2016</a><br>
 Mod: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a><br>
-Vig: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a></p>
-</div></td>
+Vig: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a></span></td>
 </tr>
 <tr>
-<td headers="age" class="gt_row gt_left gt_striped"><div class="gt_from_md">
-<p>adults</p>
-</div></td>
-<td headers="dev" class="gt_row gt_left gt_striped"><div class="gt_from_md">
-<p>actigraph</p>
-</div></td>
-<td headers="wear_loc" class="gt_row gt_left gt_striped"><div class="gt_from_md">
-<p>hip</p>
-</div></td>
-<td headers="light" class="gt_row gt_right gt_striped"><div class="gt_from_md">
-<p>47.4</p>
-</div></td>
-<td headers="mod" class="gt_row gt_right gt_striped"><div class="gt_from_md">
-<p>61.1</p>
-</div></td>
-<td headers="vig" class="gt_row gt_right gt_striped"><div class="gt_from_md">
-<p>258.7</p>
-</div></td>
-<td headers="source" class="gt_row gt_left gt_striped"><div class="gt_from_md">
-<p>Light: <a href="https://doi.org/10.1111/sms.12795" class="external-link">Hildebrand et al., 2016</a><br>
+<td headers="age" class="gt_row gt_left gt_striped"><span class="gt_from_md">adults</span></td>
+<td headers="dev" class="gt_row gt_left gt_striped"><span class="gt_from_md">actigraph</span></td>
+<td headers="wear_loc" class="gt_row gt_left gt_striped"><span class="gt_from_md">hip</span></td>
+<td headers="light" class="gt_row gt_right gt_striped"><span class="gt_from_md">47.4</span></td>
+<td headers="mod" class="gt_row gt_right gt_striped"><span class="gt_from_md">61.1</span></td>
+<td headers="vig" class="gt_row gt_right gt_striped"><span class="gt_from_md">258.7</span></td>
+<td headers="source" class="gt_row gt_left gt_striped"><span class="gt_from_md">Light: <a href="https://doi.org/10.1111/sms.12795" class="external-link">Hildebrand et al., 2016</a><br>
 Mod: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a><br>
-Vig: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a></p>
-</div></td>
+Vig: <a href="https://doi.org/10.1249/mss.0000000000000289" class="external-link">Hildebrand et al., 2014</a></span></td>
 </tr>
 </tbody>
-<tfoot class="gt_footnotes">
-<tr>
+<tfoot>
+<tr class="gt_footnotes">
 <td class="gt_footnote" colspan="7">
-<sup class="gt_footnote_marks">1</sup> Children: ≤18 years; Adults: &gt; 18 years</td>
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> Children: ≤18 years; Adults: &gt; 18 years</td>
     </tr>
-<tr>
+<tr class="gt_footnotes">
 <td class="gt_footnote" colspan="7">
-<sup class="gt_footnote_marks">2</sup> Geneactiv thresholds can also be applied to Axivity devices.</td>
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span> Geneactiv thresholds can also be applied to Axivity devices.</td>
     </tr>
 </tfoot>
 </table>
@@ -1033,18 +958,18 @@ metadata.</p>
 <p>As an example, if your study included children wearing geneactiv
 devices on their wrists, you would include the following lines in your
 GGIR call:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  threshold.lig <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">51.6</span>),</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  threshold.mod <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">191.6</span>),</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  threshold.vig <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">695.8</span>),</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>...</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>...</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  threshold.lig <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">51.6</span>),</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  threshold.mod <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">191.6</span>),</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  threshold.vig <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">695.8</span>),</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>...</span></code></pre></div>
 <p>If your study included <em>both</em> children and adults wearing
 geneactiv devices on their wrists, your call would include:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  threshold.lig <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">45.8</span>, <span class="fl">51.6</span>),</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  threshold.mod <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">93.2</span>, <span class="fl">191.6</span>),</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  threshold.vig <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">418.3</span>, <span class="fl">695.8</span>),</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>...</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>...</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  threshold.lig <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">45.8</span>, <span class="fl">51.6</span>),</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  threshold.mod <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">93.2</span>, <span class="fl">191.6</span>),</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  threshold.vig <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">418.3</span>, <span class="fl">695.8</span>),</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>...</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="using-sleepipd-helper-functions">Using <code>sleepIPD</code> Helper Functions<a class="anchor" aria-label="anchor" href="#using-sleepipd-helper-functions"></a>
@@ -1097,9 +1022,7 @@ that this will replace the existing metadata template.</p>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
+      </div>
 
 </div>
 
@@ -1112,16 +1035,16 @@ that this will replace the existing metadata template.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
       </footer>
 </div>
 
-  
 
 
-  
+
+
 
   </body>
 </html>
