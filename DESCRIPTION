@@ -1,6 +1,6 @@
 Package: sleepIPD
 Title: Opinionated Accelerometer Reprocessing for the SleepIPD Study
-Version: 0.2.3
+Version: 0.2.4
 Authors@R: 
     person(given = "Taren",
            family = "Sanders",

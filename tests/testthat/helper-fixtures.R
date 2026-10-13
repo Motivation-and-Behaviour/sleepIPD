@@ -5,9 +5,6 @@ write_ggir_fixture <- function(dir,
                                  "2016-02-26T00:00:00+0100",
                                  "2016-02-27T00:00:00+0100"
                                ),
-                               part2_weekdays = c(
-                                 "Thursday", "Friday", "Saturday"
-                               ),
                                part5_prefix = "",
                                part5_windows = c("WW", "MM"),
                                part5_threshold = "L48.1M201.4V707",
@@ -20,7 +17,7 @@ write_ggir_fixture <- function(dir,
     filename = "P01.bin",
     `N valid hours` = c(8.7, 24, 24),
     `N hours` = c(8.75, 24, 24),
-    weekday = part2_weekdays,
+    weekday = weekdays,
     measurementday = 1:3,
     calendar_date = part2_dates,
     check.names = FALSE
@@ -60,7 +57,11 @@ write_ggir_fixture <- function(dir,
       dur_day_total_VIG_min = c(10, 8, 12),
       dur_day_min = c(870, 863, 877),
       dur_spt_min = c(570, 577, 563),
-      ACC_day_mg = c(30.1, 28.4, 31.7)
+      ACC_day_mg = c(30.1, 28.4, 31.7),
+      M16TIME = c(
+        "2016-02-25T14:55:25+0100", "2016-02-26T14:10:00+0100",
+        "2016-02-27T13:40:00+0100"
+      )
     )
   })
   readr::write_csv(do.call(rbind, part5), file.path(dir, "part5_test.csv"))

@@ -27,7 +27,10 @@ apply_thresholds <- function(intensity, ages, device, wear_location) {
 #' 8601 timestamp with a UTC offset (e.g. `2016-02-26T00:00:00+0100`), part 4 is
 #' `dd/mm/YYYY` and part 5 is `YYYY-MM-DD`. Some contributors' part 2 data is
 #' `dd/mm/YYYY HH:MM`. All of these are returned as the local calendar date,
-#' ignoring any UTC offset. Values that cannot be parsed are an error.
+#' ignoring any UTC offset. Timestamps are first rounded to the nearest minute,
+#' because GGIR 2.5-1 stamps the last partial day a few seconds before midnight.
+#' Values ending in `Z` were converted to UTC upstream, so the local date cannot
+#' be recovered; these, and values that cannot be parsed, are an error.
 #'
 #' @param x A character vector of dates or timestamps.
 #' @family helper functions (internal)
@@ -35,8 +38,13 @@ apply_thresholds <- function(intensity, ages, device, wear_location) {
 #' @return A `Date` vector.
 parse_ggir_date <- function(x) {
   x <- as.character(x)
-  # Drop the UTC offset so the local date is kept
-  x <- stringr::str_remove(x, "([+-]\\d{2}:?\\d{2}|Z)$")
+  if (any(stringr::str_detect(x, "Z$"), na.rm = TRUE)) {
+    usethis::ui_stop(c(
+      "Dates ending in Z are UTC, so the local date cannot be recovered.",
+      "Convert them back to the study's time zone before assembling."
+    ))
+  }
+  x <- stringr::str_remove(x, "[+-]\\d{2}:?\\d{2}$")
   parsed <- lubridate::parse_date_time(
     x,
     orders = c("dmY HMS", "Ymd HMS"), truncated = 3, quiet = TRUE
@@ -48,7 +56,7 @@ parse_ggir_date <- function(x) {
       "Could not parse dates such as {usethis::ui_value(failed)}"
     )
   }
-  lubridate::as_date(parsed)
+  lubridate::as_date(lubridate::round_date(parsed, "minute"))
 }
 
 #' Convert a File or Folder Path
@@ -151,7 +159,7 @@ collate_outputs <- function(outputdir, studyname, verbose = TRUE) {
   # Read all part 5 into one data frame
   p5df <- readr::read_csv(file.path(outputdir, p5files),
     id = "p5filename",
-    show_col_types = FALSE,
+    col_types = readr::cols(.default = readr::col_character()),
     lazy = FALSE
   )
 

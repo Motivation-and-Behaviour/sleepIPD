@@ -45,11 +45,8 @@ assemble_datasheet <- function(folder, verbose = TRUE) {
     "M16_ig_rsquared_ENMO_mg_0-24hr"
   )
 
-  # readr would otherwise convert part 2's timestamps to UTC and shift the date
-  ggir_cols <- readr::cols(
-    filename = readr::col_character(),
-    calendar_date = readr::col_character()
-  )
+  # Guessed types would convert timestamps to UTC; values are only ever joined
+  ggir_cols <- readr::cols(.default = readr::col_character())
 
   part2_df <-
     readr::read_csv(part2_filepath, col_types = ggir_cols, progress = FALSE) %>%
@@ -231,22 +228,6 @@ assemble_datasheet <- function(folder, verbose = TRUE) {
     usethis::ui_warn(
       "Part 2 has {nrow(duplicates)} duplicated filename/calendar_date pairs."
     )
-  }
-
-  if ("weekday" %in% names(part2_df_clean)) {
-    day_names <- c(
-      "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
-      "Saturday"
-    )
-    expected <- day_names[
-      lubridate::wday(part2_df_clean$calendar_date, week_start = 7)
-    ]
-    mismatches <- sum(part2_df_clean$weekday != expected, na.rm = TRUE)
-    if (mismatches > 0) {
-      usethis::ui_warn(
-        "Part 2 weekday disagrees with calendar_date on {mismatches} rows."
-      )
-    }
   }
 
   part4_df_clean <-

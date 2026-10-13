@@ -35,7 +35,7 @@ test_that("GGIR dates parse to the local calendar date", {
     "2016-02-26T00:00:00+1300", "2016-02-26T00:00:00+0000",
     "2016-02-26T00:00:00-0300", "2016-02-26T15:15:00-0300",
     "2016-02-26T00:00:00-0500", "2016-02-26T23:59:00-0500",
-    "2016-02-26T00:00:00Z"
+    "2016-02-25T23:59:55+0100"
   )
   expect_equal(parse_ggir_date(iso), rep(as.Date("2016-02-26"), length(iso)))
 
@@ -51,4 +51,22 @@ test_that("GGIR dates parse to the local calendar date", {
     parse_ggir_date(c(NA, "2016-02-26")), as.Date(c(NA, "2016-02-26"))
   )
   expect_error(parse_ggir_date("02/26/2016"), "02/26/2016")
+  expect_error(parse_ggir_date("2016-02-26T00:00:00Z"), "UTC")
+})
+
+test_that("collated part 5 values are kept as written", {
+  outdir <- withr::local_tempdir()
+  results <- file.path(outdir, "results")
+  dir.create(results)
+  writeLines("filename", file.path(results, "part2_daysummary.csv"))
+  writeLines(
+    "filename", file.path(results, "part4_nightsummary_sleep_cleaned.csv")
+  )
+  writeLines(
+    c("filename,M16TIME", "P01.bin.RData,2016-02-25T14:55:25+0100"),
+    file.path(results, "part5_daysummary_WW_L48.1M201.4V707_T5A5.csv")
+  )
+  collate_outputs(outdir, "test", verbose = FALSE)
+  p5 <- readLines(file.path(outdir, "sleepIPD_output", "part5_test.csv"))
+  expect_match(p5[2], "2016-02-25T14:55:25+0100", fixed = TRUE)
 })

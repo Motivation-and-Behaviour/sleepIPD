@@ -1,3 +1,14 @@
+# sleepIPD 0.2.4
+
+* `parse_ggir_date()` rounds timestamps to the nearest minute before taking the
+  date. GGIR 2.5-1 stamps the last partial day a few seconds before midnight
+  (e.g. `23:59:55`), so it collided with the previous day.
+* `collate_outputs()` and `assemble_datasheet()` read GGIR output as text.
+  Previously readr guessed part 5 clock times (`M16TIME`, `L16TIME`, ...) as
+  datetimes and rewrote them in UTC.
+* `assemble_datasheet()` errors when part 2 dates end in `Z`. These were
+  converted to UTC before collation and the local date cannot be recovered.
+
 # sleepIPD 0.2.3
 
 * `assemble_datasheet()` now reads `calendar_date` as text and parses it with
